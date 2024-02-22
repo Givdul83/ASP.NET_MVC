@@ -1,0 +1,113 @@
+#subscribe {
+    background-color:#F3F6FF;
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+ 
+    .section-subscribe {
+ 
+        .container {
+ 
+            .heading {
+                display:flex;
+                justify-content: center;
+                gap:2rem;
+ 
+                h1 {
+ 
+                }
+ 
+                img {
+ 
+                }
+            }
+ 
+            .newsletter {
+                display: flex;
+                justify-content: center;
+                padding-top: 3rem;
+                padding-bottom: 3rem;
+                
+             
+                h2 {
+                    padding-right: 3rem;
+                    max-width: 11rem;
+                    margin: 0;
+                    
+                    
+                    
+                }
+ 
+                .checkboxes {
+                    
+                    display: grid;
+                    grid-template-columns: repeat(2,1fr);
+                    margin-right: 1rem;
+                    margin-bottom: 1rem;
+                    @include lg {
+                        grid-template-columns: repeat(3,1fr);
+                    }
+                   
+ 
+                    .checkbox{
+                        display: flex;
+                        gap: .5rem;
+                    }
+ 
+                    input {
+                        height: 100%;
+                       
+                    }
+ 
+                    p{
+                        
+                        margin: 0;
+                        margin-right: 1rem;
+                    }
+                }
+            }
+                
+               
+            .subscribe-form {
+                    display:flex;
+                    justify-content: center;
+                    
+                    
+ 
+               
+                    .input-terms{
+                        width: 43%;
+                        margin-right: 1rem;
+                        
+                        
+                    
+ 
+                input {
+                    width: 100%;
+                    border-radius: .3rem;
+                    border-color: $gray-500;
+                    opacity: 0.5;
+                    position: relative;
+                    padding-left: 2rem;
+ 
+                }
+                p {
+                    margin: 0;
+                    padding-top: .5rem;
+                }
+                   
+ 
+                }
+               
+ 
+                button {
+                    height: 2rem;
+ 
+                }
+            }
+ 
+            
+        
+        
+    }
+    }
+}

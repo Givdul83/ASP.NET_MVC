@@ -1,0 +1,62 @@
+#work{
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+
+
+    .section-work{
+
+        .container{
+
+                display:flex;
+                justify-content: center;
+            .work-image{
+                    display: none;
+
+                    @include lg{
+                        display: block;
+                    }
+
+                img{
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            .work-content{
+                padding-top: 1rem;
+                
+                
+                @include lg{
+                    padding-left: 8rem;
+                    padding-top: 7rem;
+                }
+
+                .text{
+
+                    display: flex;
+                    align-items: center;
+                    margin-top: 1.2rem;
+                    gap: .5rem;
+                
+
+                i {
+                    color: $theme;
+                }
+
+                p{
+                    margin: 0;
+                }
+            }
+
+            button{
+                margin-top: 3rem;
+                width: 100%;
+
+                @include lg{
+                    width:auto;
+                }
+            }
+        }
+    }
+}
+}

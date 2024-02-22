@@ -1,0 +1,39 @@
+#tools{
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+
+
+    .section-tools{
+
+        .container{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+
+            
+
+
+            .tools-grid{
+                padding: 3rem;
+                display: grid;
+                text-align: left;
+                gap:3rem;
+                grid-template-columns: repeat(2,1fr);
+
+                @include lg {
+                    grid-template-columns: repeat(4,1fr);
+                }
+            
+            
+
+            .tools-box{
+                img{
+                    padding-bottom: 1rem;
+                }
+
+            }
+         }
+        }
+    }
+}
