@@ -24,8 +24,8 @@
 
             <div id="menu">
                 <nav>
-                    <a class="menu-link" href="#showcase">Overview </a>
-                        <a class="menu-link" href="#benefits">Features </a>
+                    <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview </a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits">Features </a>
                     <a class="menu-link" href="contacts.html">Contacts </a>
                 </nav>
             </div>
@@ -42,8 +42,35 @@
                     <a asp-controller="Auth" asp-action= "SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
                     <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
             </div>
+                <div class="btn-mobile">
+                    <button class="btn" id="mobile-menu-btn" aria-controls="btn-switch"><i class="fa-solid fa-bars"></i></button>
+                </div>
 
-        </div>
+            </div>
+            <div id="mobile-menu" class="open" aria-expanded="false">
+
+                <div class="btn-switch">
+                    <span>Light</span>
+                    <label class="switch" for="switch">
+                        <input type="checkbox" id="switch" role="switch" />
+                        <div class="slider round"></div>
+                    </label>
+                    <span>Dark</span>
+                </div>
+
+                <div class="account-buttons">
+                    <button class="btn-gray">Sign In</button>
+                    <button class="btn-theme">Sign Up</button>
+                </div>
+
+                <nav>
+                    <a class="menu-link" href="#">Overview</a>
+                    <a class="menu-link" href="#">Features</a>
+                    <a class="menu-link" href="/courses">Courses</a>
+                </nav>
+
+            </div>
+       
     </header>
 
     <main>
@@ -59,7 +86,7 @@
                 <a href="https://www.instagram.com/" target="_blank"><i class="fa-brands fa-square-instagram"></i></a>
                 <a href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i></a>
             </div>
-            <p class="gray-600">© 2024 Silicon. All rights reserved. Pulvinar urna condimentum amet tempor, ornare integer. Lorem odio justo malesuada suspendisse viverra aliquet quisque turpis non. Feugiat in odio non nunc ornare consectetur.</p>
+            <p class="gray-600">© @DateTime.Now.Year Silicon. All rights reserved. Pulvinar urna condimentum amet tempor, ornare integer. Lorem odio justo malesuada suspendisse viverra aliquet quisque turpis non. Feugiat in odio non nunc ornare consectetur.</p>
         </div>
     </footer>
     </div>

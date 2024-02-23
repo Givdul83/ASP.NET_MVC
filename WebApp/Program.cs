@@ -1,4 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
+builder.Services.AddRouting(x => x.LowercaseUrls =true);
+builder.Services.AddControllersWithViews();
 
 builder.Services.AddControllersWithViews();
 

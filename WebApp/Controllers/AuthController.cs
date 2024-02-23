@@ -17,6 +17,10 @@ namespace WebApp.Controllers
         [HttpPost]
         public IActionResult SignUp(SignUpViewModel viewmodel)
         {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             
             return View(viewmodel);
         }

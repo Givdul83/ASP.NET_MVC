@@ -823,3 +823,15 @@ footer .container .social-media a:hover {
 #subscribe .section-subscribe .container .subscribe-form button {
   height: 2rem;
 }
+
+#signup {
+  height: 100%;
+  background-color: aqua;
+}
+
+#signin {
+  background-color: red;
+}
+#signin .container h1 {
+  color: aqua;
+}
