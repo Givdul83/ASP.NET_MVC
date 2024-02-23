@@ -826,12 +826,169 @@ footer .container .social-media a:hover {
 
 #signup {
   height: 100%;
-  background-color: aqua;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
-
+#signup .container {
+  display: flex;
+  justify-content: center;
+}
+#signup .container .signup-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+#signup .container .signup-form h1 {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 28px !important;
+}
+@media (min-width: 992px) {
+  #signup .container .signup-form h1 {
+    line-height: 160%;
+    font-weight: 400;
+    color: #565973;
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: #0B0F19;
+    font-size: 40px !important;
+  }
+}
+#signup .container .signup-form .content {
+  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-areas: "first last" "email email" "password password" "confirmpassword confirmpassword" "terms terms";
+  gap: 0.5rem;
+}
+#signup .container .signup-form .content .input-group {
+  display: flex;
+  flex-direction: column;
+  color: #0B0F19;
+  font-weight: 700;
+}
+#signup .container .signup-form .content .input-group span {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+}
+#signup .container .signup-form .content .input-group input {
+  border: 1px solid #D4D7E5;
+  padding: 0.4rem;
+  border-radius: 5px;
+}
+#signup .container .signup-form .content .input-group input.input-validation-error {
+  border-color: #EF4444;
+}
+#signup .container .signup-form .content #form-firstname {
+  grid-area: first;
+}
+#signup .container .signup-form .content #form-lastname {
+  grid-area: last;
+}
+#signup .container .signup-form .content #form-email {
+  grid-area: email;
+  width: 100%;
+}
+#signup .container .signup-form .content #form-password {
+  grid-area: password;
+}
+#signup .container .signup-form .content #form-confirmpassword {
+  grid-area: confirmpassword;
+}
+#signup .container .signup-form .content #form-terms {
+  grid-area: terms;
+}
+#signup .container .signup-form .content #form-terms .checkbox-error {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+}
 #signin {
-  background-color: red;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
 }
-#signin .container h1 {
-  color: aqua;
+#signin .container {
+  display: flex;
+  justify-content: center;
+}
+#signin .container .signin-form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+}
+#signin .container .signin-form h1 {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-weight: 800;
+  color: #0B0F19;
+  font-size: 28px !important;
+}
+@media (min-width: 992px) {
+  #signin .container .signin-form h1 {
+    line-height: 160%;
+    font-weight: 400;
+    color: #565973;
+    font-family: "Manrope", sans-serif;
+    font-weight: 800;
+    color: #0B0F19;
+    font-size: 40px !important;
+  }
+}
+#signin .container .signin-form a {
+  margin-left: 0.2rem;
+}
+#signin .container .signin-form .content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  justify-content: center;
+}
+#signin .container .signin-form .content .input-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #0B0F19;
+  font-weight: 700;
+}
+#signin .container .signin-form .content .input-group span {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+}
+#signin .container .signin-form .content .input-group input {
+  border: 1px solid #D4D7E5;
+  padding: 0.4rem;
+  border-radius: 5px;
+}
+#signin .container .signin-form .content .input-group input.input-validation-error {
+  border-color: #EF4444;
+}
+#signin .container .signin-form .btn-theme {
+  margin-top: 1rem;
+}
+#signin .container .signin-form .get-password {
+  margin-top: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+#signin .container .signin-form .social-login {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+#signin .container .signin-form .social-login h2 {
+  text-align: center;
+}
+#signin .container .signin-form .social-login .social-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
 }

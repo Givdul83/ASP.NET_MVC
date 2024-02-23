@@ -30,7 +30,19 @@ namespace WebApp.Controllers
 
         public IActionResult SignIn()
         {
-            return View();
+            var viewModel= new SignInViewModel();
+            return View(viewModel);
+        }
+
+        [HttpPost]
+        public IActionResult SignIn(SignInViewModel viewmodel)
+        {
+            if (ModelState.IsValid)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
+            return View(viewmodel);
         }
     }
 }
