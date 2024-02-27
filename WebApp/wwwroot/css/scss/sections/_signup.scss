@@ -78,6 +78,8 @@
 
                 #form-terms {
                     grid-area: terms;
+                    margin-top: .5rem;
+                    margin-bottom: 1rem;
 
                     .checkbox-error {
                         color: $danger;

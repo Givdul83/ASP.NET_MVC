@@ -19,7 +19,7 @@ namespace WebApp.Controllers
         {
             if (ModelState.IsValid)
             {
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Account");
             }
             
             return View(viewmodel);

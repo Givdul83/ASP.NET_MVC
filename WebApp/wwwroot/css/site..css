@@ -902,6 +902,8 @@ footer .container .social-media a:hover {
 }
 #signup .container .signup-form .content #form-terms {
   grid-area: terms;
+  margin-top: 0.5rem;
+  margin-bottom: 1rem;
 }
 #signup .container .signup-form .content #form-terms .checkbox-error {
   color: #EF4444;
@@ -991,4 +993,102 @@ footer .container .social-media a:hover {
   display: flex;
   justify-content: center;
   gap: 2rem;
+}
+
+#account {
+  padding-bottom: 5rem;
+  padding-top: 5rem;
+}
+#account .container {
+  display: flex;
+}
+#account .container .account-nav {
+  width: 20%;
+  height: 100vh;
+  border-right: 1px solid rgba(147, 151, 173, 0.3);
+  margin-right: 10rem;
+}
+#account .container .account-nav .nav-image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+#account .container .account-nav .nav-name-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+#account .container .account-nav .nav-name-info h2 {
+  margin: 0;
+}
+#account .container .account-nav .nav-name-info p {
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+#account .container .account-nav .nav-buttons {
+  margin-right: 1rem;
+}
+#account .container .account-nav .nav-buttons a {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: 700;
+}
+#account .container .account-nav .nav-buttons .btn-gray {
+  background-color: white;
+}
+#account .container .account-nav .nav-buttons .btn-gray:hover {
+  background-color: #6366F1;
+}
+#account .container .account-details {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+#account .container .account-details .basic .basic-content {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-areas: "first last" "email phone" "bio bio";
+  gap: 0.5rem;
+}
+#account .container .account-details .basic .basic-content .basic-group {
+  display: flex;
+  flex-direction: column;
+  color: #0B0F19;
+  font-weight: 700;
+}
+#account .container .account-details .basic .basic-content .basic-group input {
+  border: 1px solid #D4D7E5;
+  padding: 0.4rem;
+  border-radius: 5px;
+}
+#account .container .account-details .basic .basic-content .basic-group .bio-input {
+  padding-bottom: 2rem;
+  border: 1px solid #D4D7E5;
+  border-radius: 5px;
+}
+#account .container .account-details .basic .basic-content #basic-firstname {
+  grid-area: first;
+}
+#account .container .account-details .basic .basic-content #basic-lastname {
+  grid-area: last;
+}
+#account .container .account-details .basic .basic-content #basic-email {
+  grid-area: email;
+}
+#account .container .account-details .basic .basic-content #basic-phone {
+  grid-area: phone;
+}
+#account .container .account-details .basic .basic-content #basic-bio {
+  grid-area: bio;
+}
+#account .container .account-details .basic-buttons {
+  display: flex;
+  gap: 1rem;
+}
+#account .container .account-details .address-buttons {
+  display: flex;
+  gap: 1rem;
 }
