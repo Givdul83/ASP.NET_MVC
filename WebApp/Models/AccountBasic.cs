@@ -15,7 +15,7 @@ public class AccountBasic
     public string LastName { get; set; } = null!;
 
 
-    [Display(Name = "Email", Prompt = "Enter Email address", Order = 2)]
+    [Display(Name = "Email address", Prompt = "Enter Email address", Order = 2)]
     [DataType(DataType.EmailAddress)]
     [Required(ErrorMessage = "Invalid Email address")]
     [RegularExpression(@"^[a-zA-Z0-9._%+-]{1,}@[a-zA-Z0-9.-]{2,}\.[a-zA-Z]{2,}$", ErrorMessage = "Invalid email address")]

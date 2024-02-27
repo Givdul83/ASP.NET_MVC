@@ -22,7 +22,7 @@
         </div>
         <div class="account-details">
             <h1 class="h2">@Model.Title</h1>
-            <form class="basic">
+            <form class="basic" novalidate>
                 <h3 class="h5">@Model.AccountBasic.Title</h3>
                 <div class="basic-content">
                     <div id="basic-firstname" class="basic-group">
@@ -49,15 +49,16 @@
                         <textarea class="bio-input" asp-for="AccountBasic.Bio" ></textarea>
                     </div>
                 </div>
+                <div class="basic-buttons">
+                    <a asp-controller="Account" asp-action="Index" class="btn-gray">Cancel</a>
+                    <a asp-controller="Account" asp-action="Index" class="btn-theme" type="submit">Save Changes</a>
+                </div>
             </form>
-            <div class="basic-buttons">
-                <a asp-controller="Account" asp-action="Index" class="btn-gray">Cancel</a>
-                <a asp-controller="Account" asp-action="Index" class="btn-theme">Save Changes</a>
-            </div>
+           
             <form class="address">
                 <h4 class="h5">@Model.AccountAddress.Title</h4>
                 <div class="address-content">
-                    <div id="adress-line1" class="address-group">
+                    <div id="address-line1" class="address-group">
                         <label asp-for=AccountAddress.AddressLine1></label>
                         <input asp-for="AccountAddress.AddressLine1" />
                     </div>
@@ -74,11 +75,12 @@
                         <input asp-for="AccountAddress.City" />
                     </div>
                 </div>
+                <div class="address-buttons">
+                    <a asp-controller="Account" asp-action="Index" class="btn-gray">Cancel</a>
+                    <a asp-controller="Account" asp-action="Index" class="btn-theme">Save Changes</a>
+                </div>
             </form>
-            <div class="address-buttons">
-                <a asp-controller="Account" asp-action="Index" class="btn-gray">Cancel</a>
-                <a asp-controller="Account" asp-action="Index" class="btn-theme">Save Changes</a>
-            </div>
+           
         </div>
     </div>
 </section>

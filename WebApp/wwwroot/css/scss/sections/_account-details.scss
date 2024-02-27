@@ -1,18 +1,19 @@
 #account {
-    padding-bottom: 5rem;
-    padding-top: 5rem;
+    padding-bottom: 2rem;
+    padding-top: 2rem;
 
     .container {
         display: flex;
 
         .account-nav {
             width: 20%;
-            height: 100vh;
+            height: 85vh;
             border-right: 1px solid rgb(147, 151, 173, 0.3);
             margin-right: 10rem;
 
 
             .nav-image {
+                padding-top: 3.5rem;
                 display: flex;
                 justify-content: center;
                 align-items: center;
@@ -70,15 +71,16 @@
             .basic {
 
                 h3 {
+                    color: #6361F1;
                 }
 
                 .basic-content {
-                    
                     display: grid;
                     grid-template-columns: 1fr, 1fr;
                     grid-template-areas:
                         "first last" "email phone" "bio bio";
                     gap: .5rem;
+
 
 
 
@@ -92,6 +94,16 @@
                             border: 1px solid $gray-400;
                             padding: .4rem;
                             border-radius: 5px;
+
+                            &.input-validation-error {
+                                border-color: $danger;
+                            }
+                        }
+
+                        span {
+                            color: $danger;
+                            font-weight: 500;
+                            opacity: 0.7;
                         }
 
                         .bio-input {
@@ -99,8 +111,7 @@
                             padding: .4rem;
                             border: 1px solid $gray-400;
                             border-radius: 5px;
-                            margin-bottom:1rem;
-
+                            margin-bottom: 1rem;
                         }
                     }
 
@@ -124,43 +135,69 @@
                         grid-area: bio;
                     }
                 }
-            }
 
-            .basic-buttons {
-                display: flex;
-                gap: 1rem;
+                .basic-buttons {
+                    display: flex;
+                    gap: 1rem;
+                    padding-bottom: 2rem;
+                    border-bottom: 1px solid rgb(147, 151, 173, 0.3);
 
-                .btn-gray {
+                    .btn-gray {
+                    }
                 }
             }
 
+
+
             .address {
+                padding-top: 2rem;
 
                 h4 {
+                    color: #6361F1;
                 }
 
                 .address-content {
+                    display: grid;
+                    grid-template-columns: 1fr, 1fr;
+                    grid-template-areas:
+                        "first first" "secondary secondary" "postalcode city";
+                    gap: .5rem;
 
                     .address-group {
+                        display: flex;
+                        flex-direction: column;
+                        color: $gray-900;
+                        font-weight: 700;
+
+                        input {
+                            border: 1px solid $gray-400;
+                            padding: .4rem;
+                            border-radius: 5px;
+                        }
                     }
 
                     #address-line1 {
+                        grid-area: first;
                     }
 
                     #address-line2 {
+                        grid-area: secondary;
                     }
 
                     #address-postalcode {
+                        grid-area: postalcode;
                     }
 
                     #address-city {
+                        grid-area: city;
                     }
                 }
-            }
 
-            .address-buttons {
-                display: flex;
-                gap: 1rem;
+                .address-buttons {
+                    display: flex;
+                    gap: 1rem;
+                    padding-top: 1rem;
+                }
             }
         }
     }

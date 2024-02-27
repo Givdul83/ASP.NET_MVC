@@ -996,19 +996,20 @@ footer .container .social-media a:hover {
 }
 
 #account {
-  padding-bottom: 5rem;
-  padding-top: 5rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
 }
 #account .container {
   display: flex;
 }
 #account .container .account-nav {
   width: 20%;
-  height: 100vh;
+  height: 85vh;
   border-right: 1px solid rgba(147, 151, 173, 0.3);
   margin-right: 10rem;
 }
 #account .container .account-nav .nav-image {
+  padding-top: 3.5rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1047,6 +1048,9 @@ footer .container .social-media a:hover {
   flex-direction: column;
   width: 50%;
 }
+#account .container .account-details .basic h3 {
+  color: #6361F1;
+}
 #account .container .account-details .basic .basic-content {
   display: grid;
   grid-template-columns: 1fr, 1fr;
@@ -1064,10 +1068,20 @@ footer .container .social-media a:hover {
   padding: 0.4rem;
   border-radius: 5px;
 }
+#account .container .account-details .basic .basic-content .basic-group input.input-validation-error {
+  border-color: #EF4444;
+}
+#account .container .account-details .basic .basic-content .basic-group span {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+}
 #account .container .account-details .basic .basic-content .basic-group .bio-input {
   padding-bottom: 2rem;
+  padding: 0.4rem;
   border: 1px solid #D4D7E5;
   border-radius: 5px;
+  margin-bottom: 1rem;
 }
 #account .container .account-details .basic .basic-content #basic-firstname {
   grid-area: first;
@@ -1084,11 +1098,49 @@ footer .container .social-media a:hover {
 #account .container .account-details .basic .basic-content #basic-bio {
   grid-area: bio;
 }
-#account .container .account-details .basic-buttons {
+#account .container .account-details .basic .basic-buttons {
   display: flex;
   gap: 1rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid rgba(147, 151, 173, 0.3);
 }
-#account .container .account-details .address-buttons {
+#account .container .account-details .address {
+  padding-top: 2rem;
+}
+#account .container .account-details .address h4 {
+  color: #6361F1;
+}
+#account .container .account-details .address .address-content {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-areas: "first first" "secondary secondary" "postalcode city";
+  gap: 0.5rem;
+}
+#account .container .account-details .address .address-content .address-group {
+  display: flex;
+  flex-direction: column;
+  color: #0B0F19;
+  font-weight: 700;
+}
+#account .container .account-details .address .address-content .address-group input {
+  border: 1px solid #D4D7E5;
+  padding: 0.4rem;
+  border-radius: 5px;
+}
+#account .container .account-details .address .address-content #address-line1 {
+  grid-area: first;
+}
+#account .container .account-details .address .address-content #address-line2 {
+  grid-area: secondary;
+}
+#account .container .account-details .address .address-content #address-postalcode {
+  grid-area: postalcode;
+}
+#account .container .account-details .address .address-content #address-city {
+  grid-area: city;
+}
+#account .container .account-details .address .address-buttons {
   display: flex;
   gap: 1rem;
+  padding-top: 1rem;
 }
