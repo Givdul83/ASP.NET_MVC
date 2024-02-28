@@ -1,0 +1,19 @@
+#not-found {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        text-align: center;
+
+
+        .not-found-btn {
+            display: flex;
+            justify-content:center;
+        }
+
+       
+    }
+}

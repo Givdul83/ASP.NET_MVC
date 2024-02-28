@@ -1,0 +1,63 @@
+#saved-items {
+    padding-bottom: 2rem;
+    padding-top: 2rem;
+
+    .container {
+        display: flex;
+
+        .account-nav {
+            width: 20%;
+            height: 85vh;
+            border-right: 1px solid rgb(147, 151, 173, 0.3);
+            margin-right: 10rem;
+
+
+            .nav-image {
+                padding-top: 3.5rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin-right: 1rem;
+
+                img {
+                }
+            }
+
+            .nav-name-info {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                margin-right: 1rem;
+
+                h2 {
+                    margin: 0;
+                }
+
+                p {
+                    margin: 0;
+                    margin-bottom: 1.5rem;
+                }
+            }
+
+            .nav-buttons {
+                margin-right: 1rem;
+
+                a {
+                    display: flex;
+                    justify-content: flex-start;
+                    font-weight: 700;
+                }
+
+                .btn-gray {
+                    background-color: white;
+
+
+                    &:hover {
+                        background-color: #6366F1;
+                    }
+                }
+            }
+        }
+        }
+    }

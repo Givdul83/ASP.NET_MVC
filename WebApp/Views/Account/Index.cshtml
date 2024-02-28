@@ -16,13 +16,13 @@
             <div class="nav-buttons">
                 <a asp-controller="Account" asp-action="Index" class="btn-theme"><i class="fa-regular fa-gear"></i>Account Details</a>
                 <a asp-controller="Account" asp-action="Security" class="btn-gray"><i class="fa-regular fa-lock"></i>Security</a>
-                <a asp-controller="Account" asp-action="SavedCourses" class="btn-gray"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
+                <a asp-controller="Account" asp-action="SavedItems" class="btn-gray"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
                 <a asp-controller="Home" asp-action="Index" class="btn-gray"><i class="fa-light fa-right-from-bracket"></i>Sign Out</a>
             </div>
         </div>
         <div class="account-details">
             <h1 class="h2">@Model.Title</h1>
-            <form class="basic" novalidate>
+            <form class="basic"method="post"asp-controller="Account" asp-action="Index" novalidate>
                 <h3 class="h5">@Model.AccountBasic.Title</h3>
                 <div class="basic-content">
                     <div id="basic-firstname" class="basic-group">
@@ -50,12 +50,12 @@
                     </div>
                 </div>
                 <div class="basic-buttons">
-                    <a asp-controller="Account" asp-action="Index" class="btn-gray">Cancel</a>
-                    <a asp-controller="Account" asp-action="Index" class="btn-theme" type="submit">Save Changes</a>
+                    <button class="btn-gray" type="reset">Cancel</button>
+                    <button class="btn-theme" type="submit">Save Changes</button>
                 </div>
             </form>
            
-            <form class="address">
+            <form class="address" method="post" asp-controller="Account" asp-action="Index" novalidate>
                 <h4 class="h5">@Model.AccountAddress.Title</h4>
                 <div class="address-content">
                     <div id="address-line1" class="address-group">
@@ -76,8 +76,8 @@
                     </div>
                 </div>
                 <div class="address-buttons">
-                    <a asp-controller="Account" asp-action="Index" class="btn-gray">Cancel</a>
-                    <a asp-controller="Account" asp-action="Index" class="btn-theme">Save Changes</a>
+                    <button class="btn-gray" type="reset">Cancel</button>
+                    <button class="btn-theme" type="submit">Save Changes</button>
                 </div>
             </form>
            

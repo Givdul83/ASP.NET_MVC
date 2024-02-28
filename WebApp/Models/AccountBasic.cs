@@ -22,6 +22,7 @@ public class AccountBasic
     public string Email { get; set; } = null!;
 
     [Display(Name ="Phone", Prompt ="Enter you Phone", Order =3)]
+    
     public string? Phone {  get; set; }
 
     [Display(Name ="Bio", Prompt="Add a short bio", Order =4)]

@@ -1,4 +1,4 @@
-#account {
+#security {
     padding-bottom: 2rem;
     padding-top: 2rem;
 
@@ -60,7 +60,7 @@
             }
         }
 
-        .account-details {
+        .account-security {
             display: flex;
             flex-direction: column;
             width: 50%;
@@ -68,23 +68,23 @@
             h1 {
             }
 
-            .basic {
+            .security {
 
                 h3 {
                     color: #6361F1;
                 }
 
-                .basic-content {
+                .security-content {
                     display: grid;
                     grid-template-columns: 1fr, 1fr;
                     grid-template-areas:
-                        "first last" "email phone" "bio bio";
+                        "current empty" "new confirm";
                     gap: .5rem;
 
 
 
 
-                    .basic-group {
+                    .security-group {
                         display: flex;
                         flex-direction: column;
                         color: $gray-900;
@@ -105,42 +105,26 @@
                                 border-color: $danger;
                             }
                         }
-
-                        .bio-input {
-                            padding-bottom: 2rem;
-                            padding: .4rem;
-                            border: 1px solid $gray-400;
-                            border-radius: 5px;
-                            margin-bottom: 1rem;
-                        }
                     }
 
-                    #basic-firstname {
-                        grid-area: first;
-                        display:flex;
+                    #current-password {
+                        grid-area: current;
                     }
 
-                    #basic-lastname {
-                        grid-area: last;
+                    #new-password {
+                        grid-area: new;
                     }
 
-                    #basic-email {
-                        grid-area: email;
-                    }
-
-                    #basic-phone {
-                        grid-area: phone;
-                    }
-
-                    #basic-bio {
-                        grid-area: bio;
+                    #confirm-password {
+                        grid-area: confirm;
                     }
                 }
 
-                .basic-buttons {
+                .security-buttons {
                     display: flex;
                     gap: 1rem;
                     padding-bottom: 2rem;
+                    padding-top: 2rem;
                     border-bottom: 1px solid rgb(147, 151, 173, 0.3);
 
                     .btn-gray {
@@ -150,54 +134,56 @@
 
 
 
-            .address {
+            .account-delete {
                 padding-top: 2rem;
 
-                h4 {
-                    color: #6361F1;
-                }
+                .delete {
 
-                .address-content {
-                    display: grid;
-                    grid-template-columns: 1fr, 1fr;
-                    grid-template-areas:
-                        "first first" "secondary secondary" "postalcode city";
-                    gap: .5rem;
+                    h4 {
+                        color: #6361F1;
+                    }
 
-                    .address-group {
-                        display: flex;
-                        flex-direction: column;
-                        color: $gray-900;
-                        font-weight: 700;
+                    p {
+                    }
 
-                        input {
-                            border: 1px solid $gray-400;
-                            padding: .4rem;
-                            border-radius: 5px;
+                    .delete-box {
+
+
+
+                        .deletebox-group {
+
+
+                            span {
+                                color: $danger;
+                                font-weight: 500;
+                                opacity: 0.7;
+                            }
+
+                            input {
+                                border: 1px solid $gray-400;
+                                padding: .4rem;
+                                border-radius: 5px;
+
+                                &.input-validation-error {
+                                    border-color: $danger;
+                                }
+                            }
                         }
                     }
 
-                    #address-line1 {
-                        grid-area: first;
-                    }
+                    .delete-button {
+                        display: flex;
+                        padding-top: 2rem;
 
-                    #address-line2 {
-                        grid-area: secondary;
-                    }
+                        .btn-theme {
+                            background-color: $danger;
 
-                    #address-postalcode {
-                        grid-area: postalcode;
+                            &:hover {
+                                color: black;
+                                font-weight: 700;
+                            }
+                        }
                     }
-
-                    #address-city {
-                        grid-area: city;
-                    }
-                }
-
-                .address-buttons {
-                    display: flex;
-                    gap: 1rem;
-                    padding-top: 1rem;
                 }
             }
         }

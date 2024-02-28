@@ -1063,6 +1063,11 @@ footer .container .social-media a:hover {
   color: #0B0F19;
   font-weight: 700;
 }
+#account .container .account-details .basic .basic-content .basic-group span {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+}
 #account .container .account-details .basic .basic-content .basic-group input {
   border: 1px solid #D4D7E5;
   padding: 0.4rem;
@@ -1070,11 +1075,6 @@ footer .container .social-media a:hover {
 }
 #account .container .account-details .basic .basic-content .basic-group input.input-validation-error {
   border-color: #EF4444;
-}
-#account .container .account-details .basic .basic-content .basic-group span {
-  color: #EF4444;
-  font-weight: 500;
-  opacity: 0.7;
 }
 #account .container .account-details .basic .basic-content .basic-group .bio-input {
   padding-bottom: 2rem;
@@ -1085,6 +1085,7 @@ footer .container .social-media a:hover {
 }
 #account .container .account-details .basic .basic-content #basic-firstname {
   grid-area: first;
+  display: flex;
 }
 #account .container .account-details .basic .basic-content #basic-lastname {
   grid-area: last;
@@ -1143,4 +1144,260 @@ footer .container .social-media a:hover {
   display: flex;
   gap: 1rem;
   padding-top: 1rem;
+}
+
+#security {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+#security .container {
+  display: flex;
+}
+#security .container .account-nav {
+  width: 20%;
+  height: 85vh;
+  border-right: 1px solid rgba(147, 151, 173, 0.3);
+  margin-right: 10rem;
+}
+#security .container .account-nav .nav-image {
+  padding-top: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+#security .container .account-nav .nav-name-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+#security .container .account-nav .nav-name-info h2 {
+  margin: 0;
+}
+#security .container .account-nav .nav-name-info p {
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+#security .container .account-nav .nav-buttons {
+  margin-right: 1rem;
+}
+#security .container .account-nav .nav-buttons a {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: 700;
+}
+#security .container .account-nav .nav-buttons .btn-gray {
+  background-color: white;
+}
+#security .container .account-nav .nav-buttons .btn-gray:hover {
+  background-color: #6366F1;
+}
+#security .container .account-security {
+  display: flex;
+  flex-direction: column;
+  width: 50%;
+}
+#security .container .account-security .security h3 {
+  color: #6361F1;
+}
+#security .container .account-security .security .security-content {
+  display: grid;
+  grid-template-columns: 1fr, 1fr;
+  grid-template-areas: "current empty" "new confirm";
+  gap: 0.5rem;
+}
+#security .container .account-security .security .security-content .security-group {
+  display: flex;
+  flex-direction: column;
+  color: #0B0F19;
+  font-weight: 700;
+}
+#security .container .account-security .security .security-content .security-group span {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+}
+#security .container .account-security .security .security-content .security-group input {
+  border: 1px solid #D4D7E5;
+  padding: 0.4rem;
+  border-radius: 5px;
+}
+#security .container .account-security .security .security-content .security-group input.input-validation-error {
+  border-color: #EF4444;
+}
+#security .container .account-security .security .security-content #current-password {
+  grid-area: current;
+}
+#security .container .account-security .security .security-content #new-password {
+  grid-area: new;
+}
+#security .container .account-security .security .security-content #confirm-password {
+  grid-area: confirm;
+}
+#security .container .account-security .security .security-buttons {
+  display: flex;
+  gap: 1rem;
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+  border-bottom: 1px solid rgba(147, 151, 173, 0.3);
+}
+#security .container .account-security .account-delete {
+  padding-top: 2rem;
+}
+#security .container .account-security .account-delete .delete h4 {
+  color: #6361F1;
+}
+#security .container .account-security .account-delete .delete .delete-box .deletebox-group span {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+}
+#security .container .account-security .account-delete .delete .delete-box .deletebox-group input {
+  border: 1px solid #D4D7E5;
+  padding: 0.4rem;
+  border-radius: 5px;
+}
+#security .container .account-security .account-delete .delete .delete-box .deletebox-group input.input-validation-error {
+  border-color: #EF4444;
+}
+#security .container .account-security .account-delete .delete .delete-button {
+  display: flex;
+  padding-top: 2rem;
+}
+#security .container .account-security .account-delete .delete .delete-button .btn-theme {
+  background-color: #EF4444;
+}
+#security .container .account-security .account-delete .delete .delete-button .btn-theme:hover {
+  color: black;
+  font-weight: 700;
+}
+
+#saved-items {
+  padding-bottom: 2rem;
+  padding-top: 2rem;
+}
+#saved-items .container {
+  display: flex;
+}
+#saved-items .container .account-nav {
+  width: 20%;
+  height: 85vh;
+  border-right: 1px solid rgba(147, 151, 173, 0.3);
+  margin-right: 10rem;
+}
+#saved-items .container .account-nav .nav-image {
+  padding-top: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+#saved-items .container .account-nav .nav-name-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+#saved-items .container .account-nav .nav-name-info h2 {
+  margin: 0;
+}
+#saved-items .container .account-nav .nav-name-info p {
+  margin: 0;
+  margin-bottom: 1.5rem;
+}
+#saved-items .container .account-nav .nav-buttons {
+  margin-right: 1rem;
+}
+#saved-items .container .account-nav .nav-buttons a {
+  display: flex;
+  justify-content: flex-start;
+  font-weight: 700;
+}
+#saved-items .container .account-nav .nav-buttons .btn-gray {
+  background-color: white;
+}
+#saved-items .container .account-nav .nav-buttons .btn-gray:hover {
+  background-color: #6366F1;
+}
+
+#not-found {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+#not-found .container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+}
+#not-found .container .not-found-btn {
+  display: flex;
+  justify-content: center;
+}
+
+#contact {
+  padding-top: 2rem;
+  background-color: #F3F6FF;
+}
+#contact .container {
+  display: flex;
+  flex-direction: column;
+}
+#contact .container .nav-links a {
+  text-decoration: none;
+  color: #9397ad;
+}
+#contact .container .nav-links .home i {
+  margin-right: 0.2rem;
+}
+#contact .container .nav-links span {
+  margin: 0;
+}
+#contact .container .nav-links .contact {
+  color: #6366F1;
+}
+#contact .container .contact-content h1 {
+  padding-top: 1rem;
+}
+#contact .container .contact-content .contact-group {
+  display: flex;
+  padding-top: 2rem;
+  max-width: 30%;
+}
+#contact .container .contact-content .contact-group .contact-icon {
+  padding-right: 1.5rem;
+}
+#contact .container .contact-content .contact-group .contact-icon i {
+  font-size: 1.2rem;
+  background-color: white;
+  border: 1px solid white;
+  border-radius: 50%;
+  padding: 1rem;
+}
+#contact .container .contact-content .contact-group .contact-email .btn-gray {
+  background-color: #F3F6FF;
+  color: #6366F1;
+}
+#contact .container .contact-content .contact-group .contact-email .btn-gray:hover {
+  color: #8B5CF6;
+}
+#contact .container .contact-content .contact-group .contact-career .btn-gray {
+  background-color: #F3F6FF;
+  text-align: left;
+  color: #6366F1;
+  align-items: start !important;
+}
+#contact .container .contact-content .contact-group .contact-career .btn-gray:hover {
+  color: #8B5CF6;
+}
+#contact .map {
+  height: 100%;
+  width: 100%;
+}
+#contact .map iframe {
+  width: 100%;
+  height: 70vh;
 }
