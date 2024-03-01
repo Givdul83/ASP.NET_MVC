@@ -6,24 +6,25 @@
 
 <section id="contact">
     <div class="container">
-        <div class="nav-links">
-            <a class="home" asp-controller="Home" asp-action="Index"><i class="fa-light fa-house"></i>Home</a>
-            <span>>></span>
-            <a class="contact" asp-controller="Home" asp-action="Contact">Contact</a>
-        </div>
-        <div class="contact-content">
-            <h1 class="gray-900">@Model.Title</h1>
-            <div class="contact-group">
-                <div class="contact-icon">
-                    <i class="fa-light fa-envelope"></i>
-
-                </div>
-                <div class="contact-email">
-                    <h2 class="h5">@Model.ContactUs.EmailTitle</h2>
-                    <p class="gray-700">@Model.ContactUs.EmailDescription</p>
-                    <button class="btn-gray" type="submit">@Model.ContactUs.EmailLink<i class="fa-regular fa-arrow-right"></i></button>
-                </div>
+        <div class="left-side">
+            <div class="nav-links">
+                <a class="home" asp-controller="Home" asp-action="Index"><i class="fa-light fa-house"></i>Home</a>
+                <span>>></span>
+                <a class="contact" asp-controller="Home" asp-action="Contact">Contact</a>
             </div>
+            <div class="contact-content">
+                <h1 class="gray-900">@Model.Title</h1>
+                <div class="contact-group">
+                    <div class="contact-icon">
+                        <i class="fa-light fa-envelope"></i>
+
+                    </div>
+                    <div class="contact-email">
+                        <h2 class="h5">@Model.ContactUs.EmailTitle</h2>
+                        <p class="gray-700">@Model.ContactUs.EmailDescription</p>
+                        <button class="btn-gray" type="submit">@Model.ContactUs.EmailLink<i class="fa-regular fa-arrow-right"></i></button>
+                    </div>
+                </div>
 
             <div class="contact-group">
                 <div class="contact-icon">
@@ -37,9 +38,46 @@
                 </div>
             </div>
         </div>
+    </div>
 
-
-
+        <div class="right-side">  
+            <div class="form-box">
+                <form class="contact-form" method="post" novalidate>
+                    <h3 class="h2">@Model.ContactForm.Title</h3>
+                    <div id="form-fullname" class="form-group">
+                        <label asp-for="ContactForm.FullName"></label>
+                        <span asp-validation-for="ContactForm.FullName"></span>
+                        <input asp-for="ContactForm.FullName" />
+                    </div>
+                    <div id="form-email" class="form-group">
+                        <label asp-for="ContactForm.Email"></label>
+                        <span asp-validation-for="ContactForm.Email"></span>
+                        <input asp-for="ContactForm.Email" />
+                    </div>
+                    <div id="form-service" class="form-group">
+                        <div class="opt">
+                        <label asp-for="ContactForm.Service"></label><p> (optional)</p>
+                        </div>
+                        <span asp-validation-for="ContactForm.Service"></span>
+                        <select asp-for="ContactForm.Service">
+                            <option value="">@Model.ContactForm.ServiceTitle</option>
+                            <option value="Service 1">Service 1</option>
+                            <option value="Service 2">Service 2</option>
+                            <option value="Service 3">Service 3</option>
+                            <option value="Service 4">Service 4</option>
+                        </select>
+                    </div>
+                    <div id="form-message" class="form-group">
+                        <label asp-for="ContactForm.Message"></label>
+                        <span asp-validation-for="ContactForm.Message"></span>
+                        <textarea asp-for="ContactForm.Message"></textarea>
+                    </div>
+                    <div class="form-button">
+                        <button class="btn-theme" type="submit">Send Contact Request</button>
+                    </div>
+                 </form>
+            </div>
+        </div>
     </div>
     <div class="map">
     <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6310.726896569586!2d-122.40475849454786!3d37.734616850745226!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808f7f02449cda7b%3A0x56b4d414afddd65!2sSilver%20Terrace%2C%20San%20Francisco%2C%20Kalifornien%2094124%2C%20USA!5e0!3m2!1ssv!2sse!4v1709129976431!5m2!1ssv!2sse" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>

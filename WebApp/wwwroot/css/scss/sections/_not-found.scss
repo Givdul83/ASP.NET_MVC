@@ -8,12 +8,18 @@
         justify-content: center;
         text-align: center;
 
+        .notfound-image {
+
+
+            img {
+                height:100%;
+                width:50%;
+                }
 
         .not-found-btn {
             display: flex;
-            justify-content:center;
+            justify-content: center;
+            }
         }
-
-       
     }
 }

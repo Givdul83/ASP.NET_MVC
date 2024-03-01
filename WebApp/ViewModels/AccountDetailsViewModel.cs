@@ -1,4 +1,6 @@
-﻿using WebApp.Models;
+﻿
+
+using Infrastructure.Models;
 
 namespace WebApp.ViewModels;
 

@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.Xml.Linq;
-using WebApp.Models;
+using Infrastructure.Models;
 
 namespace WebApp.ViewModels;
 
