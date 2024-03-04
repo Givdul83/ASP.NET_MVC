@@ -871,10 +871,13 @@ footer .container .social-media a:hover {
   color: #0B0F19;
   font-weight: 700;
 }
-#signup .container .signup-form .content .input-group span {
+#signup .container .signup-form .content .input-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #signup .container .signup-form .content .input-group input {
   border: 1px solid #D4D7E5;
@@ -962,10 +965,13 @@ footer .container .social-media a:hover {
   color: #0B0F19;
   font-weight: 700;
 }
-#signin .container .signin-form .content .input-group span {
+#signin .container .signin-form .content .input-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #signin .container .signin-form .content .input-group input {
   border: 1px solid #D4D7E5;
@@ -1104,11 +1110,15 @@ footer .container .social-media a:hover {
   flex-direction: column;
   color: #0B0F19;
   font-weight: 700;
+  position: relative;
 }
-#account .container .account-details .basic .basic-content .basic-group span {
+#account .container .account-details .basic .basic-content .basic-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #account .container .account-details .basic .basic-content .basic-group input {
   border: 1px solid #D4D7E5;
@@ -1169,6 +1179,11 @@ footer .container .social-media a:hover {
   border: 1px solid #D4D7E5;
   padding: 0.4rem;
   border-radius: 5px;
+}
+#account .container .account-details .address .address-content .address-group span.field-validation-error {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
 }
 #account .container .account-details .address .address-content #address-line1 {
   grid-area: first;
@@ -1289,11 +1304,15 @@ footer .container .social-media a:hover {
   flex-direction: column;
   color: #0B0F19;
   font-weight: 700;
+  position: relative;
 }
-#security .container .account-security .security .security-content .security-group span {
+#security .container .account-security .security .security-content .security-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
 }
 #security .container .account-security .security .security-content .security-group input {
   border: 1px solid #D4D7E5;
@@ -1325,7 +1344,10 @@ footer .container .social-media a:hover {
 #security .container .account-security .account-delete .delete h4 {
   color: #6361F1;
 }
-#security .container .account-security .account-delete .delete .delete-box .deletebox-group span {
+#security .container .account-security .account-delete .delete .delete-box {
+  position: relative;
+}
+#security .container .account-security .account-delete .delete .delete-box .deletebox-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
@@ -1570,7 +1592,7 @@ footer .container .social-media a:hover {
 #contact .container .right-side .form-box .contact-form .form-group input.input-validation-error {
   border-color: #EF4444;
 }
-#contact .container .right-side .form-box .contact-form .form-group span {
+#contact .container .right-side .form-box .contact-form .form-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;

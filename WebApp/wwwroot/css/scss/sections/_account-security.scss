@@ -90,8 +90,8 @@
             display: flex;
             flex-direction: column;
 
-            @include xl{
-            width: 50%;
+            @include xl {
+                width: 50%;
             }
 
             h1 {
@@ -118,11 +118,18 @@
                         flex-direction: column;
                         color: $gray-900;
                         font-weight: 700;
+                        position:relative;
 
                         span {
-                            color: $danger;
-                            font-weight: 500;
-                            opacity: 0.7;
+
+                            &.field-validation-error {
+                                color: $danger;
+                                font-weight: 500;
+                                opacity: 0.7;
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                            }
                         }
 
                         input {
@@ -176,16 +183,20 @@
                     }
 
                     .delete-box {
-
+                        position: relative;
 
 
                         .deletebox-group {
 
 
+
                             span {
-                                color: $danger;
-                                font-weight: 500;
-                                opacity: 0.7;
+
+                                &.field-validation-error {
+                                    color: $danger;
+                                    font-weight: 500;
+                                    opacity: 0.7;
+                                }
                             }
 
                             input {
