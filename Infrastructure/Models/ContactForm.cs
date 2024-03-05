@@ -7,7 +7,9 @@ public class ContactForm
     public string Title = "Get In Contact With Us";
 
     [Display(Name = "Full name", Prompt = "Enter your full name", Order = 0)]
+    [DataType(DataType.Text)]
     [Required(ErrorMessage = "Cannot leave this empty")]
+
     public string FullName { get; set; } = null!;
 
     [Display(Name = "Email address", Prompt = "Enter your email address", Order = 1)]
@@ -21,6 +23,7 @@ public class ContactForm
     public string? Service { get; set; }
 
     [Display(Name = "Message", Prompt = "Enter your message here", Order = 3)]
+    [DataType(DataType.Text)]
     [Required(ErrorMessage = "Cannot leave this empty")]
     public string Message { get; set; } = null!;
 

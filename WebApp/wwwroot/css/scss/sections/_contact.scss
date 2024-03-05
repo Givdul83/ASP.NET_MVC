@@ -132,6 +132,13 @@
                 right: 0;
                 top: 3rem;
 
+                &.show {
+                    display: block;
+                }
+
+                &.hide {
+                    display: none !important;
+                }
 
                 .contact-form {
                     display: none;

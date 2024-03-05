@@ -1,0 +1,20 @@
+﻿@model NotFoundViewModel;
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+
+<section id="not-found">
+    <div class="container">
+        <div class="notfound-image">
+            <img class="not-found-img" src="~/images/404.svg" />
+        </div>
+        <div class="not-found-content">
+            <h1 class="h1">@Model.NotFound.Title</h1>
+            <p class="gray-700">@Model.NotFound.Description</p>
+        </div>
+        <div class="not-found-btn">
+            <a asp-controller="Home" asp-action="Index" class="btn-theme"><i class="fa-light fa-house"></i>Go to homepage</a>
+        </div>
+    </div>
+</section>

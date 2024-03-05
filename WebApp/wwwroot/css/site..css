@@ -1112,6 +1112,15 @@ footer .container .social-media a:hover {
   font-weight: 700;
   position: relative;
 }
+#account .container .account-details .basic .basic-content .basic-group .opt {
+  display: flex;
+  gap: 0.2rem;
+}
+#account .container .account-details .basic .basic-content .basic-group .opt p {
+  margin: 0;
+  color: #9397AD;
+  font-weight: 400;
+}
 #account .container .account-details .basic .basic-content .basic-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
@@ -1559,6 +1568,12 @@ footer .container .social-media a:hover {
   position: absolute;
   right: 0;
   top: 3rem;
+}
+#contact .container .right-side .form-box.show {
+  display: block;
+}
+#contact .container .right-side .form-box.hide {
+  display: none !important;
 }
 #contact .container .right-side .form-box .contact-form {
   display: none;

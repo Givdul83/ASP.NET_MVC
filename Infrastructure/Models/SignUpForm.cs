@@ -6,10 +6,12 @@ public class SignUpForm
 {
 
     [Display(Name = "First name", Prompt = "Enter first name", Order = 0)]
+    [DataType(DataType.Text)]
     [Required(ErrorMessage = "Invalid first name")]
     public string FirstName { get; set; } = null!;
 
     [Display(Name = "Last name", Prompt = "Enter last name", Order = 1)]
+    [DataType(DataType.Text)]
     [Required(ErrorMessage = "Invalid last name")]
     public string LastName { get; set; } = null!;
 

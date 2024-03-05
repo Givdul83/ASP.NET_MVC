@@ -6,11 +6,15 @@ public class AccountBasic
 {
     public string Title { get; set; } = "Basic Info";
 
+    
     [Display(Name = "First name", Prompt = "Enter first name", Order = 0)]
+    [DataType(DataType.Text)]
     [Required(ErrorMessage = "Invalid first name")]
     public string FirstName { get; set; } = null!;
 
+   
     [Display(Name = "Last name", Prompt = "Enter last name", Order = 1)]
+    [DataType(DataType.Text)]
     [Required(ErrorMessage = "Invalid last name")]
     public string LastName { get; set; } = null!;
 
@@ -22,10 +26,11 @@ public class AccountBasic
     public string Email { get; set; } = null!;
 
     [Display(Name ="Phone", Prompt ="Enter you Phone", Order =3)]
-    
+    [DataType(DataType.Text)]
     public string? Phone {  get; set; }
 
     [Display(Name ="Bio", Prompt="Add a short bio", Order =4)]
+    [DataType(DataType.Text)]
     public string? Bio { get; set;}
     
 }

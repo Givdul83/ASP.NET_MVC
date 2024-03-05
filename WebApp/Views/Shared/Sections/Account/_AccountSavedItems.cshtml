@@ -1,0 +1,25 @@
+﻿@model AccountSavedItemsViewModel;
+@{
+    ViewData["Title"] = Model.Title;
+
+}
+
+<section id="saved-items">
+    <div class="container">
+        <div class="account-nav">
+            <div class="nav-image">
+                <img src="#" alt="User Image" />
+            </div>
+            <div class="nav-name-info">
+                <h2 class="h5 gray-900">John Doe</h2>
+                <p class="gray-700">john.doe@domain.com</p>
+            </div>
+            <div class="nav-buttons">
+                <a asp-controller="Account" asp-action="Index" class="btn-gray"><i class="fa-regular fa-gear"></i>Account Details</a>
+                <a asp-controller="Account" asp-action="Security" class="btn-gray"><i class="fa-regular fa-lock"></i>Security</a>
+                <a asp-controller="Account" asp-action="SavedItems" class="btn-theme"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
+                <a asp-controller="Home" asp-action="Index" class="btn-gray"><i class="fa-light fa-right-from-bracket"></i>Sign Out</a>
+            </div>
+        </div>
+    </div>
+</section>
