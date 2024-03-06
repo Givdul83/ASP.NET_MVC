@@ -10,6 +10,8 @@ public class OptionalInfoEntity
 
     public string? SecAddressLine { get; set; }
 
+    public string? ProfilePictureUrl { get; set; }
+
     public Guid UserId { get; set; }
     
 }
