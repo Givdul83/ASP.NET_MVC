@@ -47,10 +47,9 @@
                             color: $danger;
                             font-weight: 500;
                             opacity: 0.7;
-                            position:absolute;
-                            top:0;
-                            right:0;
-
+                            position: absolute;
+                            top: 0;
+                            right: 0;
                         }
                     }
 
@@ -81,6 +80,17 @@
 
             .btn-theme {
                 margin-top: 1rem;
+                margin-bottom: .5rem;
+            }
+
+            .alert {
+                background-color: #ef444452;
+                opacity: 0.8;
+                color: $gray-900;
+                margin: 0;
+                max-width: 100%;
+                text-align: center;
+                font-weight: 700;
             }
 
 

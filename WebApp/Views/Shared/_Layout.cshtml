@@ -1,4 +1,5 @@
 ﻿
+@inject SignInManager<UserEntity> _signInManager
 
 
 
@@ -17,16 +18,25 @@
 </head>
 <body>
     <div class="wrapper">
-         
-    <header>
+
+        <header class="@((ViewContext.RouteData.Values["Action"]!.ToString() == "Contact") ? "contact" : "standard")">
+
         <div class="container">
             <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/full-siliconlogo.svg" alt="Silicon logo"></a>
 
             <div id="menu">
                 <nav>
-                    <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview </a>
+                        @if (_signInManager.IsSignedIn(User))
+                        {
+                            <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview </a>
+                            <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses </a>
+                            <a class="menu-link" asp-controller="Home" asp-action="Contact">Contacts </a>
+                        }
+                        else{
+                        <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview </a>
                         <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits">Features </a>
                         <a class="menu-link" asp-controller="Home" asp-action="Contact">Contacts </a>
+                        }
                 </nav>
             </div>
 
@@ -39,8 +49,16 @@
                 <span>Dark</span>
             </div>
             <div class="account-buttons">
-                    <a asp-controller="Auth" asp-action= "SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
-                    <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
+                    @if (_signInManager.IsSignedIn(User))
+                    {
+                        <a asp-controller="Account" asp-action="LogOut" class="btn-theme"><i class="fa-regular fa-arrow-right-from-bracket"></i>Log Out</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
+                        <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
+                    }
+                    
             </div>
                 <div class="btn-mobile">
                     <button class="btn" id="mobile-menu-btn" aria-controls="btn-switch"><i class="fa-solid fa-bars"></i></button>
@@ -59,14 +77,30 @@
                 </div>
 
                 <div class="account-buttons">
-                    <button class="btn-gray">Sign In</button>
-                    <button class="btn-theme">Sign Up</button>
+                    @if (_signInManager.IsSignedIn(User))
+                    {
+                        <a asp-controller="Account" asp-action="LogOut" class="btn-theme"><i class="fa-regular fa-arrow-right-from-bracket"></i>Log Out</a>
+                    }
+                    else
+                    {
+                        <a asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
+                        <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
+                    }
                 </div>
 
                 <nav>
-                    <a class="menu-link" href="#">Overview</a>
-                    <a class="menu-link" href="#">Features</a>
-                    <a class="menu-link" href="/courses">Courses</a>
+                    @if (_signInManager.IsSignedIn(User))
+                    {
+                        <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview </a>
+                        <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses </a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Contact">Contacts </a>
+                    }
+                    else
+                    {
+                        <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview </a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits">Features </a>
+                        <a class="menu-link" asp-controller="Home" asp-action="Contact">Contacts </a>
+                    }
                 </nav>
 
             </div>

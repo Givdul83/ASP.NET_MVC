@@ -12,12 +12,14 @@ public class HomeController : Controller
         return View();
     }
 
+    [Route("/error")]
     [HttpGet]
     public IActionResult NotFound404()
     {
         var viewModel = new NotFoundViewModel();
         return View(viewModel);
     }
+
 
     [HttpPost] 
     public IActionResult NotFound404(NotFoundViewModel viewmodel)

@@ -6,9 +6,13 @@
 
 <section id="signup">
     <div class="container">
+
+       
         <form class="signup-form" method="post" asp-controller="Auth" asp-action="SignUp" novalidate>
             <h1>Create Account</h1>
             <p>Already have an account?   <a asp-controller="Auth" asp-action="SignIn">Sign in Here</a></p>
+
+           
 
             <div class="content">
                 <div id="form-firstname" class="input-group">
@@ -49,6 +53,14 @@
                 </div>
             </div>
             <button class="btn-theme" type="submit">@Model.Title</button>
+            
+            @if(!string.IsNullOrEmpty(ViewData["ErrorMessage"]?.ToString()))
+            {
+            
+            <div class="alert">
+                @ViewData["ErrorMessage"]
+            </div>
+            }
         </form>
     </div>
 </section>

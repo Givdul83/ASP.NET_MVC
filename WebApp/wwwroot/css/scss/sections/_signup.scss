@@ -7,15 +7,27 @@
         display: flex;
         justify-content: center;
 
+
+
         .signup-form {
             width: 50%;
             display: flex;
-           
             flex-direction: column;
-           
-            h1{
+
+            .alert {
+                background-color:#ef444452;
+                opacity: 0.8;
+                color: $gray-900;
+                margin: 0;
+                max-width: 100%;
+                text-align: center;
+                font-weight: 700;
+            }
+
+            h1 {
                 @include h3;
-                @include lg{
+
+                @include lg {
                     @include h1;
                 }
             }
@@ -38,14 +50,13 @@
 
                     span {
 
-                        &.field-validation-error{
-                        color: $danger;
-                        font-weight: 500;
-                        opacity: 0.7;
-                        position:absolute;
-                        top:0;
-                        right:0;
-
+                        &.field-validation-error {
+                            color: $danger;
+                            font-weight: 500;
+                            opacity: 0.7;
+                            position: absolute;
+                            top: 0;
+                            right: 0;
                         }
                     }
 
@@ -97,6 +108,10 @@
                     .checkbox-group {
                     }
                 }
+            }
+
+            .btn-theme{
+                margin-bottom:.5rem;
             }
         }
     }

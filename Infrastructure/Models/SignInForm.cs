@@ -20,6 +20,6 @@ public class SignInForm
 
     [Display(Name = "Remember me", Order = 2)]
     
-    [Range(typeof(bool), "true", "true")]
+  
     public bool RememberMe { get; set; } = false;
 }

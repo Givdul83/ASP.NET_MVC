@@ -1,36 +1,46 @@
 header {
     padding: 15px 0;
 
+    &.standard{
+        background-color:white;
+    }
+
+    &.contact {
+        background-color: #F3F6FF;
+    }
+
     .container {
         display: grid;
         align-items: center;
         grid-template-columns: 1fr auto;
-        grid-template-areas:  "logo mobile";
+        grid-template-areas: "logo mobile";
         gap: 40px;
-        
+
         @include lg {
             grid-template-columns: auto 1fr auto auto;
-            grid-template-areas:  "logo menu switch buttons";
+            grid-template-areas: "logo menu switch buttons";
         }
 
-        #logo { grid-area: logo; }
+        #logo {
+            grid-area: logo;
+        }
 
-        #menu { 
-            grid-area: menu; 
+        #menu {
+            grid-area: menu;
             display: none;
 
             @include lg {
                 display: block;
             }
-            
+
             nav {
                 display: flex;
                 gap: 15px;
             }
         }
-        
-        .btn-switch { 
-            grid-area: switch; 
+
+        .btn-switch {
+            grid-area: switch;
             display: none;
 
             @include lg {
@@ -38,8 +48,8 @@ header {
             }
         }
 
-        .account-buttons { 
-            grid-area: buttons; 
+        .account-buttons {
+            grid-area: buttons;
             display: none;
             gap: 15px;
 
@@ -49,7 +59,7 @@ header {
         }
 
         .btn-mobile {
-            grid-area: mobile; 
+            grid-area: mobile;
             display: block;
 
             @include lg {
@@ -58,9 +68,9 @@ header {
         }
     }
 
-    #mobile-menu{
-        @include lg{
-            display:none;
+    #mobile-menu {
+        @include lg {
+            display: none;
         }
     }
 

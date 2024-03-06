@@ -1,10 +1,20 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.Entities;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
 
 public class AccountController : Controller
 {
+
+    private readonly UserManager<UserEntity> _userManager;
+    private readonly SignInManager<UserEntity> _signInManager;
+    public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
+    {
+        _userManager = userManager;
+        _signInManager = signInManager;
+    }
 
     [HttpGet] 
     public IActionResult Index()
@@ -60,4 +70,16 @@ public class AccountController : Controller
         }
         return View(viewmodel);
     }
+
+
+   
+    [HttpGet]
+
+    public new async Task<IActionResult>LogOut(AccountDetailsViewModel viewmodel) 
+    {
+       await _signInManager.SignOutAsync();
+        return RedirectToAction("Index", "Home");
+        
+    }
+    
 }
