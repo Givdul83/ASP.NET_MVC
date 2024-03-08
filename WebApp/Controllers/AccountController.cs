@@ -1,54 +1,202 @@
 ﻿using Infrastructure.Entities;
+using Infrastructure.Models;
+using Infrastructure.Repositories;
+using Infrastructure.Services;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.InteropServices;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
 
 public class AccountController : Controller
 {
-
     private readonly UserManager<UserEntity> _userManager;
     private readonly SignInManager<UserEntity> _signInManager;
-    public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
+    private readonly AddressService _addressService;
+    private readonly AddressRepository _addressRepository;
+    private readonly OptionalInfoRepository _optionalInfoRepository;
+
+
+
+
+    public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AddressService addressService, AddressRepository addressRepository, OptionalInfoRepository optionalInfoRepository)
     {
         _userManager = userManager;
         _signInManager = signInManager;
+        _addressService = addressService;
+        _addressRepository = addressRepository;
+        _optionalInfoRepository = optionalInfoRepository;
     }
 
-    [HttpGet] 
-    public IActionResult Index()
+
+    [HttpGet]
+    public async Task<IActionResult> Index()
     {
-        var viewmodel = new AccountDetailsViewModel();
+        var viewModel = new AccountDetailsViewModel();
+        viewModel.AccountBasic = await PopulateBasic();
+
+        if(viewModel.AccountBasic != null)
+        {
+            try
+            {
+                viewModel.AccountAddress = await PopulateAddress();
+                viewModel.AccountOptionals = await PopulateOptionals();
+            }
+            catch
+            {
+                return View(viewModel);
+            }
+            
+        }
+       
+
+        return View(viewModel);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> Basic(AccountDetailsViewModel viewmodel)
+    {
+        if (viewmodel.AccountBasic != null)
+        {
+            var user = await _userManager.GetUserAsync(User);
+            if (user != null)
+            {
+                user.FirstName = viewmodel.AccountBasic.FirstName;
+                user.LastName = viewmodel.AccountBasic.LastName;
+                user.Email = viewmodel.AccountBasic.Email;
+                user.UserName = viewmodel.AccountBasic.Email;
+                user.PhoneNumber = viewmodel.AccountBasic.Phone;
+
+                var result = await _userManager.UpdateAsync(user);
+
+                if (result.Succeeded)
+                {
+                    var optional = await _optionalInfoRepository.GetOneAsync(x => x.Id == user.OptionalInfoId);
+                    if (optional != null)
+                    {
+                        optional.Bio = viewmodel.AccountBasic.Bio;
+
+                        var optionalResult = await _optionalInfoRepository.UpdateAsync(x => x.Id == optional.Id, optional);
+                        if (optionalResult != null)
+                        {
+                            return RedirectToAction("Index", "Account");
+                        }
+
+                    }
+                    if (optional == null)
+                    {
+                        var newOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity
+                        {
+                            Bio = viewmodel.AccountBasic.Bio,
+                        });
+                    }
+
+
+
+
+
+                    return RedirectToAction("Index", "Account");
+                }
+            }
+
+
+            return RedirectToAction("Index", "Account");
+        }
+
+   
         return View(viewmodel);
     }
 
     [HttpPost]
+    public async Task<IActionResult> Address(AccountDetailsViewModel viewmodel)
 
-    public IActionResult Index(AccountDetailsViewModel viewmodel)
     {
-        if (ModelState.IsValid)
+        if (viewmodel.AccountAddress != null)
         {
-            return RedirectToAction("Index", "Account");
+            var userEntity = await _userManager.GetUserAsync(User);
+
+            if (String.IsNullOrEmpty(viewmodel.AccountAddress.AddressLine1) && String.IsNullOrEmpty(viewmodel.AccountAddress.PostalCode) && String.IsNullOrEmpty(viewmodel.AccountAddress.City))
+            {
+
+
+                userEntity!.AddressId = null;
+                var result = await _userManager.UpdateAsync(userEntity);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Account");
+                }
+            }
+            else
+            {
+
+                var address = await _addressRepository.GetOneAsync(x => x.AddressLine == viewmodel.AccountAddress.AddressLine1 && x.PostalCode == viewmodel.AccountAddress.PostalCode && x.City == viewmodel.AccountAddress.City);
+
+                if (address == null)
+                {
+                    var newAddress = await _addressRepository.CreateAsync(new AddressEntity
+                    {
+                        AddressLine = viewmodel.AccountAddress.AddressLine1!,
+                        PostalCode = viewmodel.AccountAddress.PostalCode!,
+                        City = viewmodel.AccountAddress.City!,
+                    });
+
+                    if (newAddress != null)
+                    {
+                        var user = await _userManager.GetUserAsync(User);
+                        if (user != null)
+                        {
+                            user.AddressId = newAddress.Id;
+                            var result = await _userManager.UpdateAsync(user);
+
+                            if (result.Succeeded)
+                            {
+                                return RedirectToAction("Index", "Account");
+                            }
+
+                        }
+
+                    }
+
+                }
+                else
+                {
+                    var user = await _userManager.GetUserAsync(User);
+                    if (user != null)
+
+                    {
+                        user.AddressId = address.Id;
+                        var result = await _userManager.UpdateAsync(user);
+                        if (result.Succeeded)
+                        {
+                            return RedirectToAction("Index", "Account");
+                        }
+
+                    }
+
+                }
+
+            }
         }
-        return View(viewmodel);
+            return RedirectToAction("Index", "Account");
+        
+
     }
 
     [HttpGet]
     public IActionResult Security()
     {
-        var viewmodel = new AccountSecurityViewModel();
-        return View(viewmodel);
+        var viewModel = new AccountSecurityViewModel();
+        return View(viewModel);
     }
 
-
     [HttpPost]
-
     public IActionResult Security(AccountSecurityViewModel viewmodel)
     {
         if (ModelState.IsValid)
         {
-            return RedirectToAction("Security", "Account");
+            return RedirectToAction("Index", "Account");
         }
         return View(viewmodel);
     }
@@ -72,14 +220,104 @@ public class AccountController : Controller
     }
 
 
-   
     [HttpGet]
 
-    public new async Task<IActionResult>LogOut(AccountDetailsViewModel viewmodel) 
+    public async Task<IActionResult> LogOut()
     {
-       await _signInManager.SignOutAsync();
+        await _signInManager.SignOutAsync();
+
         return RedirectToAction("Index", "Home");
-        
     }
-    
+
+
+    private async Task<AccountBasic> PopulateBasic()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user != null)
+        {
+            return new AccountBasic
+            {
+                UserId = user.Id,
+                FirstName = user.FirstName,
+                LastName = user.LastName,
+                Email = user.Email!,
+                Phone = user.PhoneNumber,
+                Bio = user.OptionalInfo?.Bio
+
+            };
+        }
+
+        return null!;
+    }
+
+
+
+    private async Task<AccountAddress> PopulateAddress()
+    {
+        var user= await _userManager.GetUserAsync(User);
+        if (user != null)
+        {
+
+            var address = await _addressRepository.GetOneAsync(x => x.Id == user.AddressId);
+            if (address != null)
+            {
+                return new AccountAddress
+                {
+                    AddressLine1 = address.AddressLine,
+                    PostalCode = address.PostalCode,
+                    City = address.City,
+
+                };
+            }
+            else
+            {
+                return new AccountAddress
+                {
+                    AddressLine1 = "",
+                    PostalCode = "",
+                    City = "",
+                };
+            }
+           
+           
+        }
+        return null!;
+    }
+
+
+    private async Task<AccountOptionals> PopulateOptionals()
+    {
+        var user = await _userManager.GetUserAsync(User);
+        
+
+        if (user != null)
+        {
+            var optional = await _optionalInfoRepository.GetOneAsync(x => x.Id == user.OptionalInfoId);
+            if (optional != null)
+            {
+
+                return new AccountOptionals
+                {
+                    Bio = optional.Bio,
+                    SecAddressLine = optional.SecAddressLine,
+                    ProfilePictureUrl = optional.ProfilePictureUrl,
+                
+                };
+            }
+
+            else
+            {
+                return new AccountOptionals
+                {
+                    Bio = "",
+                    SecAddressLine= "",
+                    ProfilePictureUrl=""
+                
+                };
+            }
+        }
+        return null!;
+    }
+
+
 }

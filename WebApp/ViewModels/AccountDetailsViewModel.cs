@@ -12,5 +12,7 @@ public class AccountDetailsViewModel
 
     public AccountAddress AccountAddress { get; set; } = new AccountAddress();
 
+    public AccountOptionals AccountOptionals { get; set; } =new AccountOptionals();
+
 
 }

@@ -10,8 +10,8 @@
                 <img src="#" alt="User Image" />
             </div>
             <div class="nav-name-info">
-                <h2 class="h5 gray-900">John Doe</h2>
-                <p class="gray-700">john.doe@domain.com</p>
+                <h2 class="h5 gray-900">@Model.AccountBasic.FirstName @Model.AccountBasic.LastName</h2>
+                <p class="gray-700">@Model.AccountBasic.Email</p>
             </div>
             <div class="nav-buttons">
                 <a asp-controller="Account" asp-action="Index" class="btn-theme"><i class="fa-regular fa-gear"></i>Account Details</a>
@@ -22,7 +22,7 @@
         </div>
         <div class="account-details">
             <h1 class="h2">@Model.Title</h1>
-            <form class="basic" method="post" asp-controller="Account" asp-action="Index" novalidate>
+            <form class="basic" method="post" asp-controller="Account" asp-action="Basic" novalidate>
                 <h3 class="h5">@Model.AccountBasic.Title</h3>
                 <div class="basic-content">
                     <div id="basic-firstname" class="basic-group">
@@ -49,7 +49,7 @@
                         <label asp-for="AccountBasic.Bio"></label>
                         <p class="gray-600"> (optional)</p>
                         </div>
-                        <textarea class="bio-input" asp-for="AccountBasic.Bio"></textarea>
+                        <textarea class="bio-input" asp-for="AccountOptionals.Bio"></textarea>
                     </div>
                 </div>
                 <div class="basic-buttons">
@@ -58,7 +58,7 @@
                 </div>
             </form>
 
-            <form class="address" method="post" asp-controller="Account" asp-action="Index" novalidate>
+            <form class="address" method="post" asp-controller="Account" asp-action="Address" novalidate>
                 <h4 class="h5">@Model.AccountAddress.Title</h4>
                 <div class="address-content">
                     <div id="address-line1" class="address-group">
@@ -67,7 +67,7 @@
                     </div>
                     <div id="address-line2" class="address-group">
                         <label asp-for=AccountAddress.AddressLine2></label>
-                        <input asp-for="AccountAddress.AddressLine2" />
+                        <input asp-for="AccountOptionals.SecAddressLine" />
                     </div>
                     <div id="address-postalcode" class="address-group">
                         <label asp-for="AccountAddress.PostalCode"></label>
