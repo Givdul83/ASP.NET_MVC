@@ -57,6 +57,7 @@ public class AccountController : Controller
     [HttpPost]
     public async Task<IActionResult> Basic(AccountDetailsViewModel viewmodel)
     {
+
         if (viewmodel.AccountBasic != null)
         {
             var user = await _userManager.GetUserAsync(User);
@@ -68,45 +69,49 @@ public class AccountController : Controller
                 user.UserName = viewmodel.AccountBasic.Email;
                 user.PhoneNumber = viewmodel.AccountBasic.Phone;
 
-                var result = await _userManager.UpdateAsync(user);
+                if (String.IsNullOrEmpty(viewmodel.AccountBasic.Bio))
+                {
 
-                if (result.Succeeded)
+                    var result = await _userManager.UpdateAsync(user);
+                }
+                else
                 {
                     var optional = await _optionalInfoRepository.GetOneAsync(x => x.Id == user.OptionalInfoId);
-                    if (optional != null)
+                    if(optional != null)
                     {
-                        optional.Bio = viewmodel.AccountBasic.Bio;
-
-                        var optionalResult = await _optionalInfoRepository.UpdateAsync(x => x.Id == optional.Id, optional);
-                        if (optionalResult != null)
-                        {
-                            return RedirectToAction("Index", "Account");
-                        }
-
+                        optional.Bio= viewmodel.AccountBasic.Bio;
+                        var result = await _optionalInfoRepository.UpdateAsync(x => x.Id == optional.Id, optional);
+                        return RedirectToAction("Index", "Account");
                     }
-                    if (optional == null)
+                    else
                     {
                         var newOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity
                         {
                             Bio = viewmodel.AccountBasic.Bio,
                         });
+                        
+                        if (newOptional != null)
+                        {
+                            user.OptionalInfoId = newOptional.Id;
+
+                            var result = await _userManager.UpdateAsync(user);
+                            return RedirectToAction("Index", "Account");
+                        }
+
                     }
-
-
-
-
-
-                    return RedirectToAction("Index", "Account");
                 }
+               
             }
-
-
-            return RedirectToAction("Index", "Account");
         }
 
-   
-        return View(viewmodel);
+
+        return RedirectToAction("Index", "Account");
+
     }
+   
+      
+    
+
 
     [HttpPost]
     public async Task<IActionResult> Address(AccountDetailsViewModel viewmodel)
@@ -283,8 +288,6 @@ public class AccountController : Controller
         }
         return null!;
     }
-
-
     private async Task<AccountOptionals> PopulateOptionals()
     {
         var user = await _userManager.GetUserAsync(User);
