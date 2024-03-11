@@ -60,6 +60,7 @@ public class AccountController : Controller
      if (viewmodel.AccountBasic !=null)
         {
             var user = await _userManager.GetUserAsync(User);
+            var optionalIfon = await Bio(viewmodel.AccountOptionals);
             if (user != null)
             {
                 user.FirstName = viewmodel.AccountBasic.FirstName;
@@ -70,40 +71,7 @@ public class AccountController : Controller
 
                 await _userManager.UpdateAsync(user);
 
-                var optionalInfo = await _optionalInfoRepository.GetOneAsync(x => x.Id == user.OptionalInfoId);
-                if (optionalInfo != null)
-                {
-                    optionalInfo.Bio = viewmodel.AccountOptionals.Bio;
-                    await _optionalInfoRepository.UpdateAsync(x => x.Id == optionalInfo.Id, optionalInfo);
-                    return RedirectToAction("Index", "Account");
-
-                }
-
-                else
-                {
-                    if (!String.IsNullOrEmpty(viewmodel.AccountOptionals.Bio))
-                    {
-
-                        var createdOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity
-                        {
-                            Bio = viewmodel.AccountOptionals.Bio,
-                        });
-                        await _optionalInfoRepository.UpdateAsync(x=>x.Id == createdOptional.Id, createdOptional);
-
-                        if (createdOptional != null)
-                        {
-                            user.OptionalInfoId = createdOptional.Id;
-
-                            var result = await _userManager.UpdateAsync(user);
-
-                            if (result.Succeeded)
-                            {
-
-                                return RedirectToAction("Index", "Account");
-                            }
-                        }
-                    }
-                }
+                
 
 
                
@@ -122,7 +90,7 @@ public class AccountController : Controller
         if (viewmodel.AccountAddress != null)
         {
             var userEntity = await _userManager.GetUserAsync(User);
-            var optionalInfo = SecAddress(viewmodel.AccountOptionals);
+            var optionalInfo = await SecAddress(viewmodel.AccountOptionals);
 
             if (String.IsNullOrEmpty(viewmodel.AccountAddress.AddressLine1) && String.IsNullOrEmpty(viewmodel.AccountAddress.PostalCode) && String.IsNullOrEmpty(viewmodel.AccountAddress.City))
             {
@@ -349,6 +317,47 @@ public class AccountController : Controller
                 var createdOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity
                 {
                     SecAddressLine = optionals.SecAddressLine,
+                });
+                await _optionalInfoRepository.UpdateAsync(x => x.Id == createdOptional.Id, createdOptional);
+
+                if (createdOptional != null)
+                {
+                    userOptional!.OptionalInfoId = createdOptional.Id;
+
+                    var result = await _userManager.UpdateAsync(userOptional);
+
+                    if (result.Succeeded)
+                    {
+
+                        return createdOptional;
+                    }
+                }
+            }
+
+        }
+        return null!;
+    }
+
+    private async Task<OptionalInfoEntity> Bio(AccountOptionals optionals)
+    {
+        var userOptional = await _userManager.GetUserAsync(User);
+        var bio = await _optionalInfoRepository.GetOneAsync(x => x.Id == userOptional!.OptionalInfoId);
+        if (bio != null)
+        {
+
+            bio.Bio  = optionals.Bio;
+            await _optionalInfoRepository.UpdateAsync(x => x.Id == bio.Id, bio);
+            return bio;
+
+        }
+        else
+        {
+            if (!String.IsNullOrEmpty(optionals.SecAddressLine))
+            {
+
+                var createdOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity
+                {
+                    Bio = optionals.Bio,
                 });
                 await _optionalInfoRepository.UpdateAsync(x => x.Id == createdOptional.Id, createdOptional);
 
