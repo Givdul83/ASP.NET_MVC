@@ -8,5 +8,7 @@ namespace WebApp.ViewModels
         public string Title { get; set; } = "Saved Items";
 
         public AccountSavedItems AccountSavedItems { get; set; } = new AccountSavedItems();
+
+        public AccountBasic AccountBasic { get; set; } = new AccountBasic();
     }
 }

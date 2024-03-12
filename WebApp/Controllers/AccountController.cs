@@ -163,9 +163,12 @@ public class AccountController : Controller
     }
 
     [HttpGet]
-    public IActionResult Security()
+    public async Task<IActionResult> Security()
     {
-        var viewModel = new AccountSecurityViewModel();
+        var viewModel = new AccountSecurityViewModel
+        {
+            AccountBasic = await PopulateBasic()
+        };
         return View(viewModel);
     }
 
@@ -180,9 +183,12 @@ public class AccountController : Controller
     }
 
     [HttpGet]
-    public IActionResult SavedItems()
+    public async Task<IActionResult> SavedItems()
     {
-        var viewmodel = new AccountSavedItemsViewModel();
+        var viewmodel = new AccountSavedItemsViewModel
+        {
+            AccountBasic = await PopulateBasic()
+        };
         return View(viewmodel);
     }
 
@@ -220,7 +226,8 @@ public class AccountController : Controller
                 LastName = user.LastName,
                 Email = user.Email!,
                 Phone = user.PhoneNumber,
-                Bio = user.OptionalInfo?.Bio
+                Bio = user.OptionalInfo?.Bio,
+                IsExternalAccount = user.IsExternalAccount,
 
             };
         }
@@ -352,7 +359,7 @@ public class AccountController : Controller
         }
         else
         {
-            if (!String.IsNullOrEmpty(optionals.SecAddressLine))
+            if (!String.IsNullOrEmpty(optionals.Bio))
             {
 
                 var createdOptional = await _optionalInfoRepository.CreateAsync(new OptionalInfoEntity

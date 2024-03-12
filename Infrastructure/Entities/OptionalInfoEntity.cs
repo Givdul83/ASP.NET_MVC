@@ -12,6 +12,4 @@ public class OptionalInfoEntity
 
     public string? ProfilePictureUrl { get; set; }
 
-    public Guid UserId { get; set; }
-    
 }

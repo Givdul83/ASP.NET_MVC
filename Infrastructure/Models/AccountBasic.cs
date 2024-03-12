@@ -7,8 +7,9 @@ public class AccountBasic
 
     public string UserId { get; set; } = null!;
     public string Title { get; set; } = "Basic Info";
+    public bool IsExternalAccount { get; set; }
 
-    
+
     [Display(Name = "First name", Prompt = "Enter first name", Order = 0)]
     
     [Required(ErrorMessage = "Invalid first name")]

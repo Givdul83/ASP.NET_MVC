@@ -11,8 +11,8 @@
                 <img src="#" alt="User Image" />
             </div>
             <div class="nav-name-info">
-                <h2 class="h5 gray-900">John Doe</h2>
-                <p class="gray-700">john.doe@domain.com</p>
+                <h2 class="h5 gray-900">@Model.AccountBasic.FirstName @Model.AccountBasic.LastName</h2>
+                <p class="gray-700">@Model.AccountBasic.Email</p>
             </div>
             <div class="nav-buttons">
                 <a asp-controller="Account" asp-action="Index" class="btn-gray"><i class="fa-regular fa-gear"></i>Account Details</a>

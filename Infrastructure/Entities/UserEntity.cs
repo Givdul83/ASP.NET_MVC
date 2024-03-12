@@ -12,8 +12,6 @@ public class UserEntity : IdentityUser
     [ProtectedPersonalData]
     public string LastName { get; set; } = null!;
 
-
-
     public int? AddressId { get; set; }
 
     public AddressEntity? Address { get; set; }
@@ -21,5 +19,7 @@ public class UserEntity : IdentityUser
     public int? OptionalInfoId { get; set; }
 
     public OptionalInfoEntity? OptionalInfo { get; set; }
+
+    public bool IsExternalAccount { get; set; } = false;
 
 }
