@@ -29,6 +29,12 @@ builder.Services.AddAuthentication().AddFacebook(x =>
     x.Fields.Add("last_name");
 });
 
+builder.Services.AddAuthentication().AddGoogle(x =>
+{
+    x.ClientId = "955792933689-p2a1sj8iep1t82lo26t7cdl4rr8npq6a.apps.googleusercontent.com";
+    x.ClientSecret = "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";
+});
+
 builder.Services.AddScoped<AddressRepository>();
 builder.Services.AddScoped<OptionalInfoRepository>();
 builder.Services.AddScoped<AddressService>();

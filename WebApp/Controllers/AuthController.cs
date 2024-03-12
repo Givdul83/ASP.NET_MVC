@@ -149,7 +149,61 @@ public class AuthController : Controller
 
     }
 
+    [HttpGet]
 
+    public IActionResult Google()
+    {
+        var authProps = _signInManager.ConfigureExternalAuthenticationProperties("Google", Url.Action("GoogleCallback"));
+        return new ChallengeResult("Google", authProps);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GoogleCallback()
+    {
+        var info = await _signInManager.GetExternalLoginInfoAsync();
+
+        if (info != null)
+        {
+            var userEntity = new UserEntity
+            {
+                FirstName = info.Principal.FindFirstValue(ClaimTypes.GivenName)!,
+                LastName = info.Principal.FindFirstValue(ClaimTypes.Surname)!,
+                Email = info.Principal.FindFirstValue(ClaimTypes.Email)!,
+                UserName = info.Principal.FindFirstValue(ClaimTypes.Email)!,
+                IsExternalAccount = true,
+            };
+
+            var user = await _userManager.FindByEmailAsync(userEntity.Email);
+            if (user == null)
+            {
+                var result = await _userManager.CreateAsync(userEntity);
+                if (result.Succeeded)
+                {
+                    user = await _userManager.FindByEmailAsync(userEntity.Email);
+                }
+            }
+            if (user != null)
+            {
+                if (user.FirstName != userEntity.FirstName || user.LastName != userEntity.LastName || user.Email != userEntity.Email)
+                {
+                    user.FirstName = userEntity.FirstName;
+                    user.LastName = userEntity.LastName;
+                    user.Email = userEntity.Email;
+
+                    await _userManager.UpdateAsync(user);
+                }
+                await _signInManager.SignInAsync(user, isPersistent: false);
+
+                if (HttpContext.User != null)
+                {
+                    return RedirectToAction("Index", "Account");
+                }
+            }
+
+        }
+        return RedirectToAction("Index", "Account");
+
+    }
 }
 
 

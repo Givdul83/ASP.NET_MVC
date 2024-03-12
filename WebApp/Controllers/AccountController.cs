@@ -173,13 +173,26 @@ public class AccountController : Controller
     }
 
     [HttpPost]
-    public IActionResult Security(AccountSecurityViewModel viewmodel)
+    public async Task<IActionResult> Security(AccountSecurityViewModel viewmodel)
     {
-        if (ModelState.IsValid)
+       if(viewmodel.AccountSecurity != null)
         {
-            return RedirectToAction("Index", "Account");
+            var userEntity = await _userManager.GetUserAsync(User);
+            if(userEntity != null)
+            {
+                var passwordChange = await _userManager.ChangePasswordAsync(userEntity, viewmodel.AccountSecurity.CurrentPassword, viewmodel.AccountSecurity.NewPassword);
+                if (passwordChange.Succeeded)
+                {
+                    var result = await _userManager.UpdateAsync(userEntity);
+                    if (result.Succeeded)
+                    {
+                        return RedirectToAction("Security", "Account");
+                    }
+                }
+            }
+            return RedirectToAction("Security", "Account");
         }
-        return View(viewmodel);
+        return RedirectToAction("Security", "Account");
     }
 
     [HttpGet]
