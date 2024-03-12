@@ -186,11 +186,14 @@ public class AccountController : Controller
                     var result = await _userManager.UpdateAsync(userEntity);
                     if (result.Succeeded)
                     {
+                        TempData["PasswordSuccess"] = "Password was succesfully changed";
                         return RedirectToAction("Security", "Account");
                     }
                 }
+                TempData["PasswordError"] = "Something went wrong, please check your passwords";
+                return RedirectToAction("Security", "Account");
             }
-            return RedirectToAction("Security", "Account");
+            
         }
         return RedirectToAction("Security", "Account");
     }
@@ -215,6 +218,8 @@ public class AccountController : Controller
                 }
                 else
                 {
+                    
+                    TempData["ErrorMessage"] = "Checkbox must be confirmed";
                     return RedirectToAction("Security", "Account");
                 }
 

@@ -12,4 +12,6 @@ public class AccountSecurityViewModel
     public AccountDelete AccountDelete { get; set; } = new AccountDelete();
 
     public AccountBasic AccountBasic { get; set; }= new AccountBasic();
+    
+    
 }

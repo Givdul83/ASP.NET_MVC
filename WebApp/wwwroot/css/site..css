@@ -1331,6 +1331,24 @@ footer .container .social-media a:hover {
 #security .container .account-security .security h3 {
   color: #6361F1;
 }
+#security .container .account-security .security .alert {
+  background-color: rgba(239, 68, 68, 0.3215686275);
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
+}
+#security .container .account-security .security .success {
+  background-color: lightgreen;
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
+}
 #security .container .account-security .security .security-content {
   display: grid;
   grid-template-columns: 1fr, 1fr;
@@ -1378,6 +1396,15 @@ footer .container .social-media a:hover {
 }
 #security .container .account-security .account-delete {
   padding-top: 2rem;
+}
+#security .container .account-security .account-delete .delete .alert {
+  background-color: rgba(239, 68, 68, 0.3215686275);
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
 }
 #security .container .account-security .account-delete .delete h4 {
   color: #6361F1;

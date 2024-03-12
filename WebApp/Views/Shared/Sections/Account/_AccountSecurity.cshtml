@@ -26,7 +26,20 @@
             <h1 class="h2">@Model.Title</h1>
             <form class="security" method="post" asp-controller="Account" asp-action="Security" novalidate>
                 <h3 class="h5">@Model.AccountSecurity.Title</h3>
-                <div class="security-content">
+                @if (!string.IsNullOrEmpty(TempData["PasswordError"]?.ToString()))
+                {
+                    <div class="alert">
+                        @TempData["PasswordError"]
+                    </div>
+                }
+                @if (!string.IsNullOrEmpty(TempData["PasswordSuccess"]?.ToString()))
+                {
+                    <div class="success">
+                        @TempData["PasswordSuccess"]
+                    </div>
+                }
+                
+                <div class="security-content">                 
                     <div id="current-password" class="security-group">
                         <label asp-for=AccountSecurity.CurrentPassword></label>
                         <span asp-validation-for="AccountSecurity.CurrentPassword"></span>
@@ -60,10 +73,16 @@
                         <span class="checkbox-error" asp-validation-for="AccountDelete.DeleteAccount"></span>
                         <span asp-for="AccountDelete.ConfirmDelete"></span>
                     </div>
+                    @if (!string.IsNullOrEmpty(TempData["ErrorMessage"]?.ToString()))
+                    {
+                        <div class="alert">
+                            @TempData["ErrorMessage"]
+                        </div>
+                    }
                     <div class="delete-button">
                         <button class="btn-theme" type="submit">Delete</button>
                     </div>
-
+                   
                 </form>
             </div>
 

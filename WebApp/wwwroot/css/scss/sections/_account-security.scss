@@ -103,6 +103,26 @@
                     color: #6361F1;
                 }
 
+                .alert {
+                    background-color: #ef444452;
+                    opacity: 0.8;
+                    color: $gray-900;
+                    margin: 0;
+                    max-width: 70%;
+                    text-align: center;
+                    font-weight: 700;
+                }
+
+                .success {
+                    background-color: lightgreen;
+                    opacity: 0.8;
+                    color: $gray-900;
+                    margin: 0;
+                    max-width: 70%;
+                    text-align: center;
+                    font-weight: 700;
+                }
+
                 .security-content {
                     display: grid;
                     grid-template-columns: 1fr, 1fr;
@@ -118,7 +138,7 @@
                         flex-direction: column;
                         color: $gray-900;
                         font-weight: 700;
-                        position:relative;
+                        position: relative;
 
                         span {
 
@@ -173,7 +193,19 @@
             .account-delete {
                 padding-top: 2rem;
 
+
+
                 .delete {
+
+                    .alert {
+                        background-color: #ef444452;
+                        opacity: 0.8;
+                        color: $gray-900;
+                        margin: 0;
+                        max-width: 70%;
+                        text-align: center;
+                        font-weight: 700;
+                    }
 
                     h4 {
                         color: #6361F1;
