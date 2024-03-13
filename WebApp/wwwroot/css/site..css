@@ -411,6 +411,48 @@ header .container .account-buttons {
     display: flex;
   }
 }
+header .container .account-buttons .dropdown {
+  position: relative;
+}
+header .container .account-buttons .dropdown .dropdown-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+header .container .account-buttons .dropdown .dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 2rem;
+  border: none;
+  background: none;
+}
+header .container .account-buttons .dropdown .dropdown-menu .dropdown-item {
+  display: block;
+  padding: 0.3rem 2rem;
+  text-decoration: none;
+  color: white;
+  transition: background-color 0.3s;
+  margin-top: 0.5rem;
+}
+header .container .account-buttons .dropdown .dropdown-menu .dropdown-item:hover {
+  color: white;
+}
+header .container .account-buttons .dropdown .dropdown-menu .dropdown-item.disabled {
+  pointer-events: none;
+  opacity: 0.5;
+}
+header .container .account-buttons .dropdown .dropdown-menu .dropdown-item i {
+  margin-right: 0.5rem;
+}
+header .container .account-buttons .dropdown .dropdown-menu .dropdown-divider {
+  margin: 4px 0;
+  border: none;
+}
+header .container .account-buttons .dropdown.open .dropdown-menu {
+  display: block;
+}
 header .container .btn-mobile {
   grid-area: mobile;
   display: block;
@@ -1057,6 +1099,7 @@ footer .container .social-media a:hover {
     height: 85vh;
     border-right: 1px solid rgba(147, 151, 173, 0.3);
     margin-right: 10rem;
+    border-bottom: none;
   }
 }
 #account .container .account-nav .nav-image {
@@ -1265,6 +1308,7 @@ footer .container .social-media a:hover {
     height: 85vh;
     border-right: 1px solid rgba(147, 151, 173, 0.3);
     margin-right: 10rem;
+    border-bottom: none;
   }
 }
 #security .container .account-nav .nav-image {
@@ -1461,6 +1505,7 @@ footer .container .social-media a:hover {
     height: 85vh;
     border-right: 1px solid rgba(147, 151, 173, 0.3);
     margin-right: 10rem;
+    border-bottom: none;
   }
 }
 #saved-items .container .account-nav .nav-image {

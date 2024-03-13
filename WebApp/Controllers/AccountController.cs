@@ -180,16 +180,24 @@ public class AccountController : Controller
             var userEntity = await _userManager.GetUserAsync(User);
             if(userEntity != null)
             {
-                var passwordChange = await _userManager.ChangePasswordAsync(userEntity, viewmodel.AccountSecurity.CurrentPassword, viewmodel.AccountSecurity.NewPassword);
-                if (passwordChange.Succeeded)
+                if(!String.IsNullOrEmpty(viewmodel.AccountSecurity.CurrentPassword) || !String.IsNullOrEmpty(viewmodel.AccountSecurity.NewPassword))
                 {
-                    var result = await _userManager.UpdateAsync(userEntity);
-                    if (result.Succeeded)
+                    var passwordChange = await _userManager.ChangePasswordAsync(userEntity, viewmodel.AccountSecurity.CurrentPassword, viewmodel.AccountSecurity.NewPassword);
+                    if (passwordChange.Succeeded)
                     {
-                        TempData["PasswordSuccess"] = "Password was succesfully changed";
-                        return RedirectToAction("Security", "Account");
+                        var result = await _userManager.UpdateAsync(userEntity);
+                        if (result.Succeeded)
+                        {
+                            TempData["PasswordSuccess"] = "Password was succesfully changed";
+                            return RedirectToAction("Security", "Account");
+                        }
                     }
+
+                    TempData["PasswordError"] = "Something went wrong, please check your passwords";
+                    return RedirectToAction("Security", "Account");
                 }
+                
+                
                 TempData["PasswordError"] = "Something went wrong, please check your passwords";
                 return RedirectToAction("Security", "Account");
             }

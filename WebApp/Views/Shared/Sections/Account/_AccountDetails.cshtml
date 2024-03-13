@@ -27,18 +27,42 @@
                 <div class="basic-content">
                     <div id="basic-firstname" class="basic-group">
                         <label asp-for=AccountBasic.FirstName></label>
-                        <span asp-validation-for="AccountBasic.FirstName"></span>
-                        <input asp-for="AccountBasic.FirstName" />
+                        @if (Model.AccountBasic.IsExternalAccount)
+                        {
+                            <input asp-for="AccountBasic.FirstName" disabled />
+                        }
+                        else
+                        {
+                            <span asp-validation-for="AccountBasic.FirstName"></span>
+                            <input asp-for="AccountBasic.FirstName" />
+                        }
+                    
                     </div>
                     <div id="basic-lastname" class="basic-group">
                         <label asp-for=AccountBasic.LastName></label>
-                        <span asp-validation-for="AccountBasic.LastName"></span>
-                        <input asp-for="AccountBasic.LastName" />
+                        @if (Model.AccountBasic.IsExternalAccount)
+                        {
+                            <input asp-for="AccountBasic.LastName" disabled />
+                        }
+                        else
+                        {
+                            <span asp-validation-for="AccountBasic.LastName"></span>
+                            <input asp-for="AccountBasic.LastName" />
+                        }
+                       
                     </div>
                     <div id="basic-email" class="basic-group">
                         <label asp-for="AccountBasic.Email"></label>
-                        <span asp-validation-for="AccountBasic.Email"></span>
-                        <input asp-for="AccountBasic.Email" />
+                        @if (Model.AccountBasic.IsExternalAccount)
+                        {
+                            <input asp-for="AccountBasic.Email" disabled />
+                        }
+                        else
+                        {
+                            <span asp-validation-for="AccountBasic.Email"></span>
+                            <input asp-for="AccountBasic.Email" />
+                        }
+              
                     </div>
                     <div id="basic-phone" class="basic-group">
                         <label asp-for="AccountBasic.Phone"></label>

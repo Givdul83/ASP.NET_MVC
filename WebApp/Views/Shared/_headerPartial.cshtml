@@ -37,7 +37,20 @@
         <div class="account-buttons">
             @if (_signInManager.IsSignedIn(User))
             {
-                <a asp-controller="Account" asp-action="LogOut" class="btn-theme"><i class="fa-regular fa-arrow-right-from-bracket"></i>Log Out</a>
+                <div class="profile-avatar">
+                    <div class="dropdown">
+                        <button onclick="toggleDropdown()" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            <img src="~/images/profileAvatar.svg" alt="User Image" />
+                        </button>
+                        <div id="profileDropdownMenu" class="dropdown-menu" style="display: none;">
+                            <a asp-controller="Account" asp-action="Index" class="dropdown-item btn-theme"><i class="fa-regular fa-gear"></i>Details</a>
+                            <a asp-controller="Account" asp-action="Security" class="dropdown-item btn-theme"><i class="fa-regular fa-lock"></i>Security</a>
+                            <a asp-controller="Account" asp-action="SavedItems" class="dropdown-item btn-theme"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item btn-theme" asp-controller="Account" asp-action="LogOut"><i class="fa-light fa-right-from-bracket"></i>Sign Out</a>
+                        </div>
+                    </div>
+                </div>
             }
             else
             {
@@ -92,3 +105,5 @@
     </div>
 
 </header>
+
+@await Html.PartialAsync("~/Views/Shared/_profileAvatarPartial.cshtml")
