@@ -25,7 +25,6 @@ public class AccountSecurity
     [Display(Name = "Confirm New Password", Prompt = "Confirm new password", Order = 2)]
     [DataType(DataType.Password)]
     [Required(ErrorMessage = "Password must be confirmed")]
-    [RegularExpression("^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[^a-zA-Z\\d]).{8,}$", ErrorMessage = "Invalid password format")]
     [Compare(nameof(NewPassword), ErrorMessage = "password dosent match")]
     public string ConfirmNewPassword { get; set; } = null!;
 }

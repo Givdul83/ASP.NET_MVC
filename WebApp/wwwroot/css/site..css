@@ -369,11 +369,30 @@ header .container {
   grid-template-columns: 1fr auto;
   grid-template-areas: "logo mobile";
   gap: 40px;
+  /* .btn-mobile {
+          grid-area: mobile;
+          display: block;
+
+          @include lg {
+              display: none;
+          }
+      }
+  }
+
+  #mobile-menu {
+      @include lg {
+          display: none;
+      }
+  }
+
+  #mobile-menu.open {
+      display: none;
+  }*/
 }
 @media (min-width: 992px) {
   header .container {
-    grid-template-columns: auto 1fr auto auto;
-    grid-template-areas: "logo menu switch buttons";
+    grid-template-columns: auto 1fr auto auto auto;
+    grid-template-areas: "logo menu switch buttons nav";
   }
 }
 header .container #logo {
@@ -392,23 +411,33 @@ header .container #menu nav {
   display: flex;
   gap: 15px;
 }
+header .container .signin-and-out {
+  display: none;
+}
+@media (min-width: 992px) {
+  header .container .signin-and-out {
+    display: flex;
+    gap: 0.2rem;
+    grid-area: buttons;
+  }
+}
 header .container .btn-switch {
   grid-area: switch;
   display: none;
 }
 @media (min-width: 992px) {
   header .container .btn-switch {
-    display: block;
+    display: flex;
   }
 }
 header .container .account-buttons {
-  grid-area: buttons;
-  display: none;
+  grid-area: mobile;
+  display: flex;
   gap: 15px;
 }
 @media (min-width: 992px) {
   header .container .account-buttons {
-    display: flex;
+    display: none;
   }
 }
 header .container .account-buttons .dropdown {
@@ -420,7 +449,7 @@ header .container .account-buttons .dropdown .dropdown-toggle {
   cursor: pointer;
 }
 header .container .account-buttons .dropdown .dropdown-menu {
-  display: none;
+  display: block;
   position: absolute;
   top: 100%;
   left: 0;
@@ -452,23 +481,6 @@ header .container .account-buttons .dropdown .dropdown-menu .dropdown-divider {
 }
 header .container .account-buttons .dropdown.open .dropdown-menu {
   display: block;
-}
-header .container .btn-mobile {
-  grid-area: mobile;
-  display: block;
-}
-@media (min-width: 992px) {
-  header .container .btn-mobile {
-    display: none;
-  }
-}
-@media (min-width: 992px) {
-  header #mobile-menu {
-    display: none;
-  }
-}
-header #mobile-menu.open {
-  display: none;
 }
 
 footer {
@@ -1431,17 +1443,33 @@ footer .container .social-media a:hover {
 #security .container .account-security .security .security-content #confirm-password {
   grid-area: confirm;
 }
-#security .container .account-security .security .security-buttons {
+#security .container .account-security .security .security-content #confirm-password span.field-validation-error {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#security .container .account-security .security .security-content #confirm-password input {
+  border: 1px solid #D4D7E5;
+  padding: 0.4rem;
+  border-radius: 5px;
+}
+#security .container .account-security .security .security-content #confirm-password input.input-validation-error {
+  border-color: #EF4444;
+}
+#security .container .account-security .security .security-content .security-buttons {
   display: flex;
   gap: 1rem;
   padding-bottom: 2rem;
   padding-top: 2rem;
   border-bottom: 1px solid rgba(147, 151, 173, 0.3);
 }
-#security .container .account-security .account-delete {
+#security .container .account-security .security .account-delete {
   padding-top: 2rem;
 }
-#security .container .account-security .account-delete .delete .alert {
+#security .container .account-security .security .account-delete .delete .alert {
   background-color: rgba(239, 68, 68, 0.3215686275);
   opacity: 0.8;
   color: #0B0F19;
@@ -1450,33 +1478,33 @@ footer .container .social-media a:hover {
   text-align: center;
   font-weight: 700;
 }
-#security .container .account-security .account-delete .delete h4 {
+#security .container .account-security .security .account-delete .delete h4 {
   color: #6361F1;
 }
-#security .container .account-security .account-delete .delete .delete-box {
+#security .container .account-security .security .account-delete .delete .delete-box {
   position: relative;
 }
-#security .container .account-security .account-delete .delete .delete-box .deletebox-group span.field-validation-error {
+#security .container .account-security .security .account-delete .delete .delete-box .deletebox-group span.field-validation-error {
   color: #EF4444;
   font-weight: 500;
   opacity: 0.7;
 }
-#security .container .account-security .account-delete .delete .delete-box .deletebox-group input {
+#security .container .account-security .security .account-delete .delete .delete-box .deletebox-group input {
   border: 1px solid #D4D7E5;
   padding: 0.4rem;
   border-radius: 5px;
 }
-#security .container .account-security .account-delete .delete .delete-box .deletebox-group input.input-validation-error {
+#security .container .account-security .security .account-delete .delete .delete-box .deletebox-group input.input-validation-error {
   border-color: #EF4444;
 }
-#security .container .account-security .account-delete .delete .delete-button {
+#security .container .account-security .security .account-delete .delete .delete-button {
   display: flex;
   padding-top: 2rem;
 }
-#security .container .account-security .account-delete .delete .delete-button .btn-theme {
+#security .container .account-security .security .account-delete .delete .delete-button .btn-theme {
   background-color: #EF4444;
 }
-#security .container .account-security .account-delete .delete .delete-button .btn-theme:hover {
+#security .container .account-security .security .account-delete .delete .delete-button .btn-theme:hover {
   color: black;
   font-weight: 700;
 }

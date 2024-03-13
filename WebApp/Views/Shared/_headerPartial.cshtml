@@ -34,6 +34,10 @@
             </label>
             <span>Dark</span>
         </div>
+        <div class="signin-and-out">
+        <a class="header btn-theme" asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
+        <a class="header btn-theme" asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
+        </div>
         <div class="account-buttons">
             @if (_signInManager.IsSignedIn(User))
             {
@@ -54,12 +58,27 @@
             }
             else
             {
-                <a asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
-                <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
+                <div class="profile-avatar">
+                    <div class="dropdown">
+                        <button onclick="toggleDropdown()" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa-solid fa-bars"></i></button>
+                        
+                        <div id="profileDropdownMenu" class="dropdown-menu" style="display: none;">
+                            <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase" class="dropdown-item btn-theme">Overview </a>
+                            <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits" class="dropdown-item btn-theme">Features </a>
+                            <a class="menu-link" asp-controller="Home" asp-action="Contact" class="dropdown-item btn-theme" >Contacts </a>
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item btn-theme" asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
+                            <a class="dropdown-item btn-theme" asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
+                        </div>
+                    </div>
+                </div>
+                
             }
 
         </div>
-        <div class="btn-mobile">
+        </div>
+      @*   <div class="btn-mobile">
             <button class="btn" id="mobile-menu-btn" aria-controls="btn-switch"><i class="fa-solid fa-bars"></i></button>
         </div>
 
@@ -75,7 +94,7 @@
             <span>Dark</span>
         </div>
 
-        <div class="account-buttons">
+        <div class=" mobile-account-buttons">
             @if (_signInManager.IsSignedIn(User))
             {
                 <a asp-controller="Account" asp-action="LogOut" class="btn-theme"><i class="fa-regular fa-arrow-right-from-bracket"></i>Log Out</a>
@@ -102,7 +121,7 @@
             }
         </nav>
 
-    </div>
+    </div> *@
 
 </header>
 

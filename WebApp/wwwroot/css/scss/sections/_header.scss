@@ -17,8 +17,8 @@ header {
         gap: 40px;
 
         @include lg {
-            grid-template-columns: auto 1fr auto auto;
-            grid-template-areas: "logo menu switch buttons";
+            grid-template-columns: auto 1fr auto auto auto;
+            grid-template-areas: "logo menu switch buttons nav";
         }
 
         #logo {
@@ -38,23 +38,33 @@ header {
                 gap: 15px;
             }
         }
+        .signin-and-out{
+            display:none;
+
+            @include lg{
+                display:flex;
+                gap:.2rem;
+                grid-area:buttons;
+            }
+        }
 
         .btn-switch {
             grid-area: switch;
             display: none;
 
             @include lg {
-                display: block;
+                display: flex;
             }
         }
 
         .account-buttons {
-            grid-area: buttons;
-            display: none;
+            grid-area: mobile;
+            display: flex;
             gap: 15px;
 
             @include lg {
-                display: flex;
+                
+                display: none;
             }
 
             .dropdown {
@@ -67,7 +77,7 @@ header {
                 }
 
                 .dropdown-menu {
-                    display: none;
+                    display: block;
                     position: absolute;
                     top: 100%;
                     left: 0;
@@ -111,7 +121,7 @@ header {
             }
         }
 
-        .btn-mobile {
+       /* .btn-mobile {
             grid-area: mobile;
             display: block;
 
@@ -129,5 +139,6 @@ header {
 
     #mobile-menu.open {
         display: none;
-    }
+    }*/
 }
+    }
