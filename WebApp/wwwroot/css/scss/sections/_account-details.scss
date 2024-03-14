@@ -268,7 +268,7 @@
     #account {
         padding-bottom: 2rem;
         padding-top: 2rem;
-        background-color:$gray-900;
+        background-color: $gray-900;
 
         .container {
             display: flex;
@@ -311,13 +311,13 @@
 
                     h2 {
                         margin: 0;
-                        color:$gray-300;
+                        color: $gray-300;
                     }
 
                     p {
                         margin: 0;
                         margin-bottom: 1.5rem;
-                        color:$gray-500;
+                        color: $gray-500;
                     }
                 }
 
@@ -326,7 +326,7 @@
                     grid-template-columns: 1fr 1fr;
                     margin-right: 1rem;
                     gap: .2rem;
-                    
+
 
                     @include xl {
                         display: flex;
@@ -349,7 +349,7 @@
 
                     .btn-gray {
                         background-color: $gray-900;
-                        color:$gray-300;
+                        color: $gray-300;
 
 
                         &:hover {
@@ -369,23 +369,26 @@
                 }
 
                 h1 {
-                    color:$gray-300;
+                    color: $gray-300;
                 }
-                label{
-                    color:$gray-500;
+
+                label {
+                    color: $gray-500;
                 }
-                input{
+
+                input {
                     color: black;
-                    background-color:azure;
+                    background-color: azure;
                 }
-                textarea{
-                    background-color:azure;
+
+                textarea {
+                    background-color: azure;
                 }
 
                 .basic {
 
                     h3 {
-                        color: $gray-500;
+                        color: #6361F1;
                     }
 
                     .basic-content {

@@ -2225,7 +2225,7 @@ footer .container .social-media a:hover {
   background-color: azure;
 }
 .dark-mode #account .container .account-details .basic h3 {
-  color: #B4B7C9;
+  color: #6361F1;
 }
 .dark-mode #account .container .account-details .basic .basic-content {
   display: grid;
@@ -2650,8 +2650,8 @@ footer .container .social-media a:hover {
     width: 50%;
   }
 }
-.dark-mode #security .container .account-security .security h3 {
-  color: #6361F1;
+.dark-mode #security .container .account-security h1 {
+  color: #E2E5F1;
 }
 .dark-mode #security .container .account-security .security .alert {
   background-color: rgba(239, 68, 68, 0.3215686275);
@@ -2683,6 +2683,9 @@ footer .container .social-media a:hover {
   color: #0B0F19;
   font-weight: 700;
   position: relative;
+}
+.dark-mode #security .container .account-security .security .security-content .security-group label {
+  color: #B4B7C9;
 }
 .dark-mode #security .container .account-security .security .security-content .security-group span.field-validation-error {
   color: #EF4444;
