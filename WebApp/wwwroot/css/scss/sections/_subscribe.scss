@@ -88,6 +88,7 @@
                     opacity: 0.5;
                     position: relative;
                     padding-left: 2rem;
+                    
  
                 }
                 p {
@@ -103,11 +104,114 @@
                     height: 2rem;
  
                 }
-            }
- 
-            
-        
-        
+            }  
+        }
     }
+}
+.dark-mode {
+    #subscribe {
+        background-color: $gray-900;
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+
+        .section-subscribe {
+
+            .container {
+
+                .heading {
+                    display: flex;
+                    justify-content: center;
+                    gap: 2rem;
+
+                    h1 {
+                        color: $gray-300;
+                    }
+
+                    img {
+                    }
+                }
+
+                .newsletter {
+                    display: flex;
+                    justify-content: center;
+                    padding-top: 3rem;
+                    padding-bottom: 3rem;
+
+
+                    h2 {
+                        padding-right: 3rem;
+                        max-width: 11rem;
+                        margin: 0;
+                        color: $gray-300;
+                    }
+
+                    .checkboxes {
+                        display: grid;
+                        grid-template-columns: repeat(2,1fr);
+                        margin-right: 1rem;
+                        margin-bottom: 1rem;
+
+                        @include lg {
+                            grid-template-columns: repeat(3,1fr);
+                        }
+
+
+                        .checkbox {
+                            display: flex;
+                            gap: .5rem;
+                        }
+
+                        input {
+                            height: 100%;
+                        }
+
+                        p {
+                            margin: 0;
+                            margin-right: 1rem;
+                            color: $gray-500;
+                        }
+                    }
+                }
+
+
+                .subscribe-form {
+                    display: flex;
+                    justify-content: center;
+
+
+
+
+                    .input-terms {
+                        width: 43%;
+                        margin-right: 1rem;
+
+
+
+
+                        input {
+                            width: 100%;
+                            border-radius: .3rem;
+                            border-color: $gray-500;
+                            opacity: 0.5;
+                            position: relative;
+                            padding-left: 2rem;
+                            background-color: $gray-900;
+                            color:white;
+                            }
+
+                        p {
+                            margin: 0;
+                            padding-top: .5rem;
+                            color: $gray-300;
+                        }
+                    }
+
+
+                    button {
+                        height: 2rem;
+                    }
+                }
+            }
+        }
     }
 }

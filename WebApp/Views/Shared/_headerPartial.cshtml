@@ -1,128 +1,141 @@
 ﻿@inject SignInManager<UserEntity> _signInManager
 
-
-
-
-
 <header class="@((ViewContext.RouteData.Values["Action"]!.ToString() == "Contact") ? "contact" : "standard")">
+	<div class="container">
+		<a href="/" id="logo"></a>
 
-    <div class="container">
-        <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/full-siliconlogo.svg" alt="Silicon logo"></a>
+		<div id="menu">
+			<nav>
+				@if (_signInManager.IsSignedIn(User))
+				{
+					<a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
+					<a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+					<a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+				}
+				else
+				{
+					<a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
+					<a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits">Features</a>
+					<a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+				}
 
-        <div id="menu">
-            <nav>
-                @if (_signInManager.IsSignedIn(User))
-                {
-                    <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview </a>
-                    <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses </a>
-                    <a class="menu-link" asp-controller="Home" asp-action="Contact">Contacts </a>
-                }
-                else
-                {
-                    <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview </a>
-                    <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits">Features </a>
-                    <a class="menu-link" asp-controller="Home" asp-action="Contact">Contacts </a>
-                }
-            </nav>
-        </div>
+			</nav>
+		</div>
 
-        <div class="btn-switch">
-            <span>Light</span>
-            <label class="switch" for="switch">
-                <input type="checkbox" id="switch" />
-                <div class="slider round"></div>
-            </label>
-            <span>Dark</span>
-        </div>
-        <div class="signin-and-out">
-        <a class="header btn-theme" asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
-        <a class="header btn-theme" asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
-        </div>
-        <div class="account-buttons">
-            @if (_signInManager.IsSignedIn(User))
-            {
-                <div class="profile-avatar">
-                    <div class="dropdown">
-                        <button onclick="toggleDropdown()" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                            <img src="~/images/profileAvatar.svg" alt="User Image" />
-                        </button>
-                        <div id="profileDropdownMenu" class="dropdown-menu" style="display: none;">
-                            <a asp-controller="Account" asp-action="Index" class="dropdown-item btn-theme"><i class="fa-regular fa-gear"></i>Details</a>
-                            <a asp-controller="Account" asp-action="Security" class="dropdown-item btn-theme"><i class="fa-regular fa-lock"></i>Security</a>
-                            <a asp-controller="Account" asp-action="SavedItems" class="dropdown-item btn-theme"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item btn-theme" asp-controller="Account" asp-action="LogOut"><i class="fa-light fa-right-from-bracket"></i>Sign Out</a>
-                        </div>
-                    </div>
-                </div>
-            }
-            else
-            {
-                <div class="profile-avatar">
-                    <div class="dropdown">
-                        <button onclick="toggleDropdown()" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
-                            <i class="fa-solid fa-bars"></i></button>
-                        
-                        <div id="profileDropdownMenu" class="dropdown-menu" style="display: none;">
-                            <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase" class="dropdown-item btn-theme">Overview </a>
-                            <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits" class="dropdown-item btn-theme">Features </a>
-                            <a class="menu-link" asp-controller="Home" asp-action="Contact" class="dropdown-item btn-theme" >Contacts </a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item btn-theme" asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
-                            <a class="dropdown-item btn-theme" asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
-                        </div>
-                    </div>
-                </div>
-                
-            }
 
-        </div>
-        </div>
-      @*   <div class="btn-mobile">
-            <button class="btn" id="mobile-menu-btn" aria-controls="btn-switch"><i class="fa-solid fa-bars"></i></button>
-        </div>
+		<div class="btn-switch">
+			<span>Light</span>
+			<div class="switch">
+				<input type="checkbox" id="switch" onclick="toggleBothSwitches();">
+				<label for="switch" class="slider round"></label>
+			</div>
+			<span>Dark</span>
+		</div>
 
-    </div>
-    <div id="mobile-menu" class="open" aria-expanded="false">
+		<div class="account-buttons">
 
-        <div class="btn-switch">
-            <span>Light</span>
-            <label class="switch" for="switch">
-                <input type="checkbox" id="switch" role="switch" />
-                <div class="slider round"></div>
-            </label>
-            <span>Dark</span>
-        </div>
+			@if (_signInManager.IsSignedIn(User))
+			{
+				<div class="profile-avatar">
+					<div class="dropdown">
+						<button onclick="toggleDropdown()" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false">
+							<img src="~/images/profileAvatar.svg" alt="User Image" />
+						</button>
+						<div id="profileDropdownMenu" class="dropdown-menu" style="display: none;">
+							<a asp-controller="Account" asp-action="Index" class="dropdown-item btn-theme"><i class="fa-regular fa-gear"></i>Details</a>
+							<a asp-controller="Account" asp-action="Security" class="dropdown-item btn-theme"><i class="fa-regular fa-lock"></i>Security</a>
+							<a asp-controller="Account" asp-action="SavedItems" class="dropdown-item btn-theme"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item btn-theme" asp-controller="Account" asp-action="LogOut"><i class="fa-light fa-right-from-bracket"></i>Sign Out</a>
+						</div>
+					</div>
+				</div>
+			}
+			else
+			{
+				<a asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
+				<a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
+			}
+		</div>
+		<div class="account-buttons-mobile">
 
-        <div class=" mobile-account-buttons">
-            @if (_signInManager.IsSignedIn(User))
-            {
-                <a asp-controller="Account" asp-action="LogOut" class="btn-theme"><i class="fa-regular fa-arrow-right-from-bracket"></i>Log Out</a>
-            }
-            else
-            {
-                <a asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
-                <a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
-            }
-        </div>
+			@if (_signInManager.IsSignedIn(User))
+			{
+				<div class="profile-avatar-mobile">
+					<div class="dropdown-mobile">
+						<button onclick="toggleDropdownMobile()" class="dropdown-toggle-mobile" aria-haspopup="true" aria-expanded="false">
+							<img src="~/images/profileAvatar.svg" alt="User Image" />
+						</button>
+						<div id="profileDropdownMenuMobile" class="dropdown-menu-mobile" style="display: none;">
+							<a asp-controller="Account" asp-action="Index" class="dropdown-item-mobile btn-theme"><i class="fa-regular fa-gear"></i>Details</a>
+							<a asp-controller="Account" asp-action="Security" class="dropdown-item-mobile btn-theme"><i class="fa-regular fa-lock"></i>Security</a>
+							<a asp-controller="Account" asp-action="SavedItems" class="dropdown-item-mobile btn-theme"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
+							<div class="dropdown-divider-mobile"></div>
+							<a class="dropdown-item-mobile btn-theme" asp-controller="Account" asp-action="LogOut"><i class="fa-light fa-right-from-bracket"></i>Sign Out</a>
 
-        <nav>
-            @if (_signInManager.IsSignedIn(User))
-            {
-                <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview </a>
-                <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses </a>
-                <a class="menu-link" asp-controller="Home" asp-action="Contact">Contacts </a>
-            }
-            else
-            {
-                <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Overview </a>
-                <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits">Features </a>
-                <a class="menu-link" asp-controller="Home" asp-action="Contact">Contacts </a>
-            }
-        </nav>
+							<nav class="nav-links-mobile">
+								<div class="menu-links">
+									<a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
+								</div>
+								<div class="menu-links">
+									<a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+								</div>
+								<div class="menu-links">
+									<a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+								</div>
+							</nav>
 
-    </div> *@
+							<div class="btn-switch-mobile">
+								<span>Light</span>
+								<div class="switch">
+									<input type="checkbox" id="switch-mobile" onclick="toggleBothSwitches();">
+									<label for="switch-mobile" class="slider round"></label>
+								</div>
+								<span>Dark</span>
+							</div>
+							<div class="end-line"></div>
+						</div>
+					</div>
+				</div>
+			}
+			else
+			{
+				<div class="profile-avatar-mobile">
+					<div class="dropdown-mobile">
+						<button onclick="toggleDropdownMobile()" class="dropdown-toggle-mobile" aria-haspopup="true" aria-expanded="false">
+							<i class="fa-solid fa-bars"></i>
+						</button>
+						<div id="profileDropdownMenuMobile" class="dropdown-menu-mobile" style="display: none;">
+							<a asp-controller="Auth" asp-action="SignIn" class="btn-gray"><i class="fa-regular fa-arrow-right-to-bracket"></i>Sign in</a>
+							<a asp-controller="Auth" asp-action="SignUp" class="btn-theme"><i class="fa-regular fa-user"></i>Sign up</a>
 
+							<nav class="nav-links-mobile">
+								<div class="menu-links">
+									<a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
+								</div>
+								<div class="menu-links">
+									<a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="benefits">Features</a>
+								</div>
+								<div class="menu-links">
+									<a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
+								</div>
+							</nav>
+
+							<div class="btn-switch-mobile">
+								<span>Light</span>
+								<div class="switch">
+									<input type="checkbox" id="switch-mobile" onclick="toggleBothSwitches();">
+									<label for="switch-mobile" class="slider round"></label>
+								</div>
+								<span>Dark</span>
+							</div>
+							<div class="end-line"></div>
+						</div>
+					</div>
+				</div>
+			}
+		</div>
+	</div>
 </header>
 
 @await Html.PartialAsync("~/Views/Shared/_profileAvatarPartial.cshtml")

@@ -54,3 +54,73 @@
         }
     }
 }
+.dark-mode {
+    #benefits {
+        background-color: $gray-900;
+        padding-bottom: 10rem;
+        color: white;
+
+        .section-benefits {
+
+            .container {
+
+
+                .heading {
+                    text-align: center;
+                    padding-top: 5rem;
+                    padding-bottom: 5rem;
+
+                    h1 {
+                        color: $gray-300;
+                    }
+
+                    p {
+                        color: $gray-500;
+                    }
+                }
+
+                .grid {
+                    display: grid;
+                    gap: 2rem 1rem;
+
+                    @include md {
+                        grid-template-columns: repeat(2, 1fr);
+                    }
+
+                    @include lg {
+                        grid-template-columns: repeat(3, 1fr);
+                    }
+
+                    .benefit-card {
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        color: $gray-300;
+
+                        h2 {
+                            color: $gray-300;
+                        }
+
+
+
+                        &:hover {
+                            background-color: $theme;
+                            box-shadow: 0px 4px 13px -2px rgba(19, 16, 34, 0.06), 0px 4.8px 24.4px -6px rgba(19, 16, 34, 0.10);
+                        }
+                    }
+
+                    .card-image {
+                    }
+
+                    .card-content {
+                        text-align: center;
+
+                        p {
+                            color: $gray-500;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

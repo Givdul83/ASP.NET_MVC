@@ -91,4 +91,94 @@
      
   }
    
-  }
+}
+.dark-mode {
+    #showcase {
+        position: relative;
+        background-color: black;
+
+        .section-showcase {
+
+
+            @include lg {
+            }
+
+
+            .container {
+                height: 100%;
+                padding-top:3rem;
+
+
+
+
+                .left-side {
+                    max-width: 100%;
+                    padding-bottom: 10rem;
+
+                    @include lg {
+                        width: 50%;
+                    }
+
+                    h1 {
+                        color: $gray-300;
+                        margin-top:0;
+                    }
+
+                    p {
+                        margin-top: 2rem;
+                        color: $gray-500;
+                    }
+
+                    button {
+                        margin-top: 2rem;
+                    }
+
+                    h2 {
+                        margin-top: 6rem;
+                        color: $gray-300;
+                    }
+
+                    .brands {
+                        margin-top: 2rem;
+
+                        .brand-logo {
+                            display: flex;
+                            justify-content: space-between;
+                            flex-wrap: wrap;
+                            gap: 2rem;
+
+                            img {
+                                display: block;
+                                margin: auto;
+
+                                &:first-child {
+                                    margin-left: 0;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        .bg-image {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: 0;
+            width: 50%;
+            height: 100%;
+
+            img {
+                width: 100%;
+                height: 100%;
+                object-fit: contain;
+                object-position: right;
+            }
+
+            @include lg {
+                display: block;
+            }
+        }
+    }
+}

@@ -88,3 +88,103 @@
         }
     }
   }
+
+.dark-mode {
+
+    #saved-items {
+        padding-bottom: 2rem;
+        padding-top: 2rem;
+        background-color: $gray-900;
+
+        .container {
+            display: flex;
+            flex-direction: column;
+
+            @include xl {
+                display: flex;
+                flex-direction: row;
+            }
+
+            .account-nav {
+                border-bottom: 1px solid rgb(147, 151, 173, 0.3);
+                padding-bottom: 2rem;
+
+                @include xl {
+                    width: 20%;
+                    height: 85vh;
+                    border-right: 1px solid rgb(147, 151, 173, 0.3);
+                    margin-right: 10rem;
+                    border-bottom: none;
+                }
+
+                .nav-image {
+                    padding-top: 3.5rem;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 1rem;
+
+                    img {
+                    }
+                }
+
+                .nav-name-info {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    margin-right: 1rem;
+
+                    h2 {
+                        margin: 0;
+                        color: $gray-300;
+                    }
+
+                    p {
+                        margin: 0;
+                        margin-bottom: 1.5rem;
+                        color: $gray-500;
+                    }
+                }
+
+                .nav-buttons {
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;
+                    margin-right: 1rem;
+                    gap: .2rem;
+
+
+                    @include xl {
+                        display: flex;
+                        flex-direction: column;
+                    }
+
+                    a {
+                        display: flex;
+                        justify-content: center;
+                        font-weight: 700;
+                        width: auto;
+
+
+                        @include xl {
+                            display: flex;
+                            justify-content: flex-start;
+                            font-weight: 700;
+                        }
+                    }
+
+                    .btn-gray {
+                        background-color: $gray-900;
+                        color: $gray-300;
+
+
+                        &:hover {
+                            background-color: #6366F1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+

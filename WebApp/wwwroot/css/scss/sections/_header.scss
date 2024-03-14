@@ -17,8 +17,8 @@ header {
         gap: 40px;
 
         @include lg {
-            grid-template-columns: auto 1fr auto auto auto;
-            grid-template-areas: "logo menu switch buttons nav";
+            grid-template-columns: auto 1fr auto auto;
+            grid-template-areas: "logo menu switch buttons";
         }
 
         #logo {
@@ -38,37 +38,28 @@ header {
                 gap: 15px;
             }
         }
-        .signin-and-out{
-            display:none;
-
-            @include lg{
-                display:flex;
-                gap:.2rem;
-                grid-area:buttons;
-            }
-        }
 
         .btn-switch {
             grid-area: switch;
             display: none;
 
             @include lg {
-                display: flex;
+                display: block;
             }
         }
 
         .account-buttons {
-            grid-area: mobile;
-            display: flex;
+            grid-area: buttons;
+            display: none;
             gap: 15px;
 
             @include lg {
-                
-                display: none;
+                display: flex;
             }
 
             .dropdown {
                 position: relative;
+                border: none;
 
                 .dropdown-toggle {
                     background: none;
@@ -77,13 +68,13 @@ header {
                 }
 
                 .dropdown-menu {
-                    display: block;
+                    background: none;
+                    border: none;
+                    display: none;
                     position: absolute;
                     top: 100%;
                     left: 0;
                     min-width: 2rem;
-                    border:none;
-                    background:none;
 
                     .dropdown-item {
                         display: block;
@@ -109,7 +100,6 @@ header {
 
                     .dropdown-divider {
                         margin: 4px 0;
-                        border: none;
                     }
                 }
 
@@ -121,24 +111,316 @@ header {
             }
         }
 
-       /* .btn-mobile {
+        .account-buttons-mobile {
             grid-area: mobile;
             display: block;
 
             @include lg {
                 display: none;
             }
+
+            .dropdown-mobile {
+                position: relative;
+                border: none;
+                z-index: 1;
+
+                button {
+                    font-size: 1.5rem;
+                }
+
+
+                .dropdown-toggle-mobile {
+                    background: none;
+                    border: none;
+                    cursor: pointer;
+                }
+
+                .dropdown-menu-mobile {
+                    background: none;
+                    border: none;
+                    display: none;
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    min-width: 2rem;
+
+
+                    .dropdown-item-mobile {
+                        display: block;
+                        padding: .3rem 2rem;
+                        text-decoration: none;
+                        color: white;
+                        transition: background-color 0.3s;
+                        margin-top: .5rem;
+
+
+                        &:hover {
+                            color: white;
+                        }
+
+                        &.disabled {
+                            pointer-events: none;
+                            opacity: 0.5;
+                        }
+
+                        i {
+                            margin-right: .5rem;
+                        }
+                    }
+
+                    .dropdown-divider-mobile {
+                        margin: 4px 0;
+                    }
+
+                    .nav-links-mobile {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        margin-top: 0.5rem;
+                        border-top: 1px solid black;
+                        border-bottom: 1px solid black;
+                    }
+
+                    .btn-switch-mobile {
+                        margin-top: .5rem;
+                        display: flex;
+                        justify-content: center;
+                    }
+
+                    .end-line {
+                        border-top: 1px solid black;
+                        margin-top: .5rem;
+                    }
+                }
+
+                &.open {
+                    .dropdown-menu {
+                        display: block;
+                    }
+                }
+            }
         }
     }
-
-    #mobile-menu {
-        @include lg {
-            display: none;
-        }
-    }
-
-    #mobile-menu.open {
-        display: none;
-    }*/
 }
+
+.dark-mode {
+    header {
+        padding: 15px 0;
+        background-color: black;
+
+        &.standard {
+            background-color: black;
+        }
+
+        &.contact {
+            background-color: black;
+        }
+
+        .container {
+            display: grid;
+            align-items: center;
+            grid-template-columns: 1fr auto;
+            grid-template-areas: "logo mobile";
+            gap: 40px;
+
+            @include lg {
+                grid-template-columns: auto 1fr auto auto;
+                grid-template-areas: "logo menu switch buttons";
+            }
+
+            #logo {
+                grid-area: logo;
+            }
+
+            #menu {
+                grid-area: menu;
+                display: none;
+
+                @include lg {
+                    display: block;
+                }
+
+                nav {
+                    display: flex;
+                    gap: 15px;
+
+                    a {
+                        color: $gray-300;
+
+                        &:hover{
+                            color: $theme;
+                        }
+                    }
+                }
+            }
+
+            .btn-switch {
+                grid-area: switch;
+                display: none;
+
+                @include lg {
+                    display: block;
+                }
+
+                span {
+                    color: $gray-300;
+                }
+            }
+
+            .account-buttons {
+                grid-area: buttons;
+                display: none;
+                gap: 15px;
+
+                @include lg {
+                    display: flex;
+                }
+
+                .dropdown {
+                    position: relative;
+                    border: none;
+
+                    .dropdown-toggle {
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                    }
+
+                    .dropdown-menu {
+                        background: none;
+                        border: none;
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        min-width: 2rem;
+
+                        .dropdown-item {
+                            display: block;
+                            padding: .3rem 2rem;
+                            text-decoration: none;
+                            color: white;
+                            transition: background-color 0.3s;
+                            margin-top: .5rem;
+
+                            &:hover {
+                                color: white;
+                            }
+
+                            &.disabled {
+                                pointer-events: none;
+                                opacity: 0.5;
+                            }
+
+                            i {
+                                margin-right: .5rem;
+                            }
+                        }
+
+                        .dropdown-divider {
+                            margin: 4px 0;
+                        }
+                    }
+
+                    &.open {
+                        .dropdown-menu {
+                            display: block;
+                        }
+                    }
+                }
+            }
+
+            .account-buttons-mobile {
+                grid-area: mobile;
+                display: block;
+
+                @include lg {
+                    display: none;
+                }
+
+                .dropdown-mobile {
+                    position: relative;
+                    border: none;
+                    z-index: 1;
+
+                    button {
+                        font-size: 1.5rem;
+                    }
+
+
+                    .dropdown-toggle-mobile {
+                        background: none;
+                        border: none;
+                        cursor: pointer;
+                    }
+
+                    .dropdown-menu-mobile {
+                        background: none;
+                        border: none;
+                        display: none;
+                        position: absolute;
+                        top: 100%;
+                        left: 0;
+                        min-width: 2rem;
+
+
+                        .dropdown-item-mobile {
+                            display: block;
+                            padding: .3rem 2rem;
+                            text-decoration: none;
+                            color: white;
+                            transition: background-color 0.3s;
+                            margin-top: .5rem;
+
+
+                            &:hover {
+                                color: white;
+                            }
+
+                            &.disabled {
+                                pointer-events: none;
+                                opacity: 0.5;
+                            }
+
+                            i {
+                                margin-right: .5rem;
+                            }
+                        }
+
+                        .dropdown-divider-mobile {
+                            margin: 4px 0;
+                        }
+
+                        .nav-links-mobile {
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            margin-top: 0.5rem;
+                            border-top: 1px solid black;
+                            border-bottom: 1px solid black;
+                        }
+
+                        .btn-switch-mobile {
+                            margin-top: .5rem;
+                            display: flex;
+                            justify-content: center;
+                        }
+
+                        .end-line {
+                            border-top: 1px solid black;
+                            margin-top: .5rem;
+                        }
+                    }
+
+                    &.open {
+                        .dropdown-menu {
+                            display: block;
+                        }
+                    }
+                }
+            }
+        }
     }
+}
