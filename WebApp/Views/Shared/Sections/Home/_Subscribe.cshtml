@@ -1,4 +1,8 @@
-﻿<section id="subscribe">
+﻿@model SubscribeViewModel;
+
+
+
+<section id="subscribe">
     <div class="section-subscribe">
         <div class="container">
             <div class="heading">
@@ -37,17 +41,21 @@
             </div>
 
             <div class="subscribe-form">
-                <!-- <i class="fa-light fa-envelope"></i> -->
+                
 
                 <div class="input-terms">
-                    <input type="email" name="email" placeholder="Your Email">
+                    <i class="fa-light fa-envelope"></i>
+                    <form id="form-email" class="input-group">
+                       
+                        <span asp-validation-for="SubscribeEmail!.Email"></span>
+                        <input asp-for="SubscribeEmail!.Email" />
+                    </form>
                     <p class="gray-600 text-s">* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy.</a></p>
                 </div>
                 <button class="btn-theme text-s">Subscribe</button>
             </div>
 
-
-
-
         </div>
+    </div>
 </section>
+@await Html.PartialAsync("~/Views/Shared/_validationScriptPartial.cshtml");

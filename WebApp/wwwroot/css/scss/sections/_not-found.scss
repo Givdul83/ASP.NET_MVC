@@ -12,13 +12,52 @@
 
 
             img {
-                height:100%;
-                width:50%;
-                }
+                height: 100%;
+                width: 50%;
+            }
+        }
 
         .not-found-btn {
             display: flex;
             justify-content: center;
+        }
+    }
+}
+
+.dark-mode {
+    #not-found {
+        padding-top: 5rem;
+        padding-bottom: 5rem;
+        background-color: $gray-900;
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+
+            .not-found-content{
+                color: $gray-500;
+
+                h1{
+                    color: $gray-300;
+                    
+                }
+            }
+            
+
+            .notfound-image {
+
+
+                img {
+                    height: 100%;
+                    width: 50%;
+                }
+            }
+
+            .not-found-btn {
+                display: flex;
+                justify-content: center;
             }
         }
     }

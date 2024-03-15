@@ -1,118 +1,132 @@
 #subscribe {
-    background-color:#F3F6FF;
+    background-color: #F3F6FF;
     padding-top: 5rem;
     padding-bottom: 5rem;
- 
+
     .section-subscribe {
- 
+
         .container {
- 
+
             .heading {
-                display:flex;
+                display: flex;
                 justify-content: center;
-                gap:2rem;
- 
-                h1 {
- 
-                }
- 
-                img {
- 
-                }
+                gap: 2rem;
             }
- 
+
             .newsletter {
                 display: flex;
                 justify-content: center;
                 padding-top: 3rem;
                 padding-bottom: 3rem;
-                
-             
+
+
                 h2 {
                     padding-right: 3rem;
                     max-width: 11rem;
                     margin: 0;
-                    
-                    
-                    
                 }
- 
+
                 .checkboxes {
-                    
                     display: grid;
-                    grid-template-columns: repeat(2,1fr);
+                    grid-template-columns: repeat(2, 1fr);
                     margin-right: 1rem;
                     margin-bottom: 1rem;
+
                     @include lg {
-                        grid-template-columns: repeat(3,1fr);
+                        grid-template-columns: repeat(3, 1fr);
                     }
-                   
- 
-                    .checkbox{
+
+
+                    .checkbox {
                         display: flex;
                         gap: .5rem;
                     }
- 
+
                     input {
                         height: 100%;
-                       
                     }
- 
-                    p{
-                        
+
+                    p {
                         margin: 0;
                         margin-right: 1rem;
                     }
                 }
             }
-                
-               
+
+
             .subscribe-form {
-                    display:flex;
-                    justify-content: center;
-                    
-                    
- 
-               
-                    .input-terms{
-                        width: 43%;
-                        margin-right: 1rem;
-                        
-                        
-                    
- 
-                input {
-                    width: 100%;
-                    border-radius: .3rem;
-                    border-color: $gray-500;
-                    opacity: 0.5;
+                display: flex;
+                justify-content: center;
+
+
+
+                .input-terms {
+                    width: 43%;
+                    margin-right: 1rem;
                     position: relative;
-                    padding-left: 2rem;
-                    
- 
+
+                    i {
+                        position: absolute;
+                        top: .45rem;
+                        left: .7rem;
+                        font-size: 1rem;
+                        color: $gray-900;
+                    }
+
+
+                    .input-group {
+
+                        span {
+
+                            &.field-validation-error {
+                                color: $danger;
+                                font-weight: 500;
+                                opacity: 0.7;
+                                position: absolute;
+                                top: -1.5rem;
+                                right: 0;
+                                @include text-s;
+                                color: $danger !important;
+                            }
+                        }
+
+                        input {
+                            width: 100%;
+                            border-radius: .3rem;
+                            border-color: $gray-500;
+                            background-color: #F3F6FF;
+                            opacity: 0.5;
+                            padding-left: 2rem;
+                            color: $gray-900;
+
+                            &.input-validation-error {
+                                border-color: $danger;
+                            }
+                        }
+                    }
+
+
+                    p {
+                        margin: 0;
+                        padding-top: .5rem;
+                    }
                 }
-                p {
-                    margin: 0;
-                    padding-top: .5rem;
-                }
-                   
- 
-                }
-               
- 
+
+
                 button {
                     height: 2rem;
- 
                 }
-            }  
+            }
         }
     }
 }
+
 .dark-mode {
     #subscribe {
         background-color: $gray-900;
         padding-top: 5rem;
         padding-bottom: 5rem;
+        height:100%;
 
         .section-subscribe {
 
@@ -125,9 +139,6 @@
 
                     h1 {
                         color: $gray-300;
-                    }
-
-                    img {
                     }
                 }
 
@@ -147,22 +158,25 @@
 
                     .checkboxes {
                         display: grid;
-                        grid-template-columns: repeat(2,1fr);
+                        grid-template-columns: repeat(2, 1fr);
                         margin-right: 1rem;
                         margin-bottom: 1rem;
 
+
                         @include lg {
-                            grid-template-columns: repeat(3,1fr);
+                            grid-template-columns: repeat(3, 1fr);
                         }
 
 
                         .checkbox {
                             display: flex;
                             gap: .5rem;
+                            background-color: $gray-900;
                         }
 
                         input {
                             height: 100%;
+                            color: $gray-300;
                         }
 
                         p {
@@ -180,29 +194,54 @@
 
 
 
-
                     .input-terms {
                         width: 43%;
                         margin-right: 1rem;
+                        position: relative;
 
+                        i {
+                            position: absolute;
+                            top: .45rem;
+                            left: .7rem;
+                            font-size: 1rem;
+                            color: $gray-300;
+                        }
 
+                        .input-group {
 
+                            span {
 
-                        input {
-                            width: 100%;
-                            border-radius: .3rem;
-                            border-color: $gray-500;
-                            opacity: 0.5;
-                            position: relative;
-                            padding-left: 2rem;
-                            background-color: $gray-900;
-                            color:white;
+                                &.field-validation-error {
+                                    font-weight: 500;
+                                    opacity: 0.7;
+                                    position: absolute;
+                                    top: -1.5rem;
+                                    right: 0;
+                                    @include text-s;
+                                    color: $danger !important;
+                                }
                             }
+
+                            input {
+                                width: 100%;
+                                border-radius: .3rem;
+                                border-color: $gray-500;
+                                background-color: $gray-900;
+                                opacity: 0.5;
+                                padding-left: 2rem;
+                                color: white;
+
+                                &.input-validation-error {
+                                    border-color: $danger;
+                                }
+                            }
+                        }
+
 
                         p {
                             margin: 0;
                             padding-top: .5rem;
-                            color: $gray-300;
+                            color: $gray-500;
                         }
                     }
 
