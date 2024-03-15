@@ -521,7 +521,7 @@ header .container .account-buttons-mobile .dropdown-mobile .dropdown-menu-mobile
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 }
-header .container .account-buttons-mobile .dropdown-mobile .dropdown-menu-mobile .btn-switch-mobile {
+header .container .account-buttons-mobile .dropdown-mobile .dropdown-menu-mobile .btn-switch {
   margin-top: 0.5rem;
   display: flex;
   justify-content: center;
@@ -704,7 +704,7 @@ header .container .account-buttons-mobile .dropdown-mobile.open .dropdown-menu {
   border-top: 1px solid black;
   border-bottom: 1px solid black;
 }
-.dark-mode header .container .account-buttons-mobile .dropdown-mobile .dropdown-menu-mobile .btn-switch-mobile {
+.dark-mode header .container .account-buttons-mobile .dropdown-mobile .dropdown-menu-mobile .btn-switch {
   margin-top: 0.5rem;
   display: flex;
   justify-content: center;
@@ -949,37 +949,37 @@ footer .container .social-media a:hover {
 .dark-mode #benefits .section-benefits .container .heading p {
   color: #B4B7C9;
 }
-.dark-mode #benefits .section-benefits .container .grid {
+.dark-mode #benefits .section-benefits .container .benefit-grid {
   display: grid;
   gap: 2rem 1rem;
 }
 @media (min-width: 768px) {
-  .dark-mode #benefits .section-benefits .container .grid {
+  .dark-mode #benefits .section-benefits .container .benefit-grid {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 @media (min-width: 992px) {
-  .dark-mode #benefits .section-benefits .container .grid {
+  .dark-mode #benefits .section-benefits .container .benefit-grid {
     grid-template-columns: repeat(3, 1fr);
   }
 }
-.dark-mode #benefits .section-benefits .container .grid .benefit-card {
+.dark-mode #benefits .section-benefits .container .benefit-grid .benefit-card {
   display: flex;
   flex-direction: column;
   align-items: center;
   color: #E2E5F1;
 }
-.dark-mode #benefits .section-benefits .container .grid .benefit-card h2 {
+.dark-mode #benefits .section-benefits .container .benefit-grid .benefit-card h2 {
   color: #E2E5F1;
 }
-.dark-mode #benefits .section-benefits .container .grid .benefit-card:hover {
+.dark-mode #benefits .section-benefits .container .benefit-grid .benefit-card:hover {
   background-color: #6366F1;
   box-shadow: 0px 4px 13px -2px rgba(19, 16, 34, 0.06), 0px 4.8px 24.4px -6px rgba(19, 16, 34, 0.1);
 }
-.dark-mode #benefits .section-benefits .container .grid .card-content {
+.dark-mode #benefits .section-benefits .container .benefit-grid .card-content {
   text-align: center;
 }
-.dark-mode #benefits .section-benefits .container .grid .card-content p {
+.dark-mode #benefits .section-benefits .container .benefit-grid .card-content p {
   color: #B4B7C9;
 }
 
