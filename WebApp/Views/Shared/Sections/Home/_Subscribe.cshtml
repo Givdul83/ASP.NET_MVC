@@ -9,50 +9,54 @@
                 <h1 class="gray-900">Don't Want to Miss Anything?</h1>
                 <img src="images\HomeImages\subscribe\arrows.svg" alt="subscribe arrows">
             </div>
+
             <div class="newsletter">
                 <h2 class="h5">Sign up for Newsletters</h2>
 
-                <div class="checkboxes">
-                    <div class="checkbox">
-                        <input type="checkbox" name="daily">
-                        <p class="gray-700 text-s">Daily Newsletter</p>
+                <form class="subscribe" asp-controller="Home" asp-action="Subscribe" method="post">
+                    <div class="checkboxes">
+                        <div class="checkbox">
+                            <input asp-for="SubscribeEmail!.DailyNewsletter">
+                            <label asp-for="SubscribeEmail!.DailyNewsletter"></label>
+                        </div>
+                        <div class="checkbox">
+                            <input asp-for="SubscribeEmail!.AdvertisingUpdates">
+                            <label asp-for="SubscribeEmail!.AdvertisingUpdates"></label>
+                        </div>
+                        <div class="checkbox">
+                            <input asp-for="SubscribeEmail!.WeekinReview">
+                            <label asp-for="SubscribeEmail!.WeekinReview"></label>
+                        </div>
+                        <div class="checkbox">
+                            <input asp-for="SubscribeEmail!.EventUpdates">
+                            <label asp-for="SubscribeEmail!.EventUpdates"></label>
+                        </div>
+                        <div class="checkbox">
+                            <input asp-for="SubscribeEmail!.StartupsWeekly">
+                            <label asp-for="SubscribeEmail!.StartupsWeekly"></label>
+                        </div>
+                        <div class="checkbox">
+                            <input asp-for="SubscribeEmail!.Podcasts">
+                            <label asp-for="SubscribeEmail!.Podcasts"></label>
+                        </div>
                     </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="advertising">
-                        <p class="gray-700 text-s">Advertising Updates</p>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="week">
-                        <p class="gray-700 text-s">Week in Review</p>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="event">
-                        <p class="gray-700 text-s">Event Updates</p>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="startup">
-                        <p class="gray-700 text-s">Startups Weekly</p>
-                    </div>
-                    <div class="checkbox">
-                        <input type="checkbox" name="podcast">
-                        <p class="gray-700 text-s">Podcast</p>
-                    </div>
-                </div>
-            </div>
 
-            <div class="subscribe-form">
-                
 
-                <div class="input-terms">
-                    <i class="fa-light fa-envelope"></i>
-                    <form id="form-email" class="input-group">
-                       
-                        <span asp-validation-for="SubscribeEmail!.Email"></span>
-                        <input asp-for="SubscribeEmail!.Email" />
-                    </form>
-                    <p class="gray-600 text-s">* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy.</a></p>
-                </div>
-                <button class="btn-theme text-s">Subscribe</button>
+                    <div class="subscribe-form">
+
+
+                        <div class="input-terms">
+                            <i class="fa-light fa-envelope"></i>
+                            <div id="form-email" class="input-group">
+
+                                <span asp-validation-for="SubscribeEmail!.Email"></span>
+                                <input asp-for="SubscribeEmail!.Email" />
+                            </div>
+                            <p class="gray-600 text-s">* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy.</a></p>
+                        </div>
+                        <button type="submit" class="btn-theme text-s">Subscribe</button>
+                    </div>
+                </form>
             </div>
 
         </div>

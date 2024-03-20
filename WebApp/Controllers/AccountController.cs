@@ -2,6 +2,7 @@
 using Infrastructure.Models;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System.Runtime.InteropServices;
@@ -9,6 +10,8 @@ using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
 
+
+[Authorize]
 public class AccountController : Controller
 {
     private readonly UserManager<UserEntity> _userManager;
@@ -20,6 +23,7 @@ public class AccountController : Controller
 
 
 
+   
     public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AddressService addressService, AddressRepository addressRepository, OptionalInfoRepository optionalInfoRepository)
     {
         _userManager = userManager;
@@ -257,7 +261,7 @@ public class AccountController : Controller
         return View(viewmodel);
     }
 
-
+    [Route("/index")]
     [HttpGet]
 
     public async Task<IActionResult> LogOut()

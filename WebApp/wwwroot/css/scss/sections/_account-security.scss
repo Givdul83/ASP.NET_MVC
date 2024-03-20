@@ -125,12 +125,16 @@
                 }
 
                 .security-content {
-                    display: grid;
-                    grid-template-columns: 1fr, 1fr;
-                    grid-template-areas:
-                        "current empty" "new confirm";
+                    display: flex;
+                    flex-direction: column;
                     gap: .5rem;
 
+                    @include lg {
+                        display: grid;
+                        grid-template-columns: 1fr, 1fr;
+                        grid-template-areas:
+                            "current empty" "new confirm";
+                    }
 
 
 
@@ -197,94 +201,91 @@
                             }
                         }
                     }
+                }
+
+                .security-buttons {
+                    display: flex;
+                    gap: 1rem;
+                    padding-bottom: 2rem;
+                    padding-top: 2rem;
+                    border-bottom: 1px solid rgb(147, 151, 173, 0.3);
+
+                    .btn-gray {
                     }
+                }
+            }
+        }
 
-                    .security-buttons {
-                        display: flex;
-                        gap: 1rem;
-                        padding-bottom: 2rem;
-                        padding-top: 2rem;
-                        border-bottom: 1px solid rgb(147, 151, 173, 0.3);
+        .account-delete {
+            padding-top: 2rem;
 
-                        .btn-gray {
-                            
+
+
+            .delete {
+
+                .alert {
+                    background-color: #ef444452;
+                    opacity: 0.8;
+                    color: $gray-900;
+                    margin: 0;
+                    max-width: 70%;
+                    text-align: center;
+                    font-weight: 700;
+                }
+
+                h4 {
+                    color: #6361F1;
+                }
+
+                p {
+                }
+
+                .delete-box {
+                    position: relative;
+
+
+                    .deletebox-group {
+
+
+
+                        span {
+
+                            &.field-validation-error {
+                                color: $danger;
+                                font-weight: 500;
+                                opacity: 0.7;
+                            }
+                        }
+
+                        input {
+                            border: 1px solid $gray-400;
+                            padding: .4rem;
+                            border-radius: 5px;
+
+                            &.input-validation-error {
+                                border-color: $danger;
+                            }
                         }
                     }
                 }
 
-}
-
-                .account-delete {
+                .delete-button {
+                    display: flex;
                     padding-top: 2rem;
 
+                    .btn-theme {
+                        background-color: $danger;
 
-
-                    .delete {
-
-                        .alert {
-                            background-color: #ef444452;
-                            opacity: 0.8;
-                            color: $gray-900;
-                            margin: 0;
-                            max-width: 70%;
-                            text-align: center;
+                        &:hover {
+                            color: black;
                             font-weight: 700;
-                        }
-
-                        h4 {
-                            color: #6361F1;
-                        }
-
-                        p {
-                        }
-
-                        .delete-box {
-                            position: relative;
-
-
-                            .deletebox-group {
-
-
-
-                                span {
-
-                                    &.field-validation-error {
-                                        color: $danger;
-                                        font-weight: 500;
-                                        opacity: 0.7;
-                                    }
-                                }
-
-                                input {
-                                    border: 1px solid $gray-400;
-                                    padding: .4rem;
-                                    border-radius: 5px;
-
-                                    &.input-validation-error {
-                                        border-color: $danger;
-                                    }
-                                }
-                            }
-                        }
-
-                        .delete-button {
-                            display: flex;
-                            padding-top: 2rem;
-
-                            .btn-theme {
-                                background-color: $danger;
-
-                                &:hover {
-                                    color: black;
-                                    font-weight: 700;
-                                }
-                            }
                         }
                     }
                 }
-            
+            }
         }
     }
+}
 
 
 .dark-mode {
@@ -397,7 +398,6 @@
                 .security {
 
                     h3 {
-                       
                     }
 
                     .alert {
@@ -420,170 +420,172 @@
                         font-weight: 700;
                     }
 
-                    .security-content {
+                    .security-content{
+                    display: flex;
+                    flex-direction: column;
+                    gap: .5rem;
+
+                    @include lg {
                         display: grid;
                         grid-template-columns: 1fr, 1fr;
                         grid-template-areas:
                             "current empty" "new confirm";
-                        gap: .5rem;
+                    }
+
+
+                    .security-group {
+                        display: flex;
+                        flex-direction: column;
+                        color: $gray-900;
+                        font-weight: 700;
+                        position: relative;
+
+                        label {
+                            color: $gray-500;
+                        }
+
+                        span {
+
+                            &.field-validation-error {
+                                color: $danger;
+                                font-weight: 500;
+                                opacity: 0.7;
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                            }
+                        }
+
+                        input {
+                            border: 1px solid $gray-400;
+                            padding: .4rem;
+                            border-radius: 5px;
+
+                            &.input-validation-error {
+                                border-color: $danger;
+                            }
+                        }
+                    }
+
+                    #current-password {
+                        grid-area: current;
+                    }
+
+                    #new-password {
+                        grid-area: new;
+                    }
+
+                    #confirm-password {
+                        grid-area: confirm;
+
+                        span {
+
+                            &.field-validation-error {
+                                color: $danger;
+                                font-weight: 500;
+                                opacity: 0.7;
+                                position: absolute;
+                                top: 0;
+                                right: 0;
+                            }
+                        }
+
+                        input {
+                            border: 1px solid $gray-400;
+                            padding: .4rem;
+                            border-radius: 5px;
+
+                            &.input-validation-error {
+                                border-color: $danger;
+                            }
+                        }
+                    }
+                }
+
+                .security-buttons {
+                    display: flex;
+                    gap: 1rem;
+                    padding-bottom: 2rem;
+                    padding-top: 2rem;
+                    border-bottom: 1px solid rgb(147, 151, 173, 0.3);
+
+                    .btn-gray {
+                        background-color: black;
+                        color: $gray-100;
+
+                        &:hover {
+                            background-color: $gray-300;
+                            color: white;
+                        }
+                    }
+                }
 
 
 
 
-                        .security-group {
-                            display: flex;
-                            flex-direction: column;
+                .account-delete {
+                    padding-top: 2rem;
+
+
+
+                    .delete {
+
+                        .alert {
+                            background-color: #ef444452;
+                            opacity: 0.8;
                             color: $gray-900;
+                            margin: 0;
+                            max-width: 70%;
+                            text-align: center;
                             font-weight: 700;
+                        }
+
+                        h4 {
+                            color: #6361F1;
+                        }
+
+                        p {
+                        }
+
+                        .delete-box {
                             position: relative;
 
-                            label{
-                                color:$gray-500;
-                            }
 
-                            span {
-
-                                &.field-validation-error {
-                                    color: $danger;
-                                    font-weight: 500;
-                                    opacity: 0.7;
-                                    position: absolute;
-                                    top: 0;
-                                    right: 0;
-                                }
-                            }
-
-                            input {
-                                border: 1px solid $gray-400;
-                                padding: .4rem;
-                                border-radius: 5px;
-
-                                &.input-validation-error {
-                                    border-color: $danger;
-                                }
-                            }
-                        }
-
-                        #current-password {
-                            grid-area: current;
-                        }
-
-                        #new-password {
-                            grid-area: new;
-                        }
-
-                        #confirm-password {
-                            grid-area: confirm;
-
-                            span {
-
-                                &.field-validation-error {
-                                    color: $danger;
-                                    font-weight: 500;
-                                    opacity: 0.7;
-                                    position: absolute;
-                                    top: 0;
-                                    right: 0;
-                                }
-                            }
-
-                            input {
-                                border: 1px solid $gray-400;
-                                padding: .4rem;
-                                border-radius: 5px;
-
-                                &.input-validation-error {
-                                    border-color: $danger;
-                                }
-                            }
-                        }
-                    }
-
-                    .security-buttons {
-                        display: flex;
-                        gap: 1rem;
-                        padding-bottom: 2rem;
-                        padding-top: 2rem;
-                        border-bottom: 1px solid rgb(147, 151, 173, 0.3);
-
-                        .btn-gray {
-                            background-color: black;
-                            color: $gray-100;
-
-                            &:hover {
-                                background-color: $gray-300;
-                                color: white;
-                            }
-                        }
-                    }
+                            .deletebox-group {
 
 
 
+                                span {
 
-                    .account-delete {
-                        padding-top: 2rem;
-
-
-
-                        .delete {
-
-                            .alert {
-                                background-color: #ef444452;
-                                opacity: 0.8;
-                                color: $gray-900;
-                                margin: 0;
-                                max-width: 70%;
-                                text-align: center;
-                                font-weight: 700;
-                            }
-
-                            h4 {
-                                color: #6361F1;
-                            }
-
-                            p {
-                            }
-
-                            .delete-box {
-                                position: relative;
-
-
-                                .deletebox-group {
-
-
-
-                                    span {
-
-                                        &.field-validation-error {
-                                            color: $danger;
-                                            font-weight: 500;
-                                            opacity: 0.7;
-                                        }
+                                    &.field-validation-error {
+                                        color: $danger;
+                                        font-weight: 500;
+                                        opacity: 0.7;
                                     }
+                                }
 
-                                    input {
-                                        border: 1px solid $gray-400;
-                                        padding: .4rem;
-                                        border-radius: 5px;
+                                input {
+                                    border: 1px solid $gray-400;
+                                    padding: .4rem;
+                                    border-radius: 5px;
 
-                                        &.input-validation-error {
-                                            border-color: $danger;
-                                        }
+                                    &.input-validation-error {
+                                        border-color: $danger;
                                     }
                                 }
                             }
+                        }
 
-                            .delete-button {
-                                display: flex;
-                                padding-top: 2rem;
+                        .delete-button {
+                            display: flex;
+                            padding-top: 2rem;
 
-                                .btn-theme {
-                                    background-color: $danger;
+                            .btn-theme {
+                                background-color: $danger;
 
-                                    &:hover {
-                                        color: black;
-                                        font-weight: 700;
-                                    }
+                                &:hover {
+                                    color: black;
+                                    font-weight: 700;
                                 }
                             }
                         }
@@ -592,4 +594,5 @@
             }
         }
     }
+}
 }
