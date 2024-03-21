@@ -16,10 +16,10 @@
             <h1>@Model.Title</h1>
             <div class="search">
                 <select>
-                    <option value="All Categories"></option>
-                    <option value="Tech"></option>
-                    <option value="Development"></option>
-                    <option value="Production"></option>
+                    <option value="">All Categories</option>
+                    <option value="1">Tech</option>
+                    <option value="2">Development</option>
+                    <option value="3">Production</option>
                 </select>
 
                 <input type="text" placeholder="Search courses" />
@@ -31,12 +31,29 @@
             <div class="course-item">
                 @foreach (var course in Model.Courses)
                 {
-                    <div class="course-item">
-                       
-                        <img src=@course.CoursePictureUrl />
+                    <div class="course-box">
+                       <div class="image-and-best">
+                        <img class="course-pic" src=@course.CoursePictureUrl />
+                            @if(course.IsBestSeller== true)
+                            {
+                                <article>
+                                    <img class="best" src ="~/images/CoursesImages/badge.svg" />
+                                </article>
+                            }
+                        </div>
                         <h2>@course.Title</h2>
                         <p class="text-s">By @course.Author</p>
-                        <p class="price">$@course.Price</p>
+                        <div class="price-and-discount">
+                            @if(course.DiscountPrice != null)
+                            {
+                                <p class="discount">$@course.DiscountPrice</p>
+                                <p class="price-crossed">$@course.Price</p>
+                            }
+                            else{
+                            <p class="price">$@course.Price</p>
+                            }
+                        </div>
+                        <div class="end-line"></div>
                         <div class="course-footer">
                             <div class="time">
                                 <i class="fa-regular fa-clock"></i>
@@ -44,7 +61,7 @@
                                 </div>
                             <div class="likes">
                                 <i class="fa-light fa-thumbs-up"></i>
-                                <p class="text-s">@course.LikesInPercent % (@course.LikesInNumbers K)</p>
+                                <p class="text-s">@String.Format("{0:0.##}%", course.LikesInPercent) @String.Format("({0:0.0#}K)", course.LikesInNumbers)</p>
                             </div>
                          </div>
                     </div>

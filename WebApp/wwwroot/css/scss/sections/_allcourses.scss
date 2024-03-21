@@ -1,0 +1,174 @@
+#courses {
+    padding-top: 3rem;
+
+    .container {
+
+        .nav-links {
+
+
+            a {
+                text-decoration: none;
+                color: #9397ad;
+            }
+
+            .home {
+
+                i {
+                    margin-right: .2rem;
+                }
+            }
+
+            .course {
+                color: $theme;
+            }
+        }
+
+        .heading {
+            display: flex;
+            justify-content: space-between;
+
+            h1 {
+                margin: 0;
+                color: $gray-900;
+            }
+
+            .search {
+
+
+                select {
+                    width: 10rem;
+                    padding: 0.1rem;
+                }
+
+                input {
+                    position: relative;
+                    width: 10rem;
+                    padding: 0;
+                    margin: 0;
+
+                    &:placeholder {
+                        margin-left: 2rem;
+                    }
+                }
+
+                i {
+                    position: absolute;
+                    right: 5%;
+                    bottom: 10%;
+                    margin-right: 0.2rem;
+                }
+            }
+        }
+
+        .course-grid {
+            margin-top: 2rem;
+
+
+            .course-item {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr;
+                gap: 1rem;
+
+                .course-box {
+                    display: flex;
+                    flex-direction: column;
+
+                   
+                        @include shadow-m;
+                    
+                }
+
+                .image-and-best {
+                    position: relative;
+
+                    .course-pic {
+                        width: 100%;
+                    }
+
+                    article {
+
+                        .best {
+                            width: 100;
+                            position: absolute;
+                            top: 1rem;
+                            left: 1rem;
+                        }
+                    }
+                }
+
+                h2 {
+                    @include h5;
+                    padding: 1rem;
+                }
+
+                p {
+                    padding-left: 1rem;
+                }
+
+                .price-and-discount {
+                    display: flex;
+                    padding-bottom:1rem;
+
+                    .discount {
+                        color: $danger;
+                        ;
+                        font-size: 18px;
+                    }
+
+                    .price-crossed {
+                        text-decoration: line-through;
+                        font-size: 16px;
+                    }
+
+                    .price {
+                    }
+                }
+                .end-line{
+                    display:flex;
+                    margin:1rem;
+                    border:1px solid $gray-300;
+                    width:90%;
+                }
+
+                .course-footer {
+                    padding-top:1rem;
+                    padding-left: 1rem;
+                    padding-bottom:1rem;
+                    display: flex;
+                    align-items: center;
+                    
+
+                    .time {
+                        display: flex;
+                        align-items:center;
+
+                        i {
+                            margin: 0;
+                            margin-right: 0.3rem;
+                        }
+
+                        p {
+                            margin: 0;
+                            padding: 0;
+                            padding-right: 2rem;
+                        }
+                    }
+
+                    .likes {
+                        display: flex;
+                        align-items:center;
+                        i {
+                            margin: 0;
+                            margin-right: 0.3rem;
+                        }
+
+                        p {
+                            margin: 0;
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
