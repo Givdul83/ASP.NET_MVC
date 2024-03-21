@@ -9,7 +9,7 @@
 				@if (_signInManager.IsSignedIn(User))
 				{
 					<a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
-					<a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+					<a class="menu-link" asp-controller="Course" asp-action="Index">Courses</a>
 					<a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>
 				}
 				else
@@ -78,7 +78,7 @@
 									<a class="menu-link" asp-controller="Home" asp-action="Index">Overview</a>
 								</div>
 								<div class="menu-links">
-									<a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+									<a class="menu-link" asp-controller="Course" asp-action="Index">Courses</a>
 								</div>
 								<div class="menu-links">
 									<a class="menu-link" asp-controller="Home" asp-action="Contact">Contact</a>

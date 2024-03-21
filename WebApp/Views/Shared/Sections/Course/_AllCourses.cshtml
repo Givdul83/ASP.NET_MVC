@@ -1,0 +1,63 @@
+﻿@model CoursesViewmodel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+
+<section id="courses">
+    <div class="container">
+        <div class="nav-links">
+            <a class="home" asp-controller="Home" asp-action="Index"><i class="fa-light fa-house"></i>Home</a>
+            <span>>></span>
+            <a class="course" asp-controller="Course" asp-action="Index">Courses</a>
+        </div>
+        <div class="heading">
+            <h1>@Model.Title</h1>
+            <div class="search">
+                <select>
+                    <option value="All Categories"></option>
+                    <option value="Tech"></option>
+                    <option value="Development"></option>
+                    <option value="Production"></option>
+                </select>
+
+                <input type="text" placeholder="Search courses" />
+                <i class="fa-regular fa-magnifying-glass"></i>
+
+            </div>
+        </div>
+        <div class="course-grid">
+            <div class="course-item">
+                @foreach (var course in Model.Courses)
+                {
+                    <div class="course-item">
+                       
+                        <img src=@course.CoursePictureUrl />
+                        <h2>@course.Title</h2>
+                        <p class="text-s">By @course.Author</p>
+                        <p class="price">$@course.Price</p>
+                        <div class="course-footer">
+                            <div class="time">
+                                <i class="fa-regular fa-clock"></i>
+                                <p class="text-s">@course.Hours Hours</p>
+                                </div>
+                            <div class="likes">
+                                <i class="fa-light fa-thumbs-up"></i>
+                                <p class="text-s">@course.LikesInPercent % (@course.LikesInNumbers K)</p>
+                            </div>
+                         </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+
+
+    </div>
+</section>
+
+
+<div class="course-grid">
+   
+</div>
