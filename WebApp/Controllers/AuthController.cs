@@ -22,7 +22,7 @@ public class AuthController : Controller
 
 
 
-    [Route("/signup")]
+    
     [HttpGet]
     public IActionResult SignUp()
     {
@@ -30,7 +30,7 @@ public class AuthController : Controller
         return View(viewModel);
     }
 
-    [Route("/signup")]
+    
     [HttpPost]
     public async Task<IActionResult> SignUp(SignUpViewModel viewmodel)
     {
@@ -66,7 +66,7 @@ public class AuthController : Controller
     }
 
 
-    [Route("/signin")]
+   
 
     public IActionResult SignIn()
     {

@@ -10,7 +10,7 @@
         <div class="nav-links">
             <a class="home" asp-controller="Home" asp-action="Index"><i class="fa-light fa-house"></i>Home</a>
             <span>>></span>
-            <a class="course" asp-controller="Course" asp-action="Index">Courses</a>
+            <a class="navcourses" asp-controller="Course" asp-action="Index">Courses</a>
         </div>
         <div class="heading">
             <h1>@Model.Title</h1>
@@ -33,7 +33,8 @@
                 {
                     <div class="course-box">
                        <div class="image-and-best">
-                        <img class="course-pic" src=@course.CoursePictureUrl />
+                        <img class="main-image" src=@course.CoursePictureUrl />
+                            <button class="bookmark" asp-controller="Course" asp-action="SaveCourse"><i class="fa-regular fa-bookmark"></i> </button>
                             @if(course.IsBestSeller== true)
                             {
                                 <article>
@@ -41,7 +42,7 @@
                                 </article>
                             }
                         </div>
-                        <h2>@course.Title</h2>
+                        <h2 class="h5">@course.Title</h2>
                         <p class="text-s">By @course.Author</p>
                         <div class="price-and-discount">
                             @if(course.DiscountPrice != null)
@@ -75,6 +76,3 @@
 </section>
 
 
-<div class="course-grid">
-   
-</div>

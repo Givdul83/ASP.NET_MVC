@@ -1,3 +1,12 @@
+body {
+    color-scheme: light;
+}
+
+body.dark-mode {
+    color-scheme: dark;
+}
+
+
 html, body {
     @include standard-text;
     font-size: 16px; 

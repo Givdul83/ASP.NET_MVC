@@ -1,14 +1,15 @@
 #courses {
-    padding-top: 3rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 
     .container {
 
+
         .nav-links {
 
-
             a {
-                text-decoration: none;
                 color: #9397ad;
+                text-decoration: none;
             }
 
             .home {
@@ -18,7 +19,7 @@
                 }
             }
 
-            .course {
+            .navcourses {
                 color: $theme;
             }
         }
@@ -26,140 +27,406 @@
         .heading {
             display: flex;
             justify-content: space-between;
+            align-items: baseline;
 
             h1 {
-                margin: 0;
-                color: $gray-900;
             }
 
             .search {
 
 
                 select {
-                    width: 10rem;
-                    padding: 0.1rem;
+                    padding: .5rem;
+                    border-radius:0.3rem;
+                    width:15rem;
                 }
 
                 input {
                     position: relative;
-                    width: 10rem;
-                    padding: 0;
+                    padding: .5rem;
                     margin: 0;
-
-                    &:placeholder {
-                        margin-left: 2rem;
-                    }
+                    line-height: 0;
+                    border-radius:0.3rem;
+                    width:20rem;
                 }
 
                 i {
                     position: absolute;
-                    right: 5%;
-                    bottom: 10%;
-                    margin-right: 0.2rem;
+                    right: 16.5%;
+                    top: 18%;
                 }
             }
         }
 
         .course-grid {
-            margin-top: 2rem;
 
 
             .course-item {
                 display: grid;
-                grid-template-columns: 1fr 1fr 1fr;
+                grid-template-columns: 1fr;
                 gap: 1rem;
+
+
+                @include lg {
+                    grid-template-columns: 1fr 1fr;
+                    gap: 1rem;
+                }
+
+                @include xxl {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
 
                 .course-box {
                     display: flex;
                     flex-direction: column;
+                    border-bottom-left-radius: 0.9rem !important;
+                    border-bottom-right-radius: 0.9rem !important;
+                    overflow: hidden;
 
-                   
-                        @include shadow-m;
-                    
-                }
-
-                .image-and-best {
-                    position: relative;
-
-                    .course-pic {
-                        width: 100%;
+                    &:hover {
+                        transition: all 0.15s ease-in-out;
+                        cursor: pointer;
+                        @include shadow-l;
                     }
 
-                    article {
 
-                        .best {
-                            width: 100;
+                    .image-and-best {
+                        position: relative;
+
+                        .main-image {
+                            width: 100%;
+                            height: auto;
+                            border-top-left-radius: 0.9rem !important;
+                            border-top-right-radius: 0.9rem !important;
+                            transition: transform 0.3s ease-in-out;
+                        }
+
+                        .bookmark {
+                            background-color: white;
+                            color: $gray-900;
                             position: absolute;
                             top: 1rem;
-                            left: 1rem;
+                            right: 1rem;
+                            border-radius: 4rem;
+                            width: 2rem;
+                            height: 2rem;
+                            border: none;
+
+                            &:hover {
+                                background-color: $theme;
+                                color: white;
+                            }
+                        }
+
+                        article {
+
+                            .best {
+                                position: absolute;
+                                top: 1rem;
+                                left: 1rem;
+                            }
                         }
                     }
-                }
 
-                h2 {
-                    @include h5;
-                    padding: 1rem;
-                }
-
-                p {
-                    padding-left: 1rem;
-                }
-
-                .price-and-discount {
-                    display: flex;
-                    padding-bottom:1rem;
-
-                    .discount {
-                        color: $danger;
-                        ;
-                        font-size: 18px;
+                    &:hover .image-and-best {
+                        .main-image {
+                            transform: scale(1.1);
+                        }
                     }
 
-                    .price-crossed {
-                        text-decoration: line-through;
-                        font-size: 16px;
+
+
+                    h2 {
+                        padding: 1rem;
+                        max-width: 80%;
+
+                        @include lg {
+                            max-width: 90%;
+                        }
                     }
 
-                    .price {
+                    p {
+                        padding-left: 1rem;
                     }
-                }
-                .end-line{
-                    display:flex;
-                    margin:1rem;
-                    border:1px solid $gray-300;
-                    width:90%;
-                }
 
-                .course-footer {
-                    padding-top:1rem;
-                    padding-left: 1rem;
-                    padding-bottom:1rem;
-                    display: flex;
-                    align-items: center;
-                    
-
-                    .time {
+                    .price-and-discount {
                         display: flex;
-                        align-items:center;
+                        font-weight: 700;
 
-                        i {
-                            margin: 0;
-                            margin-right: 0.3rem;
+                        .discount {
+                            margin-right: 1rem;
+                            font-size: 18px;
+                            color: $danger;
                         }
 
-                        p {
-                            margin: 0;
-                            padding: 0;
-                            padding-right: 2rem;
+                        .price-crossed {
+                            font-size: 16px;
+                            text-decoration: line-through;
+                        }
+
+                        .price {
+                        }
+                    }
+
+                    .end-line {
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        border-top: 1px solid $gray-500;
+                        padding-bottom: 1.5rem;
+                        margin-left: 1rem;
+                        width: 90%;
+                    }
+
+                    .course-footer {
+                        display: flex;
+                        align-items: center;
+                        padding-left: 1rem;
+                        padding-bottom: 1rem;
+
+
+                        .time {
+                            display: flex;
+                            align-items: center;
+
+                            i {
+                                margin-right: .3rem;
+                            }
+
+                            p {
+                                margin: 0;
+                                margin-right: 2rem;
+                                padding: 0;
+                            }
                         }
                     }
 
                     .likes {
                         display: flex;
-                        align-items:center;
+                        align-items: center;
+
                         i {
+                            margin-right: .3rem;
+                        }
+
+                        p {
                             margin: 0;
-                            margin-right: 0.3rem;
+                            padding: 0;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dark-mode {
+    #courses {
+        padding-top: 2rem;
+        background-color: $gray-900;
+
+        .container {
+
+
+            .nav-links {
+
+                a {
+                    color: #9397ad;
+                    text-decoration: none;
+                }
+
+                .home {
+
+                    i {
+                        margin-right: .2rem;
+                    }
+                }
+
+                .navcourses {
+                    color: $theme;
+                }
+            }
+
+            .heading {
+                display: flex;
+                justify-content: space-between;
+                align-items: baseline;
+
+                h1 {
+                    color: $gray-300;
+                }
+
+                .search {
+
+
+                    select {
+                        padding: .5rem;
+                    }
+
+                    input {
+                        position: relative;
+                        padding: .5rem;
+                        margin: 0;
+                        line-height: 0;
+                    }
+
+                    i {
+                        position: absolute;
+                        right: 16.5%;
+                        top: 18%;
+                    }
+                }
+            }
+
+            .course-grid {
+
+
+                .course-item {
+                    display: grid;
+                    grid-template-columns: 1fr;
+                    gap: 1rem;
+
+
+                    @include lg {
+                        grid-template-columns: 1fr 1fr;
+                        gap: 1rem;
+                    }
+
+                    @include xxl {
+                        grid-template-columns: 1fr 1fr 1fr;
+                    }
+
+
+                    .course-box {
+                        display: flex;
+                        flex-direction: column;
+                        background-color: black;
+                        overflow: hidden;
+                        border-bottom-left-radius: 15px !important;
+                        border-bottom-right-radius: 15px !important;
+
+                        &:hover {
+                            cursor: pointer;
+                        }
+
+                        .image-and-best {
+                            position: relative;
+
+                            .main-image {
+                                width: 100%;
+                                height: auto;
+                                border-top-left-radius: 0.9rem !important;
+                                border-top-right-radius: 0.9rem !important;
+                                transition: transform 0.3s ease-in-out;
+                            }
+
+                            .bookmark {
+                                background-color: white;
+                                color: $gray-900;
+                                position: absolute;
+                                top: 1rem;
+                                right: 1rem;
+                                border-radius: 4rem;
+                                width: 2rem;
+                                height: 2rem;
+                                border: none;
+
+                                &:hover {
+                                    background-color: $theme;
+                                    color: white;
+                                }
+                            }
+
+                            article {
+                                .best {
+                                    position: absolute;
+                                    top: 1rem;
+                                    left: 1rem;
+                                }
+                            }
+                        }
+
+                        &:hover .image-and-best {
+                            .main-image {
+                                transform: scale(1.1);
+                            }
+                        }
+                    }
+
+                    h2 {
+                        padding: 1rem;
+                        max-width: 80%;
+                        color: $gray-300;
+
+                        @include lg {
+                            max-width: 90%;
+                        }
+                    }
+
+                    p {
+                        padding-left: 1rem;
+                        color: $gray-500;
+                    }
+
+                    .price-and-discount {
+                        display: flex;
+                        font-weight: 700;
+
+                        .discount {
+                            margin-right: 1rem;
+                            font-size: 18px;
+                            color: $danger;
+                        }
+
+                        .price-crossed {
+                            font-size: 16px;
+                            text-decoration: line-through;
+                        }
+
+                        .price {
+                        }
+                    }
+
+                    .end-line {
+                        display: flex;
+                        justify-content: center;
+                        align-content: center;
+                        border-top: 1px solid $gray-300;
+                        padding-bottom: 1.5rem;
+                        margin-left: 1rem;
+                        width: 90%;
+                    }
+
+                    .course-footer {
+                        display: flex;
+                        align-items: center;
+                        padding-left: 1rem;
+                        padding-bottom: 1rem;
+
+
+                        .time {
+                            display: flex;
+                            align-items: center;
+
+                            i {
+                                margin-right: .3rem;
+                            }
+
+                            p {
+                                margin: 0;
+                                margin-right: 2rem;
+                                padding: 0;
+                            }
+                        }
+                    }
+
+                    .likes {
+                        display: flex;
+                        align-items: center;
+
+                        i {
+                            margin-right: .3rem;
                         }
 
                         p {
