@@ -92,13 +92,13 @@ public class HomeController(HttpClient httpClient) : Controller
 
                         if (response.IsSuccessStatusCode)
                         {
-                            TempData["Status"] = "Success";
+                            TempData["Status"] = "You have succesfully subscribed";
                             return RedirectToAction("Index", "Home");
 
                         }
                         else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
                         {
-                            TempData["StatusFail"] = "AlreadyExists.";
+                            TempData["StatusFail"] = "Email address is already subscribed";
                             return RedirectToAction("Index", "Home");
 
                         }
@@ -165,14 +165,14 @@ public class HomeController(HttpClient httpClient) : Controller
                 }
                 else
                 {
-                    TempData["StatusFail"] = "Something went wrong";
+                    TempData["StatusFail"] = "Something went wrong with email or checkbox";
                     return RedirectToAction("Unsubscribe", "Home");
                 } 
             }
             TempData["StatusFail"] = "You must enter a Email address ";
             return RedirectToAction("Unsubscribe", "Home");
         }
-        TempData["StatusFail"] = "Something went wrong";
+        TempData["StatusFail"] = "Checkbox must be confirmed";
         return RedirectToAction("Unsubscribe", "Home");
 
     }

@@ -26,8 +26,9 @@
                 </div>
                 
 
-                <div class="unsubscribe-button">
-                    <button class="btn-theme" type="submit">Unsubscribe</button>
+                <div class="buttons">
+                    <button class="btn-gray" type="submit">Unsubscribe</button>
+                    <button class="btn-theme" asp-action="Index" asp-controller="Home" asp-fragment="subscribe">Go back to subscribe</button>
                 </div>
 
                 @if (!string.IsNullOrEmpty(TempData["StatusFail"]?.ToString()))

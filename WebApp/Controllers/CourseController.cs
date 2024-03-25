@@ -11,26 +11,25 @@ public class CourseController(HttpClient httpClient) : Controller
 
 
     [HttpGet]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string searchString)
     {
         try
         {
-
             var viewModel = new CoursesViewmodel();
-            
-                viewModel.Courses = await PopulateCourses();
-            if(viewModel ==null || !viewModel.Courses.Any())
+            viewModel.Courses = await PopulateCourses(); 
+
+            if (!String.IsNullOrEmpty(searchString))
             {
-                return NoContent();
-            }    
-            
-           return View(viewModel);
+                viewModel.Courses = viewModel.Courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()));
+            }
+
+
+            return View(viewModel);
         }
         catch
         {
             return BadRequest();
         }
-        
     }
 
     [HttpGet]
