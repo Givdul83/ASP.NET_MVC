@@ -1,0 +1,51 @@
+﻿@model UnSubscribeViewModel
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<section id="unsubscribe">
+    <div class="container">
+        <h1>@Model.Title</h1>
+        <div class="unsubscribe-content">
+            <form class="unsubscribe-form" method="post" asp-controller="Home" asp-action="Unsubscribe" novalidate>
+                
+                 <p class="gray-700">@Model.Description</p>
+
+                <div id="form-email" class="unsubscribe-email">
+                    <label asp-for=UnSubscribeModel.Email></label>
+                    <span asp-validation-for="UnSubscribeModel.Email"></span>
+                    <input asp-for="UnSubscribeModel.Email" />
+                </div>
+
+                <div id="unsubscribe-box" class="unsubscribe-group">
+                    <input asp-for=UnSubscribeModel.ConfirmBox />
+                    <label asp-for="UnSubscribeModel.ConfirmBox"></label>
+                    <span class="checkbox-error" asp-validation-for="UnSubscribeModel.ConfirmBox"></span>
+                    <span asp-for="UnSubscribeModel.ConfirmBox"></span>
+                </div>
+                
+
+                <div class="unsubscribe-button">
+                    <button class="btn-theme" type="submit">Unsubscribe</button>
+                </div>
+
+                @if (!string.IsNullOrEmpty(TempData["StatusFail"]?.ToString()))
+                {
+                    <div class="alert">
+                        @TempData["StatusFail"]
+                    </div>
+                }
+
+                @if (!string.IsNullOrEmpty(TempData["Status"]?.ToString()))
+                {
+                    <div class="success">
+                        @TempData["Status"]
+                    </div>
+                }
+
+            </form>
+        </div>
+    </div>
+</section>
+@await Html.PartialAsync("~/Views/Shared/_validationScriptPartial.cshtml")

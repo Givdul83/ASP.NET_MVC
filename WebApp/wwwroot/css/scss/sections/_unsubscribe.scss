@@ -1,0 +1,107 @@
+#unsubscribe {
+
+
+    .container {
+        display: flex;
+        flex-direction: column;
+
+        h1 {
+        }
+
+        .unsubscribe-content {
+
+
+            .unsubscribe-form {
+                display: flex;
+                flex-direction: column;
+
+                p {
+                }
+
+                #form-email {
+                    width: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    color: $gray-900;
+                    font-weight: 700;
+                    position: relative;
+
+
+                    span {
+
+                        &.field-validation-error {
+                            color: $danger;
+                            font-weight: 500;
+                            opacity: 0.7;
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                        }
+                    }
+
+                    input {
+                        border: 1px solid $gray-400;
+                        padding: .4rem;
+                        border-radius: 5px;
+
+
+                        &.input-validation-error {
+                            border-color: $danger;
+                        }
+                    }
+                }
+
+                #unsubscribe-box {
+                    position:relative;
+                    span {
+
+                        &.field-validation-error {
+                            color: $danger;
+                            font-weight: 500;
+                            opacity: 0.7;
+                            position: absolute;
+                            top: 0;
+                            right: 0;
+                        }
+                    }
+
+                    input {
+                        border: 1px solid $gray-400;
+                        padding: .4rem;
+                        border-radius: 5px;
+
+
+                        &.input-validation-error {
+                            border-color: $danger;
+                        }
+                    }
+                }
+
+                .unsubscribe-button {
+                }
+
+                .success {
+                    background-color: lightgreen;
+                    opacity: 0.8;
+                    color: $gray-900;
+                    margin: 0;
+                    max-width: 70%;
+                    text-align: center;
+                    font-weight: 700;
+                    min-width: 30%;
+                    min-height: 2rem;
+                }
+
+                .alert {
+                    background-color: #ef444452;
+                    opacity: 0.8;
+                    color: $gray-900;
+                    margin: 0;
+                    max-width: 70%;
+                    text-align: center;
+                    font-weight: 700;
+                }
+            }
+        }
+    }
+}

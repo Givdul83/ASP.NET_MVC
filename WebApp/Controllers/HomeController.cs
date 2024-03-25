@@ -27,7 +27,7 @@ public class HomeController(HttpClient httpClient) : Controller
     }
 
 
-    [HttpPost] 
+    [HttpPost]
     public IActionResult NotFound404(NotFoundViewModel viewmodel)
     {
         if (ModelState.IsValid)
@@ -37,7 +37,7 @@ public class HomeController(HttpClient httpClient) : Controller
 
         return View(viewmodel);
     }
-   
+
     [HttpGet]
     public IActionResult Contact()
     {
@@ -45,7 +45,7 @@ public class HomeController(HttpClient httpClient) : Controller
         return View(viewModel);
     }
 
-   
+
     [HttpPost]
     public IActionResult Contact(ContactViewModel viewmodel)
     {
@@ -56,14 +56,14 @@ public class HomeController(HttpClient httpClient) : Controller
 
         return View(viewmodel);
     }
-    
+
     [HttpGet]
     public IActionResult Subscribe()
     {
         var viewModel = new SubscribeViewModel();
         return View(viewModel);
     }
-    
+
     [HttpPost]
     public async Task<IActionResult> Subscribe(SubscribeViewModel viewModel)
     {
@@ -81,7 +81,7 @@ public class HomeController(HttpClient httpClient) : Controller
                     Podcasts = viewModel.SubscribeEmail.Podcasts,
                     EventUpdates = viewModel.SubscribeEmail.EventUpdates,
                 };
-                if(newSub != null)
+                if (newSub != null)
                 {
                     var json = JsonConvert.SerializeObject(newSub);
 
@@ -92,32 +92,88 @@ public class HomeController(HttpClient httpClient) : Controller
 
                         if (response.IsSuccessStatusCode)
                         {
-                            ViewData["Status"] = "Success";
-                            
+                            TempData["Status"] = "Success";
+                            return RedirectToAction("Index", "Home");
+
                         }
                         else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
                         {
-                            ViewData["Status"] = "AlreadyExists.";
-                            
+                            TempData["StatusFail"] = "AlreadyExists.";
+                            return RedirectToAction("Index", "Home");
+
                         }
                     }
-                   
+
                 }
 
-                
+
             }
             catch
             {
-                ViewData["Status"] = "ConnectionFailed";
-                
+                TempData["StatusFail"] = "ConnectionFailed";
+                return RedirectToAction("Index", "Home");
+
             }
         }
         else
         {
-            ViewData["Status"] = "Failed";
-            
+            TempData["StatusFail"] = "Failed";
+            return RedirectToAction("Index", "Home");
+
         }
 
-        return RedirectToAction("Index");
+        return RedirectToAction("Subscribe", "Home");
+    }
+
+    [HttpGet]
+
+    public IActionResult UnSubscribe()
+    {
+        var viewModel = new UnSubscribeViewModel();
+        return View(viewModel);
+    }
+
+    [HttpPost]
+
+    public async Task<IActionResult> Unsubscribe(UnSubscribeViewModel unSubscribe)
+    {
+        if (ModelState.IsValid)
+        {
+            if (unSubscribe != null)
+            {
+                var unSub = new UnSubscribeModel
+                {
+                    Email = unSubscribe.UnSubscribeModel!.Email,
+                    ConfirmBox = unSubscribe.UnSubscribeModel.ConfirmBox,
+                };
+
+
+
+                string apiUrl = $"https://localhost:7135/api/Subscriber/email?email={unSub.Email}";
+                var response = await _httpClient.DeleteAsync(apiUrl);
+
+
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["Status"] = "Successfully Unsubscribed";
+                    return View(unSubscribe);
+                }
+                else if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+                {
+                    TempData["StatusFail"] = "Your Email address was not found ,please try again";
+                    return RedirectToAction("Unsubscribe", "Home");
+                }
+                else
+                {
+                    TempData["StatusFail"] = "Something went wrong";
+                    return RedirectToAction("Unsubscribe", "Home");
+                } 
+            }
+            TempData["StatusFail"] = "You must enter a Email address ";
+            return RedirectToAction("Unsubscribe", "Home");
+        }
+        TempData["StatusFail"] = "Something went wrong";
+        return RedirectToAction("Unsubscribe", "Home");
+
     }
 }

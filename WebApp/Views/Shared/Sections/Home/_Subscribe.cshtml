@@ -53,6 +53,20 @@
                                 <input asp-for="SubscribeEmail!.Email" />
                             </div>
                             <p class="gray-600 text-s">* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy.</a></p>
+                            <p class="gray-600 text-xs">**Don't want to get anymore news from us? <a asp-controller="Home" asp-action="Unsubscribe">Unsubscribe here.</a></p>
+                            @if (!string.IsNullOrEmpty(TempData["StatusFail"]?.ToString()))
+                            {
+                                <div class="alert">
+                                    @TempData["StatusFail"]
+                                </div>
+                            }
+                            
+                            @if (!string.IsNullOrEmpty(TempData["Status"]?.ToString()))
+                            {
+                                <div class="success">
+                                    @TempData["Status"]
+                                </div>
+                            }
                         </div>
                         <button type="submit" class="btn-theme text-s">Subscribe</button>
                     </div>

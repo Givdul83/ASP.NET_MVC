@@ -1442,6 +1442,26 @@ footer .container .social-media a:hover {
   margin: 0;
   padding-top: 0.5rem;
 }
+#subscribe .section-subscribe .container .newsletter .subscribe-form .input-terms .success {
+  background-color: lightgreen;
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
+  min-width: 30%;
+  min-height: 2rem;
+}
+#subscribe .section-subscribe .container .newsletter .subscribe-form .input-terms .alert {
+  background-color: rgba(239, 68, 68, 0.3215686275);
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
+}
 #subscribe .section-subscribe .container .newsletter .subscribe-form button {
   height: 2rem;
   margin-top: 1rem;
@@ -3727,4 +3747,76 @@ footer .container .social-media a:hover {
 .dark-mode #courses .container .course-grid .course-item .likes p {
   margin: 0;
   padding: 0;
+}
+
+#unsubscribe .container {
+  display: flex;
+  flex-direction: column;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form {
+  display: flex;
+  flex-direction: column;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form #form-email {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  color: #0B0F19;
+  font-weight: 700;
+  position: relative;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form #form-email span.field-validation-error {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form #form-email input {
+  border: 1px solid #D4D7E5;
+  padding: 0.4rem;
+  border-radius: 5px;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form #form-email input.input-validation-error {
+  border-color: #EF4444;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form #unsubscribe-box {
+  position: relative;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form #unsubscribe-box span.field-validation-error {
+  color: #EF4444;
+  font-weight: 500;
+  opacity: 0.7;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form #unsubscribe-box input {
+  border: 1px solid #D4D7E5;
+  padding: 0.4rem;
+  border-radius: 5px;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form #unsubscribe-box input.input-validation-error {
+  border-color: #EF4444;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form .success {
+  background-color: lightgreen;
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
+  min-width: 30%;
+  min-height: 2rem;
+}
+#unsubscribe .container .unsubscribe-content .unsubscribe-form .alert {
+  background-color: rgba(239, 68, 68, 0.3215686275);
+  opacity: 0.8;
+  color: #0B0F19;
+  margin: 0;
+  max-width: 70%;
+  text-align: center;
+  font-weight: 700;
 }
