@@ -5,7 +5,10 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
+using System.Net.Http;
 using System.Runtime.InteropServices;
+using System.Text;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
@@ -19,18 +22,19 @@ public class AccountController : Controller
     private readonly AddressService _addressService;
     private readonly AddressRepository _addressRepository;
     private readonly OptionalInfoRepository _optionalInfoRepository;
+    private readonly HttpClient _httpClient;
 
 
 
 
-   
-    public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AddressService addressService, AddressRepository addressRepository, OptionalInfoRepository optionalInfoRepository)
+    public AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, AddressService addressService, AddressRepository addressRepository, OptionalInfoRepository optionalInfoRepository, HttpClient httpClient)
     {
         _userManager = userManager;
         _signInManager = signInManager;
         _addressService = addressService;
         _addressRepository = addressRepository;
         _optionalInfoRepository = optionalInfoRepository;
+        _httpClient = httpClient;
     }
 
 
@@ -245,7 +249,8 @@ public class AccountController : Controller
     {
         var viewmodel = new AccountSavedItemsViewModel
         {
-            AccountBasic = await PopulateBasic()
+            AccountBasic = await PopulateBasic(),
+            Courses = await PopulateSavedCourses(),
         };
         return View(viewmodel);
     }
@@ -260,6 +265,46 @@ public class AccountController : Controller
         }
         return View(viewmodel);
     }
+
+    [HttpPost]
+
+    public async Task<IActionResult> DeleteSavedCourse(int courseId)
+    {
+          
+            string apiUrl = "https://localhost:7135/api/SavedCourse/";
+            
+            
+            var user = await _userManager.GetUserAsync(User);
+
+            if (user != null)
+            {
+                var userCourseToDelete = new SaveCourseModel
+                {
+                    CourseId = courseId,
+                    UserEmail = user.Email!
+                };
+
+                var json = JsonConvert.SerializeObject(userCourseToDelete);
+
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                using (var request = new HttpRequestMessage(HttpMethod.Delete, $"{apiUrl}{user.Email}"))
+                {
+                    request.Content = content;
+                    var response = await _httpClient.SendAsync(request);
+                    if(response.IsSuccessStatusCode)
+                    {
+                        return RedirectToAction("SavedItems", "Account");
+                    }
+                    else
+                    {
+                        return RedirectToAction("SavedItems", "Account");
+                    }
+                }
+
+            }
+            return RedirectToAction("SavedItems", "Account");
+        }
+    
 
     [Route("/index")]
     [HttpGet]
@@ -442,6 +487,46 @@ public class AccountController : Controller
 
         }
         return null!;
+    }
+
+
+
+    private async Task<IEnumerable<CourseModel>> PopulateSavedCourses()
+    {
+        string apiUrl = "https://localhost:7135/api/savedcourse/";
+        var user = await _userManager.GetUserAsync(User);
+
+        if(user != null) 
+        {
+            var userDto = new UserToGetCoursesModel
+            {
+                Email = user.Email!
+            };
+
+            if (userDto.Email != null)
+            {
+               
+
+                var response = await _httpClient.GetAsync($"{apiUrl}{userDto.Email}");
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
+                if (data != null)
+                {
+                    return data;
+                }
+
+
+                else
+                {
+                    return Enumerable.Empty<CourseModel>();
+                }
+            }
+
+            return Enumerable.Empty<CourseModel>();
+        }
+         return Enumerable.Empty<CourseModel>();
     }
 
 

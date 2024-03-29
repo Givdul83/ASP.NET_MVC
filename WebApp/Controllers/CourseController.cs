@@ -1,17 +1,22 @@
-﻿using Infrastructure.Models;
+﻿using Infrastructure.Entities;
+using Infrastructure.Models;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Newtonsoft.Json;
+using System.Runtime.CompilerServices;
+using System.Text;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
 
-public class CourseController(HttpClient httpClient) : Controller
+public class CourseController(HttpClient httpClient, UserManager<UserEntity> userManager) : Controller
 {
     private readonly HttpClient _httpClient = httpClient;
-
+    private readonly UserManager<UserEntity> _userManager = userManager;
 
     [HttpGet]
-    public async Task<IActionResult> Index(string searchString)
+    public async Task<IActionResult> Index(string searchString, int? category)
     {
         try
         {
@@ -21,6 +26,20 @@ public class CourseController(HttpClient httpClient) : Controller
             if (!String.IsNullOrEmpty(searchString))
             {
                 viewModel.Courses = viewModel.Courses.Where(s => s.Title.ToLower().Contains(searchString.ToLower()));
+            }
+            if (category.HasValue)
+            {
+                switch (category)
+                {
+                    case 1:
+                        viewModel.Courses = viewModel.Courses.Where(c => c.IsBestSeller == true);
+                        break;
+                    case 2:
+                        viewModel.Courses = viewModel.Courses.Where(c => c.DiscountPrice != null);
+                        break;
+                    default:
+                        break;
+                }
             }
 
 
@@ -56,4 +75,48 @@ public class CourseController(HttpClient httpClient) : Controller
         }
     }
 
-}
+    [HttpPost]
+
+    public async Task<IActionResult> SaveCourse(int CourseId)
+    {
+        string apiUrl = "https://localhost:7135/api/SavedCourse";
+
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var saveCourse = new SaveCourseModel
+            {
+                UserEmail = user.Email!,
+                CourseId = CourseId,
+                
+            };
+
+            var json = JsonConvert.SerializeObject(saveCourse); 
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var respsonse= await _httpClient.PostAsync(apiUrl, content);
+
+            if(respsonse.IsSuccessStatusCode)
+            {
+                TempData["Saved"] = "Course saved";
+                return Ok(respsonse);
+            }
+
+            else
+            {
+                TempData["Failed"] = "Something went wrong";
+                return NoContent();
+            }
+
+
+        }
+        return BadRequest();
+    }
+      
+
+
+
+    }
+
+

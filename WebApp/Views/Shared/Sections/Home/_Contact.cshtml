@@ -42,7 +42,7 @@
 
         <div class="right-side">
             <div class="form-box">
-                <form class="contact-form" method="post" novalidate>
+                <form class="contact-form" method="post" asp-action="Contact" asp-controller="Home" novalidate>
                     <h3 class="h2">@Model.ContactForm.Title</h3>
                     <div id="form-fullname" class="form-group">
                         <label asp-for="ContactForm.FullName"></label>

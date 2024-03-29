@@ -16,12 +16,10 @@
             <h1>@Model.Title</h1>
             <div class="search">
                 <form method="get" action="@Url.Action("Index", "Course")">
-                    <select>
+                    <select id="categorySelect" name="category">
                         <option value="">All Categories</option>
-                        <option value="1">Tech</option>
-                        <option value="2">Production</option>
-                        <option value="3">Code</option>
-                        <option value="4">Development</option>
+                        <option value="1">Best Sellers</option>
+                        <option value="2">Discounted courses</option>
                     </select>
                     <input type="text" name="searchString" placeholder="Search courses" />
                     <button type="submit"><i class="fa-regular fa-magnifying-glass"></i></button>
@@ -35,7 +33,14 @@
                     <div class="course-box">
                        <div class="image-and-best">
                         <img class="main-image" src=@course.CoursePictureUrl />
-                            <button class="bookmark" asp-controller="Course" asp-action="SaveCourse"><i class="fa-regular fa-bookmark"></i> </button>
+
+
+                            <form asp-controller="Course" asp-action="SaveCourse" method="post">
+                                <input type="hidden" name="CourseId" value="@course.Id" /> 
+                                <button class="bookmark" type="submit"><i class="fa-regular fa-bookmark"></i></button>
+                            </form>
+                        
+                            
                             @if(course.IsBestSeller== true)
                             {
                                 <article>
@@ -75,5 +80,5 @@
 
     </div>
 </section>
-
+@await Html.PartialAsync("~/Views/Shared/_selectCategory.cshtml")
 

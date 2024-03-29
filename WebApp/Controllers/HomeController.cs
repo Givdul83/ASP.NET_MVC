@@ -47,14 +47,54 @@ public class HomeController(HttpClient httpClient) : Controller
 
 
     [HttpPost]
-    public IActionResult Contact(ContactViewModel viewmodel)
+    public async Task<IActionResult> Contact(ContactViewModel viewmodel)
     {
         if (ModelState.IsValid)
         {
-            return RedirectToAction("Contact", "Home");
-        }
+            try
+            {
+                var contactForm = new ContactForm
+                {
+                    FullName = viewmodel.ContactForm.FullName,
+                    Email = viewmodel.ContactForm.Email,
+                    Service = viewmodel.ContactForm.Service,
+                    Message = viewmodel.ContactForm.Message,
+                };
 
-        return View(viewmodel);
+                if (contactForm != null)
+                {
+                    var json = JsonConvert.SerializeObject(contactForm);
+
+                    if (json != null)
+                    {
+                        var content = new StringContent(json, Encoding.UTF8, "application/json");
+                        var response = await _httpClient.PostAsync("https://localhost:7135/api/contact?key=MjcyYzdiNzMtYmQ3OS00NTY4LTk5OGQtYjQ4MjgwZDdhMGIx", content);
+
+                        if (response.IsSuccessStatusCode)
+                        {
+                            TempData["Status"] = "Your message has been sent";
+                            return RedirectToAction("Contact", "Home");
+                        }
+                        else
+                        {
+                            TempData["StatusFail"] = "Message was not sent";
+                            return RedirectToAction("Contact", "Home");
+                        }
+
+                    }
+
+                }
+
+            }
+
+            catch
+            {
+                TempData["StatusFail"] = "Connection failed";
+                return RedirectToAction("Contact", "Home");
+            }
+        }
+        TempData["StatusFail"] = "Something went wrong";
+        return RedirectToAction("Contact", "Home");
     }
 
     [HttpGet]
@@ -93,13 +133,13 @@ public class HomeController(HttpClient httpClient) : Controller
                         if (response.IsSuccessStatusCode)
                         {
                             TempData["Status"] = "You have succesfully subscribed";
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Home", null, "subscribe-action");
 
                         }
                         else if (response.StatusCode == System.Net.HttpStatusCode.Conflict)
                         {
                             TempData["StatusFail"] = "Email address is already subscribed";
-                            return RedirectToAction("Index", "Home");
+                            return RedirectToAction("Index", "Home", null, "subscribe-action"); 
 
                         }
                     }
@@ -111,18 +151,18 @@ public class HomeController(HttpClient httpClient) : Controller
             catch
             {
                 TempData["StatusFail"] = "ConnectionFailed";
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Index", "Home", null, "subscribe-action");
 
             }
         }
         else
         {
             TempData["StatusFail"] = "Failed";
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "Home", null, "subscribe-action");
 
         }
 
-        return RedirectToAction("Subscribe", "Home");
+        return RedirectToAction("Index", "Home", null, "subscribe-action");
     }
 
     [HttpGet]
@@ -148,8 +188,8 @@ public class HomeController(HttpClient httpClient) : Controller
                 };
 
 
-
-                string apiUrl = $"https://localhost:7135/api/Subscriber/email?email={unSub.Email}";
+                string apiKey = "MjcyYzdiNzMtYmQ3OS00NTY4LTk5OGQtYjQ4MjgwZDdhMGIx";
+                string apiUrl = $"https://localhost:7135/api/Subscriber/email?email={unSub.Email} &key={apiKey}";
                 var response = await _httpClient.DeleteAsync(apiUrl);
 
 
