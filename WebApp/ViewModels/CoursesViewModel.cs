@@ -9,5 +9,6 @@ public class CoursesViewmodel
     
     public IEnumerable<CourseModel> Courses { get; set; } = new List<CourseModel>();
 
+    public Pagination Pagination { get; set; } = new Pagination();
 
 }

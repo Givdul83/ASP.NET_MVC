@@ -304,7 +304,41 @@ public class AccountController : Controller
             }
             return RedirectToAction("SavedItems", "Account");
         }
-    
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteAllCourses()
+    {
+        string apiUrl = "https://localhost:7135/api/SavedCourse/";
+
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var saveCourse = new SaveCourseModel
+            {
+                UserEmail = user.Email!,
+            };
+            var json = JsonConvert.SerializeObject(saveCourse);
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            using (var request = new HttpRequestMessage(HttpMethod.Delete, $"{apiUrl}{user.Email}/courses"))
+            {
+                request.Content = content;
+                var response = await _httpClient.SendAsync(request);
+                if (response.IsSuccessStatusCode)
+                {
+                    TempData["Deleted"] = "All courses deleted";
+                    return RedirectToAction("SavedItems", "Account");
+                }
+                else
+                {
+                    TempData["Failed"] = "Something went wrong";
+                    return RedirectToAction("SavedItems", "Account");
+                }
+            }
+        }
+        return RedirectToAction("SavedItems", "Account");
+    }
+
 
     [Route("/index")]
     [HttpGet]

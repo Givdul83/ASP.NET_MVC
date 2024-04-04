@@ -24,18 +24,26 @@
         </div>
 
         <div class="saved-courses">
+            <div class="heading">
+                <h1 class="h2">@Model.Title</h1>
+                <div class="delete-button">
+                    <form asp-controller="Account" asp-action="DeleteAllCourses" method="post">
+                        <button type="submit" class="btn-theme"><i class="fa-regular fa-trash"></i>Delete all</button>
+                    </form>
+                </div>
+            </div>
             <div class="course-grid">
                 <div class="course-item">
                     @foreach (var course in Model.Courses)
                     {
-                        <div class="course-box">
+                        <a class="course-box" asp-action="SingleCourse" asp-controller="Course" asp-route-id="@course.Id">                            
                             <div class="image-and-best">
                                 <img class="main-image" src=@course.CoursePictureUrl />
 
 
                                 <form asp-controller="Account" asp-action="DeleteSavedCourse" method="post">
                                     <input type="hidden" name="CourseId" value="@course.Id" />
-                                    <button class="bookmark" type="submit"><i class="fa-regular fa-bookmark"></i></button>
+                                    <button class="bookmark" type="submit" title="Delete Course"><i class="fa-regular fa-bookmark"></i></button>
                                 </form>
 
 
@@ -70,7 +78,7 @@
                                     <p class="text-s">@String.Format("{0:0.##}%", course.LikesInPercent) @String.Format("({0:0.0#}K)", course.LikesInNumbers)</p>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     }
                 </div>
             </div>

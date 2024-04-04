@@ -1,0 +1,22 @@
+﻿@model CoursesViewmodel;
+
+@{
+    ViewData["Title"] = Model.Course!.Title;
+}
+
+<section id="author">
+    <div class="container">
+        <img src="~/images/Author.svg">
+
+        <div class="author-info">
+            <h5>Learn from the best</h5>
+            <h1>@Model.Course.Author</h1>
+            <p>Dolor ipsum amet cursus quisque porta adipiscing. Lorem convallis malesuada sed maecenas. Ac dui at vitae mauris cursus in nullam porta sem. Quis pellentesque elementum ac bibendum. Nunc aliquam in tortor facilisis. Vulputate eget risus, metus phasellus. Pellentesque faucibus amet, eleifend diam quam condimentum convallis ultricies placerat. Duis habitasse placerat amet, odio pellentesque rhoncus, feugiat at. Eget pellentesque tristique felis magna fringilla.</p>
+
+            <div class="buttons">
+                <a class="btn-theme" href="https://www.youtube.com/" target="_blank"><i class="fa-brands fa-youtube"></i> 240k subscribers</a>
+                <a class="btn-theme-s" href="https://www.facebook.com/" target="_blank"><i class="fa-brands fa-square-facebook"></i> 180k followers</a>
+            </div>
+        </div>
+    </div>
+</section>

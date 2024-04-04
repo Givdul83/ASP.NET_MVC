@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Helpers\" />
-    <Folder Include="wwwroot\images\" />
   </ItemGroup>
 
   <ItemGroup>

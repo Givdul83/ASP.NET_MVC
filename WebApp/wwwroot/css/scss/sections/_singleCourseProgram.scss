@@ -1,0 +1,218 @@
+#program-details {
+
+    .container {
+
+        .body {
+            display: flex;
+            gap: 25px;
+            margin: 50px 0 0 0;
+
+            .circles {
+
+                .circle {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    width: 80px;
+                    background-color: #FFFFFF;
+                    border-radius: 50%;
+                    border: 10px solid #F3F6FF;
+
+                    p {
+                        @include text-lead;
+                        font-weight: 800;
+                        align-self: center;
+                        margin-top: 10px;
+                    }
+
+                    .infos {
+                        margin: 0 0 50px 0;
+
+                        p {
+                            max-width: 636px;
+                        }
+                    }
+                }
+
+                .line-one {
+                    margin: 0 0 0 40px;
+                    height: 123px;
+                    width: 1px;
+                    border-right: 1px solid $gray-200;
+
+                    @include md {
+                        height: 63px;
+                    }
+                }
+
+                .line-two {
+                    margin: 0 0 0 40px;
+                    height: 180px;
+                    width: 1px;
+                    border-right: 1px solid $gray-200;
+
+                    @include md {
+                        height: 87px;
+                    }
+                }
+
+                .line-three {
+                    margin: 0 0 0 40px;
+                    height: 140px;
+                    width: 1px;
+                    border-right: 1px solid $gray-200;
+
+                    @include md {
+                        height: 90px;
+                    }
+                }
+
+                .line-four {
+                    margin: 0 0 0 40px;
+                    height: 125px;
+                    width: 1px;
+                    border-right: 1px solid $gray-200;
+
+                    @include md {
+                        height: 68px;
+                    }
+                }
+
+                .line-five {
+                    margin: 0 0 0 40px;
+                    height: 195px;
+                    width: 1px;
+                    border-right: 1px solid $gray-200;
+
+                    @include md {
+                        height: 115px;
+                    }
+                }
+            }
+
+            .content {
+                .infos {
+                    margin: 0 0 50px 0;
+
+                    p {
+                        max-width: 636px;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.dark-mode {
+
+    #program-details {
+        background-color: black;
+
+        .container {
+
+            h1 {
+                color: $gray-300;
+            }
+
+            .body {
+                display: flex;
+                gap: 25px;
+                margin: 50px 0 0 0;
+
+                .circles {
+
+                    .circle {
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        width: 80px;
+                        background-color: $gray-800;
+                        border-radius: 50%;
+                        border: 10px solid $gray-900;
+
+                        p {
+                            @include text-lead;
+                            color: white;
+                            font-weight: 800;
+                            align-self: center;
+                            margin-top: 10px;
+                        }
+                    }
+
+                    .line-one {
+                        margin: 0 0 0 40px;
+                        height: 123px;
+                        width: 1px;
+                        border-right: 1px solid $gray-700;
+
+                        @include md {
+                            height: 63px;
+                        }
+                    }
+
+                    .line-two {
+                        margin: 0 0 0 40px;
+                        height: 180px;
+                        width: 1px;
+                        border-right: 1px solid $gray-700;
+
+                        @include md {
+                            height: 87px;
+                        }
+                    }
+
+                    .line-three {
+                        margin: 0 0 0 40px;
+                        height: 140px;
+                        width: 1px;
+                        border-right: 1px solid $gray-700;
+
+                        @include md {
+                            height: 90px;
+                        }
+                    }
+
+                    .line-four {
+                        margin: 0 0 0 40px;
+                        height: 125px;
+                        width: 1px;
+                        border-right: 1px solid $gray-700;
+
+                        @include md {
+                            height: 68px;
+                        }
+                    }
+
+                    .line-five {
+                        margin: 0 0 0 40px;
+                        height: 195px;
+                        width: 1px;
+                        border-right: 1px solid $gray-700;
+
+                        @include md {
+                            height: 115px;
+                        }
+                    }
+                }
+
+                .content {
+
+                    .infos {
+                        margin: 0 0 50px 0;
+
+                        h4 {
+                            color: $gray-300;
+                        }
+
+                        p {
+                            color: $gray-500;
+                            max-width: 636px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

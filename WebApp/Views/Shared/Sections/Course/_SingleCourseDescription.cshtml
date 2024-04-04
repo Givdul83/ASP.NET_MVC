@@ -1,0 +1,91 @@
+﻿
+@model CoursesViewmodel;
+
+@{
+    ViewData["Title"] = Model.Course!.Title;
+}
+
+<section id="course-description">
+    <div class="container">
+        <div class="content-left">
+            <h1>Course Description</h1>
+            <p class="info">Suspendisse natoque sagittis, consequat turpis. Sed tristique tellus morbi magna. At vel senectus accumsan, arcu mattis id tempor. Tellus sagittis, euismod porttitor sed tortor est id. Feugiat velit velit, tortor ut. Ut libero cursus nibh lorem urna amet tristique leo. Viverra lorem arcu nam nunc at ipsum quam. A proin id sagittis dignissim mauris condimentum ornare. Tempus mauris sed dictum ultrices.</p>
+            <h3>What you'll learn</h3>
+
+            <div class="points">
+                <div class="point">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <p>Sed lectus donec amet eu turpis interdum.</p>
+                </div>
+
+                <div class="point">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <p>Nulla at consectetur vitae dignissim porttitor.</p>
+                </div>
+
+                <div class="point">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <p>Phasellus id vitae dui aliquet mi.</p>
+                </div>
+
+                <div class="point">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <p>Integer cursus vitae, odio feugiat iaculis aliquet diam, et purus.</p>
+                </div>
+
+                <div class="point">
+                    <i class="fa-regular fa-circle-check"></i>
+                    <p>In aenean dolor diam tortor orci eu.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="content-right">
+            <div class="box">
+                <h4>This course includes:</h4>
+
+                <div class="content">
+                    <div class="content-info">
+                        <i class="fa-solid fa-display"></i>
+                        <p>@Model.Course.Hours hours on-demand video</p>
+                    </div>
+
+                    <div class="content-info">
+                        <i class="fa-regular fa-newspaper"></i>
+                        <p>18 articles</p>
+                    </div>
+
+                    <div class="content-info">
+                        <i class="fa-regular fa-download"></i>
+                        <p>25 downloadable resources</p>
+                    </div>
+
+                    <div class="content-info">
+                        <i class="fa-regular fa-universal-access"></i>
+                        <p>Full lifetime access</p>
+                    </div>
+
+                    <div class="content-info">
+                        <i class="fa-regular fa-trophy"></i>
+                        <p>Certificate of completion</p>
+                    </div>
+                </div>
+
+                <div class="price">
+                    @if (Model.Course.DiscountPrice != null)
+                    {
+                        <p class="black">$@Model.Course.DiscountPrice</p>
+                        <p class="gray">$@Model.Course.Price</p>
+                    }
+                    else
+                    {
+                        <p class="black">$@Model.Course.Price</p>
+                    }
+                </div>
+                <form method="post" asp-controller="Account" asp-action="SubCourse">
+                    <button class="btn-theme" type="submit">Join course</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

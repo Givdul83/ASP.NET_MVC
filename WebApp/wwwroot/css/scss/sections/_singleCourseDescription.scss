@@ -1,0 +1,246 @@
+
+#course-description {
+
+    .container {
+        display: block;
+        justify-content: center;
+        padding: 90px 15px 50px 15px;
+
+        @include xl {
+            display: flex;
+            justify-content: space-between;
+            align-item: center;
+            padding: 90px 0 90px 0;
+        }
+
+        .content-left {
+            margin: 0 0 20px 0;
+
+            @include lg {
+                margin: 0;
+            }
+
+            .info {
+                margin: 30px 0 0 0;
+
+                @include xl {
+                    width: 746px;
+                }
+            }
+
+            h3 {
+                margin: 40px 0 0 0;
+            }
+
+            .points {
+                margin: 20px 0 0 0;
+
+                .point {
+                    display: flex;
+                    justify-content: baseline;
+                    align-items: baseline;
+                    gap: 10px;
+
+                    p {
+                        margin: 0 0 10px 0;
+                    }
+
+                    i {
+                        color: $theme;
+                    }
+                }
+            }
+        }
+
+        .content-right {
+
+            @include shadow-m;
+            border: 1px solid #E2E5F1;
+            border-radius: 6px;
+            width: 416px;
+            height: 458px;
+            padding: 0 30px;
+
+            .box {
+                padding: 0 0 0 35px;
+
+                h4 {
+                    margin: 40px 0 0px 0;
+                }
+
+                .content {
+                    margin: 25px 0 40px 0;
+
+                    .content-info {
+                        display: flex;
+                        justify-content: baseline;
+                        align-items: baseline;
+                        gap: 10px;
+                        margin: 0 0 10px 0;
+
+                        p {
+                            margin: 0;
+                        }
+                    }
+                }
+
+                .price {
+                    display: flex;
+                    align-items: center;
+                    gap: 10px;
+                    margin: 0 0 10px 0;
+
+                    .black {
+
+                        @include h2;
+                    }
+
+                    .gray {
+
+                        @include text-xl;
+                        color: #9397AD;
+                        text-decoration: line-through;
+                    }
+                }
+
+                .btn-theme {
+                    display: inline-block;
+                }
+            }
+        }
+    }
+}
+
+.dark-mode {
+
+    #course-description {
+        background-color: black;
+
+        .container {
+            display: block;
+            justify-content: center;
+            padding: 90px 15px 50px 15px;
+
+            @include xl {
+                display: flex;
+                justify-content: space-between;
+                align-item: center;
+                padding: 90px 0 90px 0;
+            }
+
+            .content-left {
+                margin: 0 0 20px 0;
+
+                @include lg {
+                    margin: 0;
+                }
+
+                h1 {
+                    color: $gray-300;
+                }
+
+                .info {
+                    color: $gray-500;
+                    margin: 30px 0 0 0;
+
+                    @include xl {
+                        width: 746px;
+                    }
+                }
+
+                h3 {
+                    color: $gray-300;
+                    margin: 40px 0 0 0;
+                }
+
+                .points {
+                    margin: 20px 0 0 0;
+
+                    .point {
+                        display: flex;
+                        justify-content: baseline;
+                        align-items: baseline;
+                        gap: 10px;
+
+                        p {
+                            color: $gray-500;
+                            margin: 0 0 10px 0;
+                        }
+
+                        i {
+                            color: $theme;
+                        }
+                    }
+                }
+            }
+
+            .content-right {
+                background-color: $gray-900;
+
+                @include theme-shadow;
+                border: 1px solid $gray-800;
+                border-radius: 6px;
+                width: 416px;
+                height: 458px;
+                padding: 0 30px;
+
+                .box {
+                    padding: 0 0 0 35px;
+
+                    h4 {
+                        color: $gray-300;
+                        margin: 40px 0 0px 0;
+                    }
+
+                    .content {
+                        margin: 25px 0 40px 0;
+
+                        .content-info {
+                            display: flex;
+                            justify-content: baseline;
+                            align-items: baseline;
+                            gap: 10px;
+                            margin: 0 0 10px 0;
+
+                            i {
+                                color: $gray-500;
+                            }
+
+                            p {
+                                color: $gray-500;
+                                margin: 0;
+                            }
+                        }
+                    }
+
+                    .price {
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                        margin: 0 0 10px 0;
+
+                        .black {
+
+                            @include h2;
+                            color: $gray-300;
+                        }
+
+                        .gray {
+
+                            @include text-xl;
+                            color: $gray-500;
+                            text-decoration: line-through;
+                        }
+                    }
+
+                    .btn-theme {
+                        display: inline-block;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+}
+
+

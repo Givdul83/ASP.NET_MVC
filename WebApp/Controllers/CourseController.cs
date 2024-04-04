@@ -16,7 +16,7 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
     private readonly UserManager<UserEntity> _userManager = userManager;
 
     [HttpGet]
-    public async Task<IActionResult> Index(string searchString, int? category)
+    public async Task<IActionResult> Index(string searchString, int? category, int pageNumber = 1, int pageSize = 6)
     {
         try
         {
@@ -42,6 +42,13 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
                 }
             }
 
+            viewModel.Pagination.CurrentPage = pageNumber;
+            viewModel.Pagination.PageSize = pageSize;
+            viewModel.Pagination.TotalItems = viewModel.Courses.Count();
+
+            viewModel.Courses = viewModel.Courses.Skip((pageNumber - 1) * pageSize)
+                                                 .Take(pageSize)
+                                                 .ToList();
 
             return View(viewModel);
         }
@@ -113,10 +120,33 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
         }
         return BadRequest();
     }
-      
 
+    [HttpGet]
+    public async Task<IActionResult> SingleCourse(int id)
+    {
+        string apiUrl = "https://localhost:7135/api/course/" + id;
 
+        var response = await _httpClient.GetAsync(apiUrl);
 
+        if (response.IsSuccessStatusCode)
+        {
+            var json = await response.Content.ReadAsStringAsync();
+            var courseModel = JsonConvert.DeserializeObject<CourseModel>(json);
+
+            if (courseModel != null)
+            {
+                var viewModel = new CoursesViewmodel
+                {
+                    Course = courseModel
+                };
+                return View(viewModel);
+            }
+        }
+
+        return RedirectToAction("Index", "Course");
     }
+
+
+}
 
 

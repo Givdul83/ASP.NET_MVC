@@ -1,0 +1,189 @@
+
+#author {
+
+    .container {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: right;
+        align-items: flex-end;
+
+        img {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            z-index: -1;
+        }
+
+        .author-info {
+            margin: 5px 25px 0 25px;
+            padding: 0 0 30px 0;
+
+            @include md {
+                margin: 20px 25px 0 25px;
+                padding: 0 0 100px 0;
+            }
+
+            @include lg {
+                margin: 25px 25px 0 10px;
+            }
+
+            @include xl {
+                margin: 100px 109px 0 0;
+            }
+
+            @include xxl {
+                margin: 100px 109px 0 0;
+            }
+
+            h5 {
+                display: none;
+
+                @include xl {
+                    display: block;
+
+                    @include text-lead;
+                    color: #FFFFFF;
+                }
+            }
+
+            h1 {
+                color: #FFFFFF;
+            }
+
+            p {
+
+                @include text-xs;
+                color: #FFFFFF;
+                margin: 0 0 40px 0;
+                max-width: 400px;
+
+                @include md {
+                    margin: 0 0 20px 0;
+                }
+
+                @include lg {
+
+                    @include text-m;
+                    color: #FFFFFF;
+                    max-width: 526px;
+                }
+
+                @include xl {
+                    margin: 0 0 40px 0;
+                }
+            }
+
+            .buttons {
+                display: flex;
+                gap: 20px;
+
+                .btn-theme {
+                    background: $danger;
+                }
+            }
+        }
+    }
+}
+
+.dark-mode {
+
+    #author {
+        background-color: black;
+
+        .container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: right;
+            align-items: flex-end;
+
+            img {
+                width: 100%;
+                height: auto;
+                position: absolute;
+                z-index: 1;
+            }
+
+            .author-info {
+                margin: 5px 25px 0 25px;
+                padding: 0 0 30px 0;
+                z-index: 2;
+
+                @include md {
+                    margin: 20px 25px 0 25px;
+                    padding: 0 0 100px 0;
+                }
+
+                @include lg {
+                    margin: 25px 25px 0 10px;
+                }
+
+                @include xl {
+                    margin: 100px 109px 0 0;
+                }
+
+                @include xxl {
+                    margin: 100px 109px 0 0;
+                }
+
+                h5 {
+                    display: none;
+
+                    @include xl {
+                        display: block;
+
+                        @include text-lead;
+                        color: #FFFFFF;
+                    }
+                }
+
+                h1 {
+                    color: #FFFFFF;
+                }
+
+                p {
+
+                    @include text-xs;
+                    color: #FFFFFF;
+                    margin: 0 0 40px 0;
+                    max-width: 400px;
+
+                    @include md {
+                        margin: 0 0 20px 0;
+                    }
+
+                    @include lg {
+
+                        @include text-m;
+                        color: #FFFFFF;
+                        max-width: 526px;
+                    }
+
+                    @include xl {
+                        margin: 0 0 40px 0;
+                    }
+                }
+
+                .buttons {
+                    display: flex;
+                    gap: 20px;
+
+                    .btn-theme-s {
+                        font-weight: 700;
+                    }
+
+                    .btn-theme {
+                        background: $danger;
+                        font-weight: 700;
+
+                        &:hover {
+                            background-color: $gray-500;
+                            color: black;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

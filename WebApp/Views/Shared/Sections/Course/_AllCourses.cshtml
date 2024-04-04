@@ -30,14 +30,14 @@
             <div class="course-item">
                 @foreach (var course in Model.Courses)
                 {
-                    <div class="course-box">
+                    <a class="course-box" asp-action="SingleCourse" asp-controller="Course" asp-route-id="@course.Id">
                        <div class="image-and-best">
                         <img class="main-image" src=@course.CoursePictureUrl />
 
 
                             <form asp-controller="Course" asp-action="SaveCourse" method="post">
                                 <input type="hidden" name="CourseId" value="@course.Id" /> 
-                                <button class="bookmark" type="submit"><i class="fa-regular fa-bookmark"></i></button>
+                                <button class="bookmark" type="submit" title="Save Course"><i class="fa-regular fa-bookmark"></i></button>
                             </form>
                         
                             
@@ -71,9 +71,22 @@
                                 <p class="text-s">@String.Format("{0:0.##}%", course.LikesInPercent) @String.Format("({0:0.0#}K)", course.LikesInNumbers)</p>
                             </div>
                          </div>
-                    </div>
+                    </a>
                 }
             </div>
+        </div>
+        <div class="pagination">
+            <ul class="pagination-list">
+                @if (Model.Pagination.TotalPages > 1)
+                {
+                    @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
+                    {
+                        <li class="pagination-item @(i == Model.Pagination.CurrentPage ? "active" : "")">
+                            <a href="@Url.Action("Index", "Course", new { pageNumber = i, pageSize = Model.Pagination.PageSize })">@i</a>
+                        </li>
+                    }
+                }
+            </ul>
         </div>
 
 

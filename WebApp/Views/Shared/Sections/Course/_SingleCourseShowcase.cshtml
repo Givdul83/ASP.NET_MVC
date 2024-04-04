@@ -1,0 +1,68 @@
+﻿@model CoursesViewmodel;
+
+@{
+    ViewData["Title"] = Model.Course!.Title;
+}
+
+
+<section id="showcase-singlecourse">
+    <div>
+        <img class="background-image" src="@Model.Course.CoursePictureUrl" alt="background course image">
+    </div>
+    <div class="container">
+        <div class="links">
+            <div class="white-link">
+                <a class="white-link" asp-action="Index" asp-controller="Home"><i class="fa-regular fa-house"></i> Home</a>
+            </div>
+
+            <img src="~/images/vector.svg">
+
+            <div class="white-link">
+                <a class="white-link" asp-action="Index" asp-controller="Course">Courses</a>
+            </div>
+
+            <img src="~/images/vector.svg">
+
+            <div class="white-link">
+                <a class="white-link" asp-action="SingleCourse" asp-controller="Course">@Model.Course.Title</a>
+            </div>
+        </div>
+
+        <div class="icons">
+            @if (Model.Course.IsBestSeller == true)
+            {
+                <img src="~/images/CoursesImages/badge.svg">
+            }
+
+            <img src="~/images/CoursesImages/digital.svg">
+        </div>
+
+        <div class="content">
+            <h1>@Model.Course.Title</h1>
+            <p class="info">Egestas feugiat lorem eu neque suspendisse ullamcorper scelerisque aliquam mauris.</p>
+
+            <div class="comments">
+                <div>
+                    <span><i class="fa-solid fa-star"></i></span>
+                    <span><i class="fa-solid fa-star"></i></span>
+                    <span><i class="fa-solid fa-star"></i></span>
+                    <span><i class="fa-solid fa-star"></i></span>
+                    <span><i class="fa-regular fa-star"></i></span>
+                    <p>(1.2K reviews)</p>
+                </div>
+                <p class="left"></p>
+                <p><i class="fa-regular fa-thumbs-up"></i> @Model.Course.LikesInNumbers K likes</p>
+                <p class="right"></p>
+                <p><i class="fa-regular fa-clock"></i> @Model.Course.Hours hours</p>
+            </div>
+
+            <div class="author">
+                <img src="/images/CoursesImages/AlbertFlores.svg" alt="image of Albert Flores">
+                <div class="title-name">
+                    <p class="title">Created by</p>
+                    <p class="name">@Model.Course.Author</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
