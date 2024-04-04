@@ -46,10 +46,11 @@
                     line-height: 0;
                 }
 
-                i {
-                    position: absolute;
-                    right: 16.5%;
-                    top: 18%;
+                button {
+                    display: none;
+
+                    i {
+                    }
                 }
             }
         }
@@ -79,6 +80,7 @@
                     border-bottom-left-radius: 0.9rem !important;
                     border-bottom-right-radius: 0.9rem !important;
                     overflow: hidden;
+                    text-decoration:none;
 
                     &:hover {
                         transition: all 0.15s ease-in-out;
@@ -354,6 +356,7 @@
                         overflow: hidden;
                         border-bottom-left-radius: 15px !important;
                         border-bottom-right-radius: 15px !important;
+                        text-decoration: none;
 
                         &:hover {
                             cursor: pointer;

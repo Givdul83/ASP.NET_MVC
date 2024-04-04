@@ -121,6 +121,45 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
         return BadRequest();
     }
 
+    [HttpPost]
+
+    public async Task<IActionResult> SaveSingleCourse(int CourseId)
+    {
+        string apiUrl = "https://localhost:7135/api/mycourses";
+
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var saveCourse = new SaveCourseModel
+            {
+                UserEmail = user.Email!,
+                CourseId = CourseId,
+
+            };
+
+            var json = JsonConvert.SerializeObject(saveCourse);
+
+            var content = new StringContent(json, Encoding.UTF8, "application/json");
+            var response = await _httpClient.PostAsync(apiUrl, content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                TempData["Saved"] = "Course saved";
+                return RedirectToAction("MyCourses", "Account");
+            }
+
+            else
+            {
+                TempData["Failed"] = "Something went wrong";
+                return NoContent();
+            }
+
+
+        }
+        return BadRequest();
+    }
+
     [HttpGet]
     public async Task<IActionResult> SingleCourse(int id)
     {

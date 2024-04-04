@@ -562,6 +562,55 @@ public class AccountController : Controller
         }
          return Enumerable.Empty<CourseModel>();
     }
+    [HttpGet]
+    public async Task<IActionResult> MyCourses()
+    {
+        var viewModel = new AccountMyCoursesViewModel
+        {
+            AccountBasic = await PopulateBasic(),
+            Courses = await PopulateMyCourses(),
+        };
+        return View(viewModel);
+    }
+
+    
+    private async Task<IEnumerable<CourseModel>> PopulateMyCourses()
+    {
+        string apiUrl = "https://localhost:7135/api/mycourses/";
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var userDto = new UserToGetCoursesModel
+            {
+                Email = user.Email!
+            };
+            if (userDto.Email != null)
+            {
 
 
+                var response = await _httpClient.GetAsync($"{apiUrl}{userDto.Email}");
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
+                if (data != null)
+                {
+                    return data;
+                }
+
+
+                else
+                {
+                    return Enumerable.Empty<CourseModel>();
+                }
+            }
+
+            return Enumerable.Empty<CourseModel>();
+        }
+        return Enumerable.Empty<CourseModel>();
+    }
+
+
+   
 }

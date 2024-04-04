@@ -1,0 +1,90 @@
+﻿@model AccountMyCoursesViewModel;
+
+@{
+    ViewData["Title"] = Model.Title;
+
+}
+
+<section id="saved-items">
+    <div class="container">
+        <div class="account-nav">
+            <div class="nav-image">
+                <img src="~/images/avatarBig.svg" alt="User Image" />
+            </div>
+            <div class="nav-name-info">
+                <h2 class="h5 gray-900">@Model.AccountBasic.FirstName @Model.AccountBasic.LastName</h2>
+                <p class="gray-700">@Model.AccountBasic.Email</p>
+            </div>
+            <div class="nav-buttons">
+                <a asp-controller="Account" asp-action="Index" class="btn-gray"><i class="fa-regular fa-gear"></i>Account Details</a>
+                <a asp-controller="Account" asp-action="Security" class="btn-gray"><i class="fa-regular fa-lock"></i>Security</a>
+                <a asp-controller="Account" asp-action="SavedItems" class="btn-theme"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
+                <a asp-controller="Home" asp-action="Index" class="btn-gray"><i class="fa-light fa-right-from-bracket"></i>Sign Out</a>
+            </div>
+        </div>
+
+        <div class="saved-courses">
+            <div class="heading">
+                <h1 class="h2">@Model.Title</h1>
+                <div class="delete-button">
+                    <form asp-controller="Account" asp-action="DeleteAllCourses" method="post">
+                        <button type="submit" class="btn-theme"><i class="fa-regular fa-trash"></i>Delete all</button>
+                    </form>
+                </div>
+            </div>
+            <div class="course-grid">
+                <div class="course-item">
+                    @foreach (var course in Model.Courses)
+                    {
+                        <a class="course-box" asp-action="SingleCourse" asp-controller="Course" asp-route-id="@course.Id">
+                            <div class="image-and-best">
+                                <img class="main-image" src=@course.CoursePictureUrl />
+
+
+                                <form asp-controller="Account" asp-action="DeleteSavedCourse" method="post">
+                                    <input type="hidden" name="CourseId" value="@course.Id" />
+                                    <button class="bookmark" type="submit" title="Delete Course"><i class="fa-regular fa-bookmark"></i></button>
+                                </form>
+
+
+                                @if (course.IsBestSeller == true)
+                                {
+                                    <article>
+                                        <img class="best" src="~/images/CoursesImages/badge.svg" />
+                                    </article>
+                                }
+                            </div>
+                            <h2 class="h5">@course.Title</h2>
+                            <p class="text-s">By @course.Author</p>
+                            <div class="price-and-discount">
+                                @if (course.DiscountPrice != null)
+                                {
+                                    <p class="discount">$@course.DiscountPrice</p>
+                                    <p class="price-crossed">$@course.Price</p>
+                                }
+                                else
+                                {
+                                    <p class="price">$@course.Price</p>
+                                }
+                            </div>
+                            <div class="end-line"></div>
+                            <div class="course-footer">
+                                <div class="time">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <p class="text-s">@course.Hours Hours</p>
+                                </div>
+                                <div class="likes">
+                                    <i class="fa-light fa-thumbs-up"></i>
+                                    <p class="text-s">@String.Format("{0:0.##}%", course.LikesInPercent) @String.Format("({0:0.0#}K)", course.LikesInNumbers)</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+                </div>
+            </div>
+
+
+
+        </div>
+    </div>
+</section>

@@ -3812,10 +3812,8 @@ footer .container .social-media a:hover {
   margin: 0;
   line-height: 0;
 }
-#courses .container .heading .search i {
-  position: absolute;
-  right: 16.5%;
-  top: 18%;
+#courses .container .heading .search button {
+  display: none;
 }
 #courses .container .course-grid .course-item {
   display: grid;
@@ -3839,6 +3837,7 @@ footer .container .social-media a:hover {
   border-bottom-left-radius: 0.9rem !important;
   border-bottom-right-radius: 0.9rem !important;
   overflow: hidden;
+  text-decoration: none;
 }
 #courses .container .course-grid .course-item .course-box:hover {
   transition: all 0.15s ease-in-out;
@@ -4039,6 +4038,7 @@ footer .container .social-media a:hover {
   overflow: hidden;
   border-bottom-left-radius: 15px !important;
   border-bottom-right-radius: 15px !important;
+  text-decoration: none;
 }
 .dark-mode #courses .container .course-grid .course-item .course-box:hover {
   cursor: pointer;
@@ -4542,9 +4542,9 @@ footer .container .social-media a:hover {
 #showcase-singlecourse div .background-image {
   position: absolute;
   width: 100%;
-  max-height: 677px;
+  max-height: 42rem;
   object-fit: cover;
-  opacity: 0.4;
+  background-color: rgba(0, 0, 0, 0.9);
   top: 0;
 }
 #showcase-singlecourse .container .links {
