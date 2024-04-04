@@ -18,7 +18,8 @@
             <div class="nav-buttons">
                 <a asp-controller="Account" asp-action="Index" class="btn-gray"><i class="fa-regular fa-gear"></i>Account Details</a>
                 <a asp-controller="Account" asp-action="Security" class="btn-gray"><i class="fa-regular fa-lock"></i>Security</a>
-                <a asp-controller="Account" asp-action="SavedItems" class="btn-theme"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
+                <a asp-controller="Account" asp-action="SavedItems" class="btn-gray"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
+                <a asp-controller="Account" asp-action="MyCourses" class="btn-theme"><i class="fa-light fa-bookmark"></i>My Courses</a>
                 <a asp-controller="Home" asp-action="Index" class="btn-gray"><i class="fa-light fa-right-from-bracket"></i>Sign Out</a>
             </div>
         </div>
@@ -27,7 +28,7 @@
             <div class="heading">
                 <h1 class="h2">@Model.Title</h1>
                 <div class="delete-button">
-                    <form asp-controller="Account" asp-action="DeleteAllCourses" method="post">
+                    <form asp-controller="Account" asp-action="DeleteAllMyCourses" method="post">
                         <button type="submit" class="btn-theme"><i class="fa-regular fa-trash"></i>Delete all</button>
                     </form>
                 </div>
@@ -41,9 +42,9 @@
                                 <img class="main-image" src=@course.CoursePictureUrl />
 
 
-                                <form asp-controller="Account" asp-action="DeleteSavedCourse" method="post">
+                                <form asp-controller="Account" asp-action="DeleteMyCourse" method="post">
                                     <input type="hidden" name="CourseId" value="@course.Id" />
-                                    <button class="bookmark" type="submit" title="Delete Course"><i class="fa-regular fa-bookmark"></i></button>
+                                    <button class="trash" type="submit" title="Delete Course"><i class="fa-regular fa-trash"></i></button>
                                 </form>
 
 

@@ -72,8 +72,8 @@ header {
                     border: none;
                     display: none;
                     position: absolute;
-                    top: 100%;
-                    left: 0;
+                    top: 100%;                
+                    left:-100%;
                     min-width: 2rem;
 
                     .dropdown-item {
@@ -293,7 +293,7 @@ header {
                         display: none;
                         position: absolute;
                         top: 100%;
-                        left: 0;
+                        left: -100%;
                         min-width: 2rem;
 
                         .dropdown-item {

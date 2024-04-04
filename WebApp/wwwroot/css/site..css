@@ -441,7 +441,7 @@ header .container .account-buttons .dropdown .dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -100%;
   min-width: 2rem;
 }
 header .container .account-buttons .dropdown .dropdown-menu .dropdown-item {
@@ -624,7 +624,7 @@ header .container .account-buttons-mobile .dropdown-mobile.open .dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -100%;
   min-width: 2rem;
 }
 .dark-mode header .container .account-buttons .dropdown .dropdown-menu .dropdown-item {
@@ -3056,8 +3056,8 @@ footer .container .social-media a:hover {
   border-top-right-radius: 0.9rem !important;
   transition: transform 0.3s ease-in-out;
 }
-#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .bookmark {
-  background-color: white;
+#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .trash {
+  background-color: #EF4444;
   color: #0B0F19;
   position: absolute;
   top: 1rem;
@@ -3067,11 +3067,11 @@ footer .container .social-media a:hover {
   height: 2rem;
   border: none;
 }
-#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .bookmark:hover {
-  background-color: #6366F1;
+#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .trash:hover {
+  background-color: darkred;
   color: white;
 }
-#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .bookmark:hover::before {
+#saved-items .container .saved-courses .course-grid .course-item .course-box .image-and-best .trash:hover::before {
   content: attr(title);
   position: absolute;
   bottom: 50%;
