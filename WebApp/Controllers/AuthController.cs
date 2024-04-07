@@ -3,7 +3,9 @@ using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
 using System.Security.Claims;
+using System.Text;
 using WebApp.ViewModels;
 
 namespace WebApp.Controllers;
@@ -14,16 +16,19 @@ public class AuthController : Controller
 
    private readonly SignInManager<UserEntity> _signInManager;
 
-    public AuthController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
-    {
-        _userManager = userManager;
-        _signInManager = signInManager;
-    }
+    private readonly HttpClient _httpClient;
+
+	public AuthController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, HttpClient httpClient)
+	{
+		_userManager = userManager;
+		_signInManager = signInManager;
+		_httpClient = httpClient;
+	}
 
 
 
-    
-    [HttpGet]
+
+	[HttpGet]
     public IActionResult SignUp()
     {
         var viewModel = new SignUpViewModel();
@@ -83,9 +88,46 @@ public class AuthController : Controller
 
             if (result.Succeeded)
             {
-                return RedirectToAction("Index", "Account");
+                //string apiKey= "MjcyYzdiNzMtYmQ3OS00NTY4LTk5OGQtYjQ4MjgwZDdhMGIx";
+
+                var userDto = new ApiUserModel
+                {
+                    Email = viewmodel.Form.Email,
+                };
+
+				var json = JsonConvert.SerializeObject(userDto);
+
+				var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var response = await _httpClient.PostAsync("https://localhost:7135/api/Auth?key=MjcyYzdiNzMtYmQ3OS00NTY4LTk5OGQtYjQ4MjgwZDdhMGIx", content);
+                if (response.IsSuccessStatusCode)
+                {
+                    
+					var responseContent = await response.Content.ReadAsStringAsync();
+					var tokenResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+
+					if (tokenResponse != null && tokenResponse.TryGetValue("token", out var token) && !string.IsNullOrEmpty(token))
+					{
+
+						var cookieOptions = new CookieOptions
+                        {
+                            HttpOnly = true,
+                            Secure = true,
+                            Expires = DateTime.UtcNow.AddDays(1)
+                        };
+
+                        Response.Cookies.Append("AccessToken", token, cookieOptions);
+						return RedirectToAction("Index", "Account");
+					}
+
+                    return Unauthorized("no valid token found");
+                }
+
+
+                
             }
-        }
+           
+		}
 
         ModelState.AddModelError("IncorrectValues", "Incorrect Email or Password");
         ViewData["ErrorMessage"] = "Incorrect Email or Password";

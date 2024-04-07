@@ -3,7 +3,9 @@ using Infrastructure.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Text;
 using WebApp.ViewModels;
@@ -61,27 +63,32 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
     [HttpGet]
     public async Task<IEnumerable<CourseModel>> PopulateCourses()
     {
-
-        string apiUrl = "https://localhost:7135/api/course";
-
-
-        var response = await _httpClient.GetAsync(apiUrl);
-
-        var json = await response.Content.ReadAsStringAsync();
-
-        var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
-        if(data != null)
+        if (HttpContext.Request.Cookies.TryGetValue("AccessToken", out var token))
         {
-            return data;
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            string apiUrl = "https://localhost:7135/api/course?key=MjcyYzdiNzMtYmQ3OS00NTY4LTk5OGQtYjQ4MjgwZDdhMGIx";
+
+
+            var response = await _httpClient.GetAsync(apiUrl);
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
+            if (data != null)
+            {
+                return data;
+            }
+
+
+            else
+            {
+                return Enumerable.Empty<CourseModel>();
+            }
         }
+		return Enumerable.Empty<CourseModel>();
 
-
-        else
-        {
-            return Enumerable.Empty<CourseModel>();
-        }
-    }
-
+	}
     [HttpPost]
 
     public async Task<IActionResult> SaveCourse(int CourseId)
@@ -124,8 +131,9 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
 
     [HttpGet]
     public async Task<IActionResult> SingleCourse(int id)
-    {
-        string apiUrl = "https://localhost:7135/api/course/" + id;
+	{
+        
+        string apiUrl = "https://localhost:7135/api/course/"+id+"?key=MjcyYzdiNzMtYmQ3OS00NTY4LTk5OGQtYjQ4MjgwZDdhMGIx";
 
         var response = await _httpClient.GetAsync(apiUrl);
 
