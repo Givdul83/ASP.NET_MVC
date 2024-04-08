@@ -131,10 +131,10 @@ public class AuthController : Controller
 
         ModelState.AddModelError("IncorrectValues", "Incorrect Email or Password");
         ViewData["ErrorMessage"] = "Incorrect Email or Password";
-        return View(viewmodel);
-
-       
+        return View(viewmodel);   
     }
+
+
     [HttpGet]
 
     public IActionResult Facebook()
@@ -156,7 +156,7 @@ public class AuthController : Controller
                 LastName = info.Principal.FindFirstValue(ClaimTypes.Surname)!,
                 Email = info.Principal.FindFirstValue(ClaimTypes.Email)!,
                 UserName = info.Principal.FindFirstValue(ClaimTypes.Email)!,
-                IsExternalAccount= true,
+                IsExternalAccount = true,
             };
 
             var user = await _userManager.FindByEmailAsync(userEntity.Email);
@@ -168,27 +168,57 @@ public class AuthController : Controller
                     user = await _userManager.FindByEmailAsync(userEntity.Email);
                 }
             }
-                if(user != null) 
+            if (user != null)
+            {
+                if (user.FirstName != userEntity.FirstName || user.LastName != userEntity.LastName || user.Email != userEntity.Email)
                 {
-                    if (user.FirstName != userEntity.FirstName || user.LastName != userEntity.LastName || user.Email != userEntity.Email )
-                    {
-                        user.FirstName= userEntity.FirstName;
-                        user.LastName= userEntity.LastName;
-                        user.Email= userEntity.Email;
-                        
-                        await _userManager.UpdateAsync(user);
-                    }
-                    await _signInManager.SignInAsync(user, isPersistent: false);
+                    user.FirstName = userEntity.FirstName;
+                    user.LastName = userEntity.LastName;
+                    user.Email = userEntity.Email;
 
-                    if(HttpContext.User != null)
-                    {
-                        return RedirectToAction("Index", "Account");
-                    }
+                    await _userManager.UpdateAsync(user);
                 }
-            
+                await _signInManager.SignInAsync(user, isPersistent: false);
+
+                if (HttpContext.User != null)
+                {
+                    var userDto = new ApiUserModel
+                    {
+                        Email = user.Email,
+                    };
+
+                    var json = JsonConvert.SerializeObject(userDto);
+
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    var response = await _httpClient.PostAsync("https://localhost:7135/api/Auth?key=MjcyYzdiNzMtYmQ3OS00NTY4LTk5OGQtYjQ4MjgwZDdhMGIx", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        var tokenResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+
+                        if (tokenResponse != null && tokenResponse.TryGetValue("token", out var token) && !string.IsNullOrEmpty(token))
+                        {
+
+                            var cookieOptions = new CookieOptions
+                            {
+                                HttpOnly = true,
+                                Secure = true,
+                                Expires = DateTime.UtcNow.AddDays(1)
+                            };
+
+                            Response.Cookies.Append("AccessToken", token, cookieOptions);
+
+                            return RedirectToAction("Index", "Account");
+                        }
+                    }
+
+                }
+                return RedirectToAction("Index", "Account");
+            }
         }
         return RedirectToAction("Index", "Account");
-
     }
 
     [HttpGet]
@@ -238,13 +268,43 @@ public class AuthController : Controller
 
                 if (HttpContext.User != null)
                 {
-                    return RedirectToAction("Index", "Account");
-                }
-            }
+                    var userDto = new ApiUserModel
+                    {
+                        Email = user.Email,
+                    };
 
+                    var json = JsonConvert.SerializeObject(userDto);
+
+                    var content = new StringContent(json, Encoding.UTF8, "application/json");
+
+                    var response = await _httpClient.PostAsync("https://localhost:7135/api/Auth?key=MjcyYzdiNzMtYmQ3OS00NTY4LTk5OGQtYjQ4MjgwZDdhMGIx", content);
+                    if (response.IsSuccessStatusCode)
+                    {
+
+                        var responseContent = await response.Content.ReadAsStringAsync();
+                        var tokenResponse = JsonConvert.DeserializeObject<Dictionary<string, string>>(responseContent);
+
+                        if (tokenResponse != null && tokenResponse.TryGetValue("token", out var token) && !string.IsNullOrEmpty(token))
+                        {
+
+                            var cookieOptions = new CookieOptions
+                            {
+                                HttpOnly = true,
+                                Secure = true,
+                                Expires = DateTime.UtcNow.AddDays(1)
+                            };
+
+                            Response.Cookies.Append("AccessToken", token, cookieOptions);
+
+                            return RedirectToAction("Index", "Account");
+                        }
+                    }
+
+                }
+                return RedirectToAction("Index", "Account");
+            }
         }
         return RedirectToAction("Index", "Account");
-
     }
 }
 

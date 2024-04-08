@@ -2945,7 +2945,7 @@ footer .container .social-media a:hover {
     width: 30%;
     height: 85vh;
     border-right: 1px solid rgba(147, 151, 173, 0.3);
-    margin-right: 7rem;
+    margin-right: 10rem;
     border-bottom: none;
   }
 }
@@ -3190,7 +3190,7 @@ footer .container .social-media a:hover {
     width: 30%;
     height: 85vh;
     border-right: 1px solid rgba(147, 151, 173, 0.3);
-    margin-right: 7rem;
+    margin-right: 10rem;
     border-bottom: none;
   }
 }
@@ -3200,10 +3200,6 @@ footer .container .social-media a:hover {
   justify-content: center;
   align-items: center;
   margin-right: 1rem;
-}
-.dark-mode #saved-items .container .account-nav .nav-image img {
-  padding-right: 2rem;
-  padding-left: 2rem;
 }
 .dark-mode #saved-items .container .account-nav .nav-name-info {
   display: flex;
@@ -3444,7 +3440,7 @@ footer .container .social-media a:hover {
     width: 30%;
     height: 85vh;
     border-right: 1px solid rgba(147, 151, 173, 0.3);
-    margin-right: 7rem;
+    margin-right: 10rem;
     border-bottom: none;
   }
 }
@@ -3689,7 +3685,7 @@ footer .container .social-media a:hover {
     width: 30%;
     height: 85vh;
     border-right: 1px solid rgba(147, 151, 173, 0.3);
-    margin-right: 7rem;
+    margin-right: 10rem;
     border-bottom: none;
   }
 }
@@ -3699,10 +3695,6 @@ footer .container .social-media a:hover {
   justify-content: center;
   align-items: center;
   margin-right: 1rem;
-}
-.dark-mode #saved-items .container .account-nav .nav-image img {
-  padding-right: 2rem;
-  padding-left: 2rem;
 }
 .dark-mode #saved-items .container .account-nav .nav-name-info {
   display: flex;
