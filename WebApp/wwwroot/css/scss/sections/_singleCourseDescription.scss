@@ -9,12 +9,12 @@
         @include xl {
             display: flex;
             justify-content: space-between;
-            align-item: center;
+            align-items: center;
             padding: 90px 0 90px 0;
         }
 
         .content-left {
-            margin: 0 0 20px 0;
+            padding-top:2rem;
 
             @include lg {
                 margin: 0;
@@ -37,7 +37,7 @@
 
                 .point {
                     display: flex;
-                    justify-content: baseline;
+                 
                     align-items: baseline;
                     gap: 10px;
 
