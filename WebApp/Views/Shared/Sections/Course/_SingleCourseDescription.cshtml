@@ -84,9 +84,11 @@
                 </div>
                 <form method="post" asp-controller="Course" asp-action="SaveSingleCourse">
                     <input type="hidden" name="CourseId" value="@Model.Course.Id" />
-                    <button class="btn-theme" type="submit">Join course</button>
+                    <button id="save-course" class="btn-theme" type="submit">Join course</button>
                 </form>
             </div>
         </div>
     </div>
 </section>
+
+@await Html.PartialAsync("~/Views/Shared/_saveCourse.cshtml")
