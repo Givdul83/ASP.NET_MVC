@@ -11,4 +11,6 @@ public class CoursesViewmodel
 
     public Pagination Pagination { get; set; } = new Pagination();
 
+    public IEnumerable<CourseModel> SavedCourses { get; set; } = new List<CourseModel>();
+
 }

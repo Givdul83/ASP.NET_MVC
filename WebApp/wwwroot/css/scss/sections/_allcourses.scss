@@ -80,7 +80,7 @@
                     border-bottom-left-radius: 0.9rem !important;
                     border-bottom-right-radius: 0.9rem !important;
                     overflow: hidden;
-                    text-decoration:none;
+                    text-decoration: none;
 
                     &:hover {
                         transition: all 0.15s ease-in-out;
@@ -111,6 +111,8 @@
                             height: 2rem;
                             border: none;
 
+
+
                             &:hover {
                                 background-color: $theme;
                                 color: white;
@@ -130,6 +132,11 @@
                                 font-weight: 700;
                                 white-space: nowrap;
                             }
+                        }
+
+                        .bookmark.saved {
+                            background-color: $theme;
+                            color: white;
                         }
 
                         article {
@@ -404,6 +411,11 @@
                                     font-weight: 700;
                                     white-space: nowrap;
                                 }
+                            }
+
+                            .bookmark.saved {
+                                background-color: $theme;
+                                color: white;
                             }
 
                             article {

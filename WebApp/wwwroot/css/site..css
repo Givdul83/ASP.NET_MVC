@@ -496,7 +496,7 @@ header .container .account-buttons-mobile .dropdown-mobile .dropdown-menu-mobile
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -250%;
   min-width: 2rem;
 }
 header .container .account-buttons-mobile .dropdown-mobile .dropdown-menu-mobile .dropdown-item-mobile {
@@ -679,7 +679,7 @@ header .container .account-buttons-mobile .dropdown-mobile.open .dropdown-menu {
   display: none;
   position: absolute;
   top: 100%;
-  left: 0;
+  left: -250%;
   min-width: 2rem;
 }
 .dark-mode header .container .account-buttons-mobile .dropdown-mobile .dropdown-menu-mobile .dropdown-item-mobile {
@@ -711,6 +711,9 @@ header .container .account-buttons-mobile .dropdown-mobile.open .dropdown-menu {
   margin-top: 0.5rem;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
+}
+.dark-mode header .container .account-buttons-mobile .dropdown-mobile .dropdown-menu-mobile .nav-links-mobile .menu-link {
+  color: #E2E5F1;
 }
 .dark-mode header .container .account-buttons-mobile .dropdown-mobile .dropdown-menu-mobile .btn-switch {
   margin-top: 0.5rem;
@@ -4384,6 +4387,10 @@ footer .container .social-media a:hover {
   font-weight: 700;
   white-space: nowrap;
 }
+#courses .container .course-grid .course-item .course-box .image-and-best .bookmark.saved {
+  background-color: #6366F1;
+  color: white;
+}
 #courses .container .course-grid .course-item .course-box .image-and-best article .best {
   position: absolute;
   top: 1rem;
@@ -4583,6 +4590,10 @@ footer .container .social-media a:hover {
   font-size: 12px;
   font-weight: 700;
   white-space: nowrap;
+}
+.dark-mode #courses .container .course-grid .course-item .course-box .image-and-best .bookmark.saved {
+  background-color: #6366F1;
+  color: white;
 }
 .dark-mode #courses .container .course-grid .course-item .course-box .image-and-best article .best {
   position: absolute;

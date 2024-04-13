@@ -34,12 +34,22 @@
                        <div class="image-and-best">
                         <img class="main-image" src=@course.CoursePictureUrl />
 
-
+                            @if (Model.SavedCourses.Select(x=>x.Id).Contains(course.Id))
+                                {
                             <form asp-controller="Course" asp-action="SaveCourse" method="post">
                                 <input type="hidden" name="CourseId" value="@course.Id" /> 
-                                <button class="bookmark" type="submit" title="Save Course"><i class="fa-regular fa-bookmark"></i></button>
-                            </form>
-                        
+                                <button class="bookmark saved" type="submit" title="Course saved"><i class="fa-regular fa-bookmark"></i></button>
+                                </form>
+                            }
+
+                            else
+                            {
+                                <form asp-controller="Course" asp-action="SaveCourse" method="post">
+                                    <input type="hidden" name="CourseId" value="@course.Id" />
+                                    <button class="bookmark" type="submit" title="Save Course"><i class="fa-regular fa-bookmark"></i></button>
+                                </form>
+                            }
+
                             
                             @if(course.IsBestSeller== true)
                             {

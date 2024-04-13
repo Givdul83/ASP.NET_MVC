@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Newtonsoft.Json;
+using System.Diagnostics.Eventing.Reader;
 using System.Net.Http.Headers;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -24,6 +25,7 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
         {
             var viewModel = new CoursesViewmodel();
             viewModel.Courses = await PopulateCourses(); 
+            viewModel.SavedCourses = await CheckForSavedCourse();
 
             if (!String.IsNullOrEmpty(searchString))
             {
@@ -103,18 +105,18 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
             {
                 UserEmail = user.Email!,
                 CourseId = CourseId,
-                
+
             };
 
-            var json = JsonConvert.SerializeObject(saveCourse); 
+            var json = JsonConvert.SerializeObject(saveCourse);
 
             var content = new StringContent(json, Encoding.UTF8, "application/json");
-            var respsonse= await _httpClient.PostAsync(apiUrl, content);
+            var response = await _httpClient.PostAsync(apiUrl, content);
 
-            if(respsonse.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 TempData["Saved"] = "Course saved";
-                return Ok(respsonse);
+                return Ok(response);
             }
 
             else
@@ -124,7 +126,11 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
             }
 
 
+
+            
+
         }
+
         return BadRequest();
     }
 
@@ -196,7 +202,43 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
                  return BadRequest();
     }
 
-    
+    private async Task<IEnumerable<CourseModel>> CheckForSavedCourse()
+    {
+        string apiUrl = "https://localhost:7135/api/savedcourse/";
+        var user = await _userManager.GetUserAsync(User);
+
+        if (user != null)
+        {
+            var userDto = new UserToGetCoursesModel
+            {
+                Email = user.Email!
+            };
+
+            if (userDto.Email != null)
+            {
+
+
+                var response = await _httpClient.GetAsync($"{apiUrl}{userDto.Email}");
+
+                var json = await response.Content.ReadAsStringAsync();
+
+                var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
+                if (data != null)
+                {
+                    return data;
+                }
+
+
+                else
+                {
+                    return Enumerable.Empty<CourseModel>();
+                }
+            }
+
+            return Enumerable.Empty<CourseModel>();
+        }
+        return Enumerable.Empty<CourseModel>();
+    }
 
 }
 

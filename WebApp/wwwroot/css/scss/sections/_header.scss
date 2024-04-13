@@ -72,8 +72,8 @@ header {
                     border: none;
                     display: none;
                     position: absolute;
-                    top: 100%;                
-                    left:-100%;
+                    top: 100%;
+                    left: -100%;
                     min-width: 2rem;
 
                     .dropdown-item {
@@ -141,7 +141,7 @@ header {
                     display: none;
                     position: absolute;
                     top: 100%;
-                    left: 0;
+                    left: -250%;
                     min-width: 2rem;
 
 
@@ -361,7 +361,7 @@ header {
                         display: none;
                         position: absolute;
                         top: 100%;
-                        left: 0;
+                        left:-250%;
                         min-width: 2rem;
 
 
@@ -400,6 +400,10 @@ header {
                             margin-top: 0.5rem;
                             border-top: 1px solid black;
                             border-bottom: 1px solid black;
+                           
+                            .menu-link{
+                                color:$gray-300;
+                            }
                         }
 
                         .btn-switch {
