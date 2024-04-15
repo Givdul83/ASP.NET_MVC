@@ -24,7 +24,7 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
         try
         {
             var viewModel = new CoursesViewmodel();
-            viewModel.Courses = await PopulateCourses(); 
+            viewModel.Courses = await PopulateCourses();
             viewModel.SavedCourses = await CheckForSavedCourse();
 
             if (!String.IsNullOrEmpty(searchString))
@@ -88,9 +88,9 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
                 return Enumerable.Empty<CourseModel>();
             }
         }
-		return Enumerable.Empty<CourseModel>();
+        return Enumerable.Empty<CourseModel>();
 
-	}
+    }
     [HttpPost]
 
     public async Task<IActionResult> SaveCourse(int CourseId)
@@ -116,129 +116,130 @@ public class CourseController(HttpClient httpClient, UserManager<UserEntity> use
             if (response.IsSuccessStatusCode)
             {
                 TempData["Saved"] = "Course saved";
-                return Ok(response);
+                return RedirectToAction("Index", "Course");
             }
 
             else
             {
                 TempData["Failed"] = "Something went wrong";
-                return NoContent();
+                return RedirectToAction("Index", "Course");
+
+
+
+
+
             }
 
-
-
-            
-
         }
-
-        return BadRequest();
-    }
-
-
-    [HttpGet]
-    public async Task<IActionResult> SingleCourse(int id)
-	{
-        
-        string apiUrl = "https://localhost:7135/api/course/"+id+"?key=MjcyYzdiNzMtYmQ3OS00NTY4LTk5OGQtYjQ4MjgwZDdhMGIx";
-
-        var response = await _httpClient.GetAsync(apiUrl);
-
-        if (response.IsSuccessStatusCode)
-        {
-            var json = await response.Content.ReadAsStringAsync();
-            var courseModel = JsonConvert.DeserializeObject<CourseModel>(json);
-
-            if (courseModel != null)
-            {
-                var viewModel = new CoursesViewmodel
-                {
-                    Course = courseModel
-                };
-                return View(viewModel);
-            }
-        }
-
+        TempData["Failed"] = "Something went wrong";
         return RedirectToAction("Index", "Course");
     }
 
-    [HttpPost]
 
-    public async Task<IActionResult> SaveSingleCourse(int CourseId)
+[HttpGet]
+public async Task<IActionResult> SingleCourse(int id)
+{
+
+    string apiUrl = "https://localhost:7135/api/course/" + id + "?key=MjcyYzdiNzMtYmQ3OS00NTY4LTk5OGQtYjQ4MjgwZDdhMGIx";
+
+    var response = await _httpClient.GetAsync(apiUrl);
+
+    if (response.IsSuccessStatusCode)
     {
+        var json = await response.Content.ReadAsStringAsync();
+        var courseModel = JsonConvert.DeserializeObject<CourseModel>(json);
 
-
-        string apiUrl = "https://localhost:7135/api/MyCourses";
-
-        var user = await _userManager.GetUserAsync(User);
-       
-
-            if (user != null)
+        if (courseModel != null)
+        {
+            var viewModel = new CoursesViewmodel
             {
-                var saveCourse = new SaveCourseModel
-                {
-                    UserEmail = user.Email!,
-                    CourseId = CourseId,
-
-                };
-
-                var json = JsonConvert.SerializeObject(saveCourse);
-
-                var content = new StringContent(json, Encoding.UTF8, "application/json");
-                var response = await _httpClient.PostAsync(apiUrl, content);
-
-                if (response.IsSuccessStatusCode)
-                {
-                    TempData["Saved"] = "Course saved";
-                    return RedirectToAction("MyCourses", "Account");
-                }
-
-                else
-                {
-                    TempData["Failed"] = "Something went wrong";
-                    return NoContent();
-                }
-
-            }
-                 return BadRequest();
+                Course = courseModel
+            };
+            return View(viewModel);
+        }
     }
 
-    private async Task<IEnumerable<CourseModel>> CheckForSavedCourse()
+    return RedirectToAction("Index", "Course");
+}
+
+[HttpPost]
+
+public async Task<IActionResult> SaveSingleCourse(int CourseId)
+{
+
+
+    string apiUrl = "https://localhost:7135/api/MyCourses";
+
+    var user = await _userManager.GetUserAsync(User);
+
+
+    if (user != null)
     {
-        string apiUrl = "https://localhost:7135/api/savedcourse/";
-        var user = await _userManager.GetUserAsync(User);
-
-        if (user != null)
+        var saveCourse = new SaveCourseModel
         {
-            var userDto = new UserToGetCoursesModel
+            UserEmail = user.Email!,
+            CourseId = CourseId,
+
+        };
+
+        var json = JsonConvert.SerializeObject(saveCourse);
+
+        var content = new StringContent(json, Encoding.UTF8, "application/json");
+        var response = await _httpClient.PostAsync(apiUrl, content);
+
+        if (response.IsSuccessStatusCode)
+        {
+            TempData["Saved"] = "Course saved";
+            return RedirectToAction("MyCourses", "Account");
+        }
+
+        else
+        {
+            TempData["Failed"] = "Something went wrong";
+            return NoContent();
+        }
+
+    }
+    return BadRequest();
+}
+
+private async Task<IEnumerable<CourseModel>> CheckForSavedCourse()
+{
+    string apiUrl = "https://localhost:7135/api/savedcourse/";
+    var user = await _userManager.GetUserAsync(User);
+
+    if (user != null)
+    {
+        var userDto = new UserToGetCoursesModel
+        {
+            Email = user.Email!
+        };
+
+        if (userDto.Email != null)
+        {
+
+
+            var response = await _httpClient.GetAsync($"{apiUrl}{userDto.Email}");
+
+            var json = await response.Content.ReadAsStringAsync();
+
+            var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
+            if (data != null)
             {
-                Email = user.Email!
-            };
-
-            if (userDto.Email != null)
-            {
-
-
-                var response = await _httpClient.GetAsync($"{apiUrl}{userDto.Email}");
-
-                var json = await response.Content.ReadAsStringAsync();
-
-                var data = JsonConvert.DeserializeObject<IEnumerable<CourseModel>>(json);
-                if (data != null)
-                {
-                    return data;
-                }
-
-
-                else
-                {
-                    return Enumerable.Empty<CourseModel>();
-                }
+                return data;
             }
 
-            return Enumerable.Empty<CourseModel>();
+
+            else
+            {
+                return Enumerable.Empty<CourseModel>();
+            }
         }
+
         return Enumerable.Empty<CourseModel>();
     }
+    return Enumerable.Empty<CourseModel>();
+}
 
 }
 
